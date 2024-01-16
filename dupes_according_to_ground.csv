@@ -1,0 +1,1552 @@
+gen,ground,mem_status,source,idx_in_ground,idx_in_hidden_states,char_by_char_similarity
+"}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin","}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin",1.0,pythia-evals,17,17,1.0
+"[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt","[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt",1.0,pythia-evals,42,42,1.0
+"
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{","
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{",1.0,pythia-evals,146,146,1.0
+" $\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-"," $\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-",1.0,pythia-evals,176,176,1.0
+"documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69","documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69",1.0,pythia-evals,204,204,1.0
+"minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \","minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \",1.0,pythia-evals,239,239,1.0
+"
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * ""AS IS"" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+","
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * ""AS IS"" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+",1.0,pythia-evals,263,263,1.0
+"12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}","12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}",1.0,pythia-evals,279,279,1.0
+"]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ","]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ",1.0,pythia-evals,289,289,1.0
+" Kubernetes Authors.
+
+Licensed under the Apache License, Version 2.0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+"," Kubernetes Authors.
+
+Licensed under the Apache License, Version 2.0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+",1.0,pythia-evals,538,538,1.0
+"}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin","}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin",1.0,pythia-evals,576,575,1.0
+"pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+","pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+",1.0,pythia-evals,631,630,1.0
+"]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ","]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ",1.0,pythia-evals,648,647,1.0
+"minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \","minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \",1.0,pythia-evals,669,668,1.0
+"minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \","minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \",1.0,pythia-evals,725,724,1.0
+"minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \","minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \",1.0,pythia-evals,777,776,1.0
+" \""Update My Information\"" link at the top of the page, and update your user information. If you have any billing related questions, please contact our Author Billing department directly at <authorbilling@plos.org>.
+
+If your institution or institutions have a press office, please notify them about your upcoming"," \""Update My Information\"" link at the top of the page, and update your user information. If you have any billing related questions, please contact our Author Billing department directly at <authorbilling@plos.org>.
+
+If your institution or institutions have a press office, please notify them about your upcoming",1.0,pythia-evals,815,814,1.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ,1.0,pythia-evals,890,889,0.0
+"	ETHERTYPE_RATIONAL                = 0x8150
+	ETHERTYPE_RAWFR                   = 0x6559
+	ETHERTYPE_RCL                     = 0x1995
+	ETHERTYPE_RDP                     = 0x8739
+	ETHERTYPE_RETIX                   = 0x80f2
+	ETHERTYPE_RE","	ETHERTYPE_RATIONAL                = 0x8150
+	ETHERTYPE_RAWFR                   = 0x6559
+	ETHERTYPE_RCL                     = 0x1995
+	ETHERTYPE_RDP                     = 0x8739
+	ETHERTYPE_RETIX                   = 0x80f2
+	ETHERTYPE_RE",1.0,pythia-evals,953,952,1.0
+"pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+","pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+",1.0,pythia-evals,978,977,1.0
+":$$\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-",":$$\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-",1.0,pythia-evals,1062,1061,1.0
+"
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * ""AS IS"" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+","
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * ""AS IS"" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+",1.0,pythia-evals,1127,1126,1.0
+"\usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$$","\usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$$",1.0,pythia-evals,1136,1135,1.0
+"pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+","pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+",1.0,pythia-evals,1206,1205,1.0
+"documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69","documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69",1.0,pythia-evals,1233,1232,1.0
+"minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \","minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \",1.0,pythia-evals,1296,1295,1.0
+"minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \","minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \",1.0,pythia-evals,1307,1306,1.0
+"
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{","
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{",1.0,pythia-evals,1351,1350,1.0
+" $$\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-"," $$\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-",1.0,pythia-evals,1397,1395,1.0
+" * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the ""Software""),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+"," * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the ""Software""),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+",1.0,pythia-evals,1486,1484,1.0
+"documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69","documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69",1.0,pythia-evals,1539,1537,1.0
+"[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt","[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt",1.0,pythia-evals,1579,1577,1.0
+"minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \","minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \",1.0,pythia-evals,1607,1605,1.0
+"documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69","documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69",1.0,pythia-evals,1733,1731,1.0
+"\usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$$","\usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$$",1.0,pythia-evals,1793,1791,1.0
+" \""Update My Information\"" link at the top of the page, and update your user information. If you have any billing related questions, please contact our Author Billing department directly at <authorbilling@plos.org>.
+
+If your institution or institutions have a press office, please notify them about your upcoming"," \""Update My Information\"" link at the top of the page, and update your user information. If you have any billing related questions, please contact our Author Billing department directly at <authorbilling@plos.org>.
+
+If your institution or institutions have a press office, please notify them about your upcoming",1.0,pythia-evals,1956,1954,1.0
+" is free. Then, login and navigate to the UPLOAD tab, where you will find detailed instructions on how to use the tool. If you encounter any issues or have any questions when using PACE, please email us at <figures@plos.org>.
+
+We hope to receive your revised manuscript"," is free. Then, login and navigate to the UPLOAD tab, where you will find detailed instructions on how to use the tool. If you encounter any issues or have any questions when using PACE, please email us at <figures@plos.org>. Please note that Supporting Information files do not need",0.859375,pythia-evals,1995,1993,0.8085106382978723
+"documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69","documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69",1.0,pythia-evals,2033,2031,1.0
+"[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt","[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt",1.0,pythia-evals,2096,2094,1.0
+"                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document","                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document",1.0,pythia-evals,2132,2129,1.0
+"
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{","
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{",1.0,pythia-evals,2143,2140,1.0
+"
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{","
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{",1.0,pythia-evals,2269,2266,1.0
+" $$\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-"," $$\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-",1.0,pythia-evals,2375,2372,1.0
+"]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ","]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ",1.0,pythia-evals,2398,2395,1.0
+"
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{","
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{",1.0,pythia-evals,2425,2422,1.0
+"12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}","12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}",1.0,pythia-evals,2462,2458,1.0
+"documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69","documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69",1.0,pythia-evals,2511,2507,1.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ,1.0,pythia-evals,2512,2508,0.0
+"documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69","documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69",1.0,pythia-evals,2560,2556,1.0
+" Kubernetes Authors.
+
+Licensed under the Apache License, Version 2.0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+"," Kubernetes Authors.
+
+Licensed under the Apache License, Version 2.0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+",1.0,pythia-evals,2582,2578,1.0
+" $\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-"," $\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-",1.0,pythia-evals,2717,2713,1.0
+"//
+//     Generated by class-dump 3.5 (64 bit) (Debug version compiled Oct 15 2018 10:31:50).
+//
+//     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
+//
+
+#","//
+//     Generated by class-dump 3.5 (64 bit) (Debug version compiled Oct 15 2018 10:31:50).
+//
+//     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
+//
+
+#",1.0,pythia-evals,2760,2756,1.0
+"]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ","]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ",1.0,pythia-evals,2804,2800,1.0
+"
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{","
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{",1.0,pythia-evals,2924,2919,1.0
+" *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an ""AS IS"" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License"," *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an ""AS IS"" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License",1.0,pythia-evals,3013,3008,1.0
+"                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document","                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document",1.0,pythia-evals,3111,3105,1.0
+"
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{","
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{",1.0,pythia-evals,3114,3108,1.0
+"
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{","
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{",1.0,pythia-evals,3126,3120,1.0
+".0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed",".0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed",1.0,pythia-evals,3135,3129,1.0
+"                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document","                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document",1.0,pythia-evals,3140,3134,1.0
+" * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the ""Software""),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+"," * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the ""Software""),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+",1.0,pythia-evals,3227,3221,1.0
+" *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an ""AS IS"" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License"," *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an ""AS IS"" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License",1.0,pythia-evals,3234,3228,1.0
+"                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document","                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document",1.0,pythia-evals,3248,3242,1.0
+" $\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-"," $\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-",1.0,pythia-evals,3526,3519,1.0
+"pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+","pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+",1.0,pythia-evals,3623,3616,1.0
+"144. 
+  145. 
+  146. 
+  147. 
+  148. 
+  149. 
+  150. 
+  151. 
+  152. 
+  153. 
+  154. 
+  155. 
+  156. 
+  157. 
+  158. 
+  159. 
+  ","144. 
+  145. 
+  146. 
+  147. 
+  148. 
+  149. 
+  150. 
+  151. 
+  152. 
+  153. 
+  154. 
+  155. 
+  156. 
+  157. 
+  158. 
+  159. 
+  ",1.0,pythia-evals,3637,3630,1.0
+" connection between the wireless communication devices, the associated base stations and/or associated access points communicate with each other directly, via a system controller, via the public switch telephone network, via the Internet, and/or via some other wide area network.
+For each wireless communication device to participate in wireless communications, it includes a"," connection between the wireless communication devices, the associated base stations and/or associated access points communicate with each other directly, via a system controller, via the public switch telephone network, via the Internet, and/or via some other wide area network.
+For each wireless communication device to participate in wireless communications, it includes a",1.0,pythia-evals,3775,3767,1.0
+" is free. Then, login and navigate to the UPLOAD tab, where you will find detailed instructions on how to use the tool. If you encounter any issues or have any questions when using PACE, please email us at <figures@plos.org>.
+
+We hope to receive your revised manuscript"," is free. Then, login and navigate to the UPLOAD tab, where you will find detailed instructions on how to use the tool. If you encounter any issues or have any questions when using PACE, please email us at <figures@plos.org>. Please note that Supporting Information files do not need",0.859375,pythia-evals,3883,3875,0.8085106382978723
+"]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ","]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                ",1.0,pythia-evals,3915,3907,1.0
+"pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+","pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+",1.0,pythia-evals,3943,3935,1.0
+"\usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$$","\usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$$",1.0,pythia-evals,3948,3940,1.0
+"\usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$$","\usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$$",1.0,pythia-evals,3968,3960,1.0
+"documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69","documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69",1.0,pythia-evals,4112,4103,1.0
+"144. 
+  145. 
+  146. 
+  147. 
+  148. 
+  149. 
+  150. 
+  151. 
+  152. 
+  153. 
+  154. 
+  155. 
+  156. 
+  157. 
+  158. 
+  159. 
+  ","144. 
+  145. 
+  146. 
+  147. 
+  148. 
+  149. 
+  150. 
+  151. 
+  152. 
+  153. 
+  154. 
+  155. 
+  156. 
+  157. 
+  158. 
+  159. 
+  ",1.0,pythia-evals,4115,4106,1.0
+"}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin","}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin",1.0,pythia-evals,4163,4154,1.0
+".0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed",".0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed",1.0,pythia-evals,4291,4281,1.0
+"12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}","12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}",1.0,pythia-evals,4566,4555,1.0
+" connection between the wireless communication devices, the associated base stations and/or associated access points communicate with each other directly, via a system controller, via the public switch telephone network, via the Internet, and/or via some other wide area network.
+For each wireless communication device to participate in wireless communications, it includes a"," connection between the wireless communication devices, the associated base stations and/or associated access points communicate with each other directly, via a system controller, via the public switch telephone network, via the Internet, and/or via some other wide area network.
+For each wireless communication device to participate in wireless communications, it includes a",1.0,pythia-evals,4705,4694,1.0
+"                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document","                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document",1.0,pythia-evals,4780,4769,1.0
+"documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69","documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-69",1.0,pythia-evals,4821,4810,1.0
+"	ETHERTYPE_RATIONAL                = 0x8150
+	ETHERTYPE_RAWFR                   = 0x6559
+	ETHERTYPE_RCL                     = 0x1995
+	ETHERTYPE_RDP                     = 0x8739
+	ETHERTYPE_RETIX                   = 0x80f2
+	ETHERTYPE_RE","	ETHERTYPE_RATIONAL                = 0x8150
+	ETHERTYPE_RAWFR                   = 0x6559
+	ETHERTYPE_RCL                     = 0x1995
+	ETHERTYPE_RDP                     = 0x8739
+	ETHERTYPE_RETIX                   = 0x80f2
+	ETHERTYPE_RE",1.0,pythia-evals,4827,4816,1.0
+".0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed",".0 (the ""License"");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed",1.0,pythia-evals,4846,4835,1.0
+":$$\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-",":$$\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                \usepackage{amssymb} 
+                \usepackage{amsbsy}
+                \usepackage{mathrsfs}
+                \usepackage{upgreek}
+                \setlength{\oddsidemargin}{-",1.0,pythia-evals,4930,4918,1.0
+"/*
+* Licensed to the Apache Software Foundation (ASF) under one or more
+* contributor license agreements.  See the NOTICE file distributed with
+* this work for additional information regarding copyright ownership.
+* The ASF licenses this file to You under the Apache License, Version 2.0
+* (the","/*
+* Licensed to the Apache Software Foundation (ASF) under one or more
+* contributor license agreements.  See the NOTICE file distributed with
+* this work for additional information regarding copyright ownership.
+* The ASF licenses this file to You under the Apache License, Version 2.0
+* (the",1.0,pile,58,58,1.0
+"<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web","<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web",1.0,pile,452,451,1.0
+"/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (","/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (",1.0,pile,836,835,1.0
+"Slashdot videos: Now with more Slashdot!
+
+View
+
+Discuss
+
+Share
+
+We've improved Slashdot's video section; now you can view our video interviews, product close-ups and site visits with all the usual Slashdot options to comment, share, etc.","Slashdot videos: Now with more Slashdot!
+
+View
+
+Discuss
+
+Share
+
+We've improved Slashdot's video section; now you can view our video interviews, product close-ups and site visits with all the usual Slashdot options to comment, share, etc.",1.0,pile,1407,1399,1.0
+"//
+//     Generated by class-dump 3.5 (64 bit) (Debug version compiled Oct 15 2018 10:31:50).
+//
+//     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
+//
+
+#","//
+//     Generated by class-dump 3.5 (64 bit) (Debug version compiled Oct 15 2018 10:31:50).
+//
+//     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
+//
+
+#",1.0,pile,1657,1646,1.0
+"//
+//     Generated by class-dump 3.5 (64 bit) (Debug version compiled Oct 15 2018 10:31:50).
+//
+//     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
+//
+
+#","//
+//     Generated by class-dump 3.5 (64 bit) (Debug version compiled Oct 15 2018 10:31:50).
+//
+//     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
+//
+
+#",1.0,pile,1777,1766,1.0
+"//
+//     Generated by class-dump 3.5 (64 bit) (Debug version compiled Oct 15 2018 10:31:50).
+//
+//     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
+//
+
+#","//
+//     Generated by class-dump 3.5 (64 bit) (Debug version compiled Oct 15 2018 10:31:50).
+//
+//     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2015 by Steve Nygard.
+//
+
+#",1.0,pile,1871,1859,1.0
+"/*******************************************************************************
+ *  Copyright 2012-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *  Licensed under the Apache License, Version 2.0 (the ""License""). You may not use
+ *  this file except in compliance with the License. A copy of the License","/*******************************************************************************
+ *  Copyright 2012-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *  Licensed under the Apache License, Version 2.0 (the ""License""). You may not use
+ *  this file except in compliance with the License. A copy of the License",1.0,pile,2484,2469,1.0
+"/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the","/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the",1.0,pile,2767,2746,1.0
+"/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Copyright (C) 2011-2013 OpenFOAM Foundation
+","/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Copyright (",0.65625,pile,2938,2916,0.7566137566137566
+"/*
+* Licensed to the Apache Software Foundation (ASF) under one or more
+* contributor license agreements.  See the NOTICE file distributed with
+* this work for additional information regarding copyright ownership.
+* The ASF licenses this file to You under the Apache License, Version 2.0
+* (the","/*
+* Licensed to the Apache Software Foundation (ASF) under one or more
+* contributor license agreements.  See the NOTICE file distributed with
+* this work for additional information regarding copyright ownership.
+* The ASF licenses this file to You under the Apache License, Version 2.0
+* (the",1.0,pile,2951,2929,1.0
+"<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web","<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web",1.0,pile,3119,3096,1.0
+"Slashdot videos: Now with more Slashdot!
+
+View
+
+Discuss
+
+Share
+
+We've improved Slashdot's video section; now you can view our video interviews, product close-ups and site visits with all the usual Slashdot options to comment, share, etc.","Slashdot videos: Now with more Slashdot!
+
+View
+
+Discuss
+
+Share
+
+We've improved Slashdot's video section; now you can view our video interviews, product close-ups and site visits with all the usual Slashdot options to comment, share, etc.",1.0,pile,3455,3428,1.0
+"/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the","/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the",1.0,pile,3489,3462,1.0
+"/*******************************************************************************
+ *  Copyright 2012-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *  Licensed under the Apache License, Version 2.0 (the ""License""). You may not use
+ *  this file except in compliance with the License. A copy of the License","/*******************************************************************************
+ *  Copyright 2012-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *  Licensed under the Apache License, Version 2.0 (the ""License""). You may not use
+ *  this file except in compliance with the License. A copy of the License",1.0,pile,4315,4285,1.0
+"/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (","/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (",1.0,pile,4339,4309,1.0
+"/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Copyright (C) 2011-2013 OpenFOAM Foundation
+","/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Copyright (",0.65625,pile,4870,4838,0.7566137566137566
+"/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the","/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the",1.0,pile,4999,4966,1.0
