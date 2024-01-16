@@ -3,10 +3,10 @@ import torch as t
 from sklearn.metrics import roc_auc_score
 
 class LRProbe(t.nn.Module):
-    def __init__(self, d_in):
+    def __init__(self, d_in, use_bias=False):
         super().__init__()
         self.net = t.nn.Sequential(
-            t.nn.Linear(d_in, 1, bias=False),
+            t.nn.Linear(d_in, 1, bias=use_bias),
             t.nn.Sigmoid()
         )
 
@@ -19,9 +19,9 @@ class LRProbe(t.nn.Module):
     def pred_proba(self, x, iid=None):
         return self(x)
     
-    def from_data(acts, labels, lr=0.001, weight_decay=0.1, epochs=1000, device='cpu'):
+    def from_data(acts, labels, lr=0.001, weight_decay=0.1, epochs=1000, use_bias=False, device='cpu'):
         acts, labels = acts.to(device), labels.to(device)
-        probe = LRProbe(acts.shape[-1]).to(device)
+        probe = LRProbe(acts.shape[-1], use_bias = use_bias).to(device)
         
         opt = t.optim.AdamW(probe.parameters(), lr=lr, weight_decay=weight_decay)
         for _ in range(epochs):
