@@ -1,0 +1,1713 @@
+,gen,ground,mem_status,source,idx_in_ground,idx_in_hidden_states,char_by_char_similarity
+11,"                  7,
+	""hebrew"":                     8,
+	""indian"":                     9,
+	""islamic"":                    10,
+	""japanese"":                   11,
+	""korean"":                     12,
+	""latam"":                      13,
+	""latin","                  7,
+	""hebrew"":                     8,
+	""indian"":                     9,
+	""islamic"":                    10,
+	""islamic-civil"":              11,
+	""islamic-rgsa"":               12,
+	""islamic-",0.53125,pythia-evals,11,11,0.5421686746987951
+38,"ÑÐµ, Ð¼Ð¾Ð¶Ð½Ð¾ Ð»Ð¸ ÑÐ¿ÑÐ¾ÑÐ¸ÑÑ Ð¿Ð¾ ÐºÐ°ÐºÐ¾Ð¼Ñ Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð","ÑÐµ, Ð¼Ð¾Ð¶Ð½Ð¾ Ð»Ð¸ ÑÐ¿ÑÐ¾ÑÐ¸ÑÑ, Â«ÐµÑÑÑ Ð»Ð¸ Ð¶Ð¸Ð²ÑÐµÂ», Â«ÐºÑÐ",0.5625,pythia-evals,38,38,0.5142857142857142
+49," the Act.” Id. at 7.
+
+       In view of Respondent’s position and the evidence of record, I find that
+Petitioner is entitled to compensation.
+
+      In view of the foregoing, I find that Petitioner is entitled to compensation.
+Accordingly, I award Petitioner a lump sum payment of $100"," the Act.” Id. at 7.
+
+       In view of Respondent’s position and the evidence of record, I find that
+Petitioner is entitled to compensation.
+
+IT IS SO ORDERED.
+
+                                   s/Brian H. Corcoran
+                                   Brian H. Corcoran
+",0.53125,pythia-evals,49,49,0.5044642857142857
+69,".top);
+			var item = findNearbySlice(canvasX, canvasY);
+
+			if (options.grid.autoHighlight) {
+
+				//if (nearbySlice && (options.grid.highlightOnMouseOver || options.grid.highlightOnMouseOut)) {
+
+				if (",".top);
+			var item = findNearbySlice(canvasX, canvasY);
+
+			if (options.grid.autoHighlight) {
+
+				// clear auto-highlights
+
+				for (var i = 0; i < highlights.length; ++i) {
+					var h = highlights",0.546875,pythia-evals,69,69,0.5411764705882353
+85,"Bar.progress span.text {
+    position: relative;
+    z-index: 10;
+}
+
+#upload.statusBar.info {
+    display: none;
+}
+
+#upload.statusBar.progress.progressBar,
+#upload.statusBar.info {
+","Bar.progress span.text {
+    position: relative;
+    z-index: 10;
+}
+
+#upload.statusBar.info {
+    display: inline-block;
+    font-size: 14px;
+    color: #666666;
+}
+
+#upload",0.59375,pythia-evals,85,85,0.5496688741721855
+104,"Seconds {
+		return fmt.Errorf(""timestamp: %v after 10000-01-01"", ts)
+	}
+	if ts.Nanos()!= 0 {
+		return fmt.Errorf(""timestamp: %v after 10000-01-01"", ts)
+	}
+	return nil
+","Seconds {
+		return fmt.Errorf(""timestamp: %v after 10000-01-01"", ts)
+	}
+	if ts.Nanos < 0 || ts.Nanos >= 1e9 {
+		return fmt.Errorf(""timestamp: %v: nanos not in range [0,",0.5,pythia-evals,104,104,0.5255474452554745
+161,", wrote at length about the impact of speed on...
+
+As many know, the first generation of Cloud Management Platform (CMP) solutions were designed for the global enterprise market, but the success of these products with the majority of IT organizations has led to an increasing interest in cloud management at the national and local level",", wrote at length about the impact of speed on...
+
+As many know, the first generation of Cloud Management Platform (CMP) solutions were designed for managing virtual infrastructure (IaaS) and traditional applications. But that’s no longer enough to satisfy evolving and complex business requirements. In his session at 21",0.515625,pythia-evals,161,161,0.4642857142857143
+192,"LGS                   = 0x8060693f
+	SIOCBRDGSIFPRIO                   = 0x80606954
+	SIOCBRDGSMA                       = 0x80186953
+	SIOCBRDGSPRI                      = 0x80186950
+	SIOCBRDGS","LGS                   = 0x8060693f
+	SIOCBRDGSIFPRIO                   = 0x80606954
+	SIOCBRDGSIFPROT                   = 0x8060694a
+	SIOCBRDGSMA                       = 0x80186953
+	SIOCBRDGS",0.703125,pythia-evals,192,192,0.5257731958762887
+224,"
+fi
+AC_CONFIG_COMMANDS_PRE(
+[if test -z ""${$1_TRUE}"" && test -z ""${$1_FALSE}""; then
+  AC_MSG_ERROR([${$1_TRUE} or ${$1_FALSE} expected but not found])
+","
+fi
+AC_CONFIG_COMMANDS_PRE(
+[if test -z ""${$1_TRUE}"" && test -z ""${$1_FALSE}""; then
+  AC_MSG_ERROR([[conditional ""$1"" was never defined.
+Usually this means the macro was only invoked condition",0.703125,pythia-evals,224,224,0.5393939393939394
+275,";</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href=""#method.summary"">Method</a></li>
+</ul",";</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href=""#constructor.summary"">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href=""#method.summary"">",0.53125,pythia-evals,275,275,0.4276315789473684
+277,"nCompareTo(a) {
+		var r = this.s - a.s;
+		if (r!= 0)
+			return r;
+		return a.c - this.c;
+	}
+
+	function cmp(a, b) {
+		if (a.","nCompareTo(a) {
+		var r = this.s - a.s;
+		if (r!= 0)
+			return r;
+		var i = this.t;
+		r = i - a.t;
+		if (r!= 0)
+			return r",0.546875,pythia-evals,277,277,0.5465116279069767
+343,".
+    using ::operator <<;
+    *ss_ << value;
+  }
+#endif  // GTEST_OS_SYMBIAN
+
+  // We save the string pointer even though we have to inline this,
+  // to avoid internal compiler errors caused by passing a string
+  ",".
+    using ::operator <<;
+    *ss_ << value;
+  }
+#endif  // GTEST_OS_SYMBIAN
+
+  // We'll hold the text streamed to this object here.
+  const internal::scoped_ptr< ::std::stringstream>",0.578125,pythia-evals,343,343,0.4012345679012346
+365," then once) the first argument to the
+// INSTANTIATE_TEST_CASE_P macro is a prefix that will be added to the
+// actual test case name.  Example:
+//
+//   INSTANTIATE_TEST_CASE_P(Foo, BarTest, --);"," then once) the first argument to the
+// INSTANTIATE_TEST_CASE_P macro is a prefix that will be added to the
+// actual test case name. Remember to pick unique prefixes for different
+// instantiations. The tests from the instantiation above will have
+// these names",0.59375,pythia-evals,365,365,0.509090909090909
+388," $pagination-border;
+
+      &:hover,
+      &:focus {
+        z-index: 2;
+        color: $pagination-hover-color;
+        text-decoration: none;
+        background-color: $pagination-hover-bg;
+        border-"," $pagination-border;
+
+      &:hover,
+      &:focus {
+        z-index: 2;
+        color: $pagination-hover-color;
+        background-color: $pagination-hover-bg;
+        border-color: $pagination-hover-",0.703125,pythia-evals,388,388,0.5277777777777778
+400," m_BuildTarget: PS4
+    m_EncodingQuality: 1
+  m_BuildTargetGroupLightmapSettings: []
+  playModeTestSettings: []
+  motionNodeSettings:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+"," m_BuildTarget: PS4
+    m_EncodingQuality: 1
+  m_BuildTargetGroupLightmapSettings: []
+  playModeTestRunnerEnabled: 0
+  runPlayModeTestAsEditModeTest: 0
+  actionOnDotNetUnhandledException: 1
+  enableInternal",0.53125,pythia-evals,400,400,0.4916201117318435
+402,"
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$HKd<\frac{3}{2}$\end{document}$, we claim that $\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                ","
+                \setlength{\oddsidemargin}{-69pt}
+                \begin{document}$HKd<\frac{3}{2}$\end{document}$, we claim that $$\documentclass[12pt]{minimal}
+                \usepackage{amsmath}
+                \usepackage{wasysym} 
+                \usepackage{amsfonts} 
+                ",0.984375,pythia-evals,402,402,0.5135135135135135
+404,">&1; then
+		eval $set_cc_for_build
+		sed's/^		//' << EOF >$dummy.c
+		#include <features.h>
+		#if defined(__powerpc__) || defined(__ppc__) || defined(_ARCH_P",">&1; then
+		eval $set_cc_for_build
+		sed's/^		//' << EOF >$dummy.c
+		#include <sys/systemcfg.h>
+
+		main()
+			{
+			if (!__power_pc())
+				",0.609375,pythia-evals,404,404,0.4809160305343511
+525,"p1 *byte
+	_p1, err = BytePtrFromString(attr)
+	if err!= nil {
+		return
+	}
+	r0, _, e1 := Syscall6(SYS_EXTATTR_SET_FD, uintptr(fd), uintptr(attrnamespace), uintptr(unsafe.Pointer","p1 *byte
+	_p1, err = BytePtrFromString(attr)
+	if err!= nil {
+		return
+	}
+	r0, _, e1 := Syscall6(SYS_GETXATTR, uintptr(unsafe.Pointer(_p0)), uintptr(unsafe.Pointer(_p1",0.671875,pythia-evals,525,525,0.5333333333333333
+577,"
+            {
+              ""id"": ""BA3003"",
+              ""fullDescription"": {
+                ""text"": ""The stack protector ensures that all functions that are executed have a declared stack protector. Use the /GS compiler switch (the default) to enable this feature. Use the /SafeSEH compiler","
+            {
+              ""id"": ""BA3003"",
+              ""fullDescription"": {
+                ""text"": ""The stack protector ensures that all functions that use buffers over a certain size will use a stack cookie (and check it) to prevent stack based buffer overflows, exiting if stack smashing is",0.546875,pythia-evals,578,577,0.4554455445544554
+588,", 2019,” said Juncker, who is stepping down as the head of the Commission on that day.
+
+This Week's Flyers
+
+Comments
+
+Postmedia is pleased to bring you a new commenting experience. We are committed to maintaining a lively but civil forum for discussion and encourage all readers to share their",", 2019,” said Juncker, who is stepping down as the head of the Commission on that day.
+
+This Week's Flyers
+
+Comments
+
+We encourage all readers to share their views on our articles and blog posts. We are committed to maintaining a lively but civil forum for discussion, so we ask",0.53125,pythia-evals,589,588,0.4273858921161825
+670,"Spec>
+          <StartupFile></StartupFile>
+          <FlashDriverDll></FlashDriverDll>
+          <DeviceId>0</DeviceId>
+          <RegisterFile></RegisterFile>
+          <MemoryEnv></MemoryEnv>
+          <Cmp></Cmp>","Spec>
+          <StartupFile></StartupFile>
+          <FlashDriverDll></FlashDriverDll>
+          <DeviceId>4349</DeviceId>
+          <RegisterFile></RegisterFile>
+          <MemoryEnv></MemoryEnv>
+          <Cmp></Cmp",0.5,pythia-evals,671,670,0.5
+698,"                        int&nbsp;width,
+                                                int&nbsp;height,
+                                                @NonNull
+                                                <a href=""../../../../../com/bumptech/glide/load/ResourceDecoder.html"" title=""interface in com.bumptech.glide.load"">ResourceDecoder</a","                        int&nbsp;width,
+                                                int&nbsp;height,
+                                                @NonNull
+                                                <a href=""../../../../../com/bumptech/glide/load/Options.html"" title=""class in com.bumptech.glide.load"">Options</a>&nbsp",0.625,pythia-evals,699,698,0.5238095238095238
+736,"-wav</rdf:li>
+<rdf:li>image/bmp</rdf:li>
+<rdf:li>image/x-xbitmap</rdf:li>
+<rdf:li>image/x-xpixmap</rdf:","-wav</rdf:li>
+<rdf:li>image/bmp</rdf:li>
+<rdf:li>image/gif</rdf:li>
+<rdf:li>image/jpeg</rdf:li>
+<rdf:li",0.546875,pythia-evals,737,736,0.55
+747," true,
+		}
+		t.statsHandler.HandleConn(t.ctx, connBegin)
+	}
+	if channelz.IsOn() {
+		t.IncrMsgRecv()
+	}
+	if t.statsHandler.HandleRPC(ctx, in) {"," true,
+		}
+		t.statsHandler.HandleConn(t.ctx, connBegin)
+	}
+	if channelz.IsOn() {
+		t.channelzID = channelz.RegisterNormalSocket(t, opts.ChannelzParentID, fmt.Sprintf(""%s",0.609375,pythia-evals,748,747,0.4765100671140939
+793,"//sys	Chroot(path string) (err error)
+//sys	Close(fd int) (err error)
+//sys	Dup(oldfd int) (fd int, err error)
+//sys	Exit(code int)
+//sys	Faccessat(dirfd int","//sys	Chroot(path string) (err error)
+//sys	Close(fd int) (err error)
+//sys	Dup(fd int) (nfd int, err error)
+//sys	Dup2(from int, to int) (err error)
+//",0.671875,pythia-evals,794,793,0.5407407407407407
+842,"IVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+  16. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN
+WRITING WILL ANY COPYRIGHT HOLDER,","IVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+  16. Limitation of Liability.
+
+  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING",0.5,pythia-evals,843,842,0.4794520547945205
+848,"_KEYCTL, uintptr(cmd), uintptr(arg2), uintptr(unsafe.Pointer(_p0)), uintptr(unsafe.Pointer(_p1)), uintptr(options), uintptr(unsafe.Pointer(arg3)), uintptr(unsafe.Pointer(_p2)), uintptr(unsafe.Pointer(_p3)), 0,","_KEYCTL, uintptr(cmd), uintptr(arg2), uintptr(unsafe.Pointer(_p0)), uintptr(unsafe.Pointer(_p1)), uintptr(arg5), 0)
+	ret = int(r0)
+	if e1!= 0 {
+		err = errnoErr(e1)",0.515625,pythia-evals,849,848,0.52
+859,"
+    font-size: 13px;
+    line-height: 22px;
+  }
+  p.lead {
+    font-size: 15px;
+    line-height: 26px;
+  }
+  p.subheader {
+    font-weight: bold;
+","
+    font-size: 13px;
+    line-height: 22px;
+  }
+  p.lead {
+    font-size: 15px;
+    line-height: 26px;
+  }
+}
+/*!
+// Spacing Standards
+// --------------------------------------------------*/
+section",0.765625,pythia-evals,860,859,0.4679487179487179
+864,"obj)`
+  * Added simple web-service example
+
+2.3.12 / 2011-06-22
+==================
+
+  * \#express is now \#express2
+  * Removed `express.version`
+
+2.3.11 / 2011-06-17
+==================
+
+  ","obj)`
+  * Added simple web-service example
+
+2.3.12 / 2011-06-22
+==================
+
+  * \#express is now on freenode! come join!
+  * Added `req.get(field, param)`
+  * Added links to Japanese documentation",0.53125,pythia-evals,865,864,0.5209580838323353
+873," and industrial hemp legal nationwide if passed as it stands.
+
+By popular demand, we have also begun to carry several, high quality CBD pet products as well. For general information, click here. For our complete selection of CBD pet products, click here.
+
+The Hemp Industries Association (HIA) is"," and industrial hemp legal nationwide if passed as it stands.
+
+By popular demand, we have also begun to carry several, high quality CBD pet products as well. For general purpose applications, we carry several, tasty tincture and oral spray options that are highly effective. Likewise, Pharma CBD capsules provide CBD purity",0.546875,pythia-evals,874,873,0.5239852398523985
+889,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ,1.0,pythia-evals,890,889,0.0
+1014,"	""luaopen_""
+
+/* separator for open functions in C libraries */
+#define LUA_OFSEP	""_""
+
+
+/*
+** {==================================================================
+** Compatibility with previous versions
+** ===================================================================
+*/
+
+/*
+@@ LUA_COMPAT_ALL controls other","	""luaopen_""
+
+/* separator for open functions in C libraries */
+#define LUA_OFSEP	""_""
+
+
+/*
+** unique key for table in the registry that keeps handles
+** for all loaded C libraries
+*/
+static const int CLIBS = 0;
+
+#",0.53125,pythia-evals,1015,1014,0.2697841726618705
+1053,".
+
+About Me
+
+I'm a QPR fan and follower of Harrow Borough in the Isthmian League.
+In 2010 I set up Harrow Borough Fans Trust in order to expand the support available for Harrow Borough.
+I am currently secretary of the Trust, which is a non-",".
+
+About Me
+
+I'm a QPR fan and follower of Harrow Borough in the Isthmian League.
+In 2010 I set up Non-League Day to help promote semi-professional and grassroots football. I'm hoping that TLFG will help provide a similar boost for football clubs around",0.515625,pythia-evals,1054,1053,0.3846153846153846
+1054,"q_l_t;
+
+#if defined(LITTLE_ENDIAN)
+    typedef comxq_l_t comxq_l_t;
+#else
+    typedef comxq_t comxq_t;
+#endif
+
+#if defined(L","q_l_t;
+
+#if defined(LITTLE_ENDIAN)
+    typedef comxq_l_t comxq_t;
+#elif defined(BIG_ENDIAN)
+    typedef comxq_b_t comxq_t;
+#",0.515625,pythia-evals,1055,1054,0.5384615384615384
+1085,"this.prerelease.length &&!other.prerelease.length)
+    return -1;
+  else if (!this.prerelease.length ||!other.prerelease.length)
+    return 1;
+
+  var i;
+  var stringLength = Math.min(this.pre","this.prerelease.length &&!other.prerelease.length)
+    return -1;
+  else if (!this.prerelease.length && other.prerelease.length)
+    return 1;
+  else if (!this.prerelease.length &&!other.prerelease.length",0.515625,pythia-evals,1086,1085,0.5056179775280899
+1091,"1` int NOT NULL,
+  `c2` int DEFAULT '1',
+  `ct` text,
+  PRIMARY KEY (`c1`,`c2`),
+  KEY `fk_t1_idx` (`c1`),
+  KEY `fk_t1_","1` int NOT NULL,
+  `c2` int DEFAULT '1',
+  `ct` text,
+  PRIMARY KEY (`c1`),
+  KEY `c2` (`c2`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE",0.5,pythia-evals,1092,1091,0.504424778761062
+1093," find that the sage really does live in Dream Castles and feasts daily on Pie In The Sky. A happy man indeed.
+
+About OCOY.com
+
+Founded in 2006, OCOY.com is one of the premier online destinations for original content and professional reviews covering the broad scope of"," find that the sage really does live in Dream Castles and feasts daily on Pie In The Sky. A happy man indeed.
+
+About OCOY.org
+
+This site presents the path of meditation and practical spiritual life and is a service of Light of the Spirit Monastery (Atma Jyoti",0.546875,pythia-evals,1094,1093,0.4772727272727273
+1099," Alabama will participate in a motorcade... (click for more)
+
+Michael Futrell, 38, was shot by Corey Mullinax, 25, Saturday night in Cleveland. Cleveland police said the shooting occurred at Forest Grove Apartments at 2350 Blackburn Road SE. According to police, Futrell walked"," Alabama will participate in a motorcade... (click for more)
+
+Michael Futrell, 38, was shot by Corey Mullinax, 25, Saturday night in Cleveland at approximately 9:15 p.m. T he shooting occurred at Forest Grove Apartments at 2350 Blackburn Road SE. According",0.578125,pythia-evals,1100,1099,0.5170940170940171
+1174,"  <label class=""md-nav__title md-nav__title--site"" for=""__drawer"">
+    <a href=""../../.."" title=""Home"" class=""md-nav__button md-logo"">
+      
+        <img src=""../../logo.png"" width=""48"" height=""","  <label class=""md-nav__title md-nav__title--site"" for=""__drawer"">
+    <a href=""../../.."" title=""EthHub"" class=""md-nav__button md-logo"">
+      
+        <img src=""../../../logo.png"" width=""48"" height",0.515625,pythia-evals,1175,1174,0.5333333333333333
+1259," [Bower]{} G., [Dressler]{} A., [Faber]{} S. M., [Filippenko]{} A. V., [Gonzalez]{} A. H., [Grillmair]{} C., [Kormendy]{} J., [Lauer]{} T."," [Bower]{} G., [Dressler]{} A., [Faber]{} S. M., [Filippenko]{} A. V., [Green]{} R., [Grillmair]{} C., [Ho]{} L. C., [Kormendy]{} J., [Lauer",0.53125,pythia-evals,1260,1259,0.525
+1281," finishing chemo & radiation that’s awesome!! I wish you the best of luck!! I was actually wanting to know about dosage for cancer as well..My parents are both cancer survivors and I’m trying to get a better understanding of what to expect. I’m so glad you’re doing well!!
+
+", finishing chemo & radiation that’s awesome!! I wish you the best of luck!! I was actually wanting to know about dosage for cancer as well..My parents both have recently been diagnosed with cancer 4 months apart and are currently going thru chemo together. I have tried looking for the dosage info but can never find what i,0.5,pythia-evals,1282,1281,0.4887218045112781
+1289,urp some some-fn sort sort-by sorted-map sorted-map-by sorted-set sorted-set-by sorted? special-symbol? split-at split-with str stream? string? struct struct-map subs subseq subvec supers swap! symbol symbol? sync syntax-symbol-anchor,urp some some-fn sort sort-by sorted-map sorted-map-by sorted-set sorted-set-by sorted? special-symbol? spit split-at split-with str string? struct struct-map subs subseq subvec supers swap! symbol symbol? sync take take-last take-,0.546875,pythia-evals,1290,1289,0.4807692307692308
+1322,"('/tmp/test')
+
+Traceback (most recent call last):
+File ""/Library/Python/2.7/site-packages/IPython/utils/py3compat.py"", line 203, in execfile
+exec(compile(f.read(), filename, 'exec'), namespace)","('/tmp/test')
+
+Traceback (most recent call last):
+File ""/Library/Python/2.7/site-packages/IPython/core/interactiveshell.py"", line 2881, in run_code
+exec(code_obj, self.user_global_",0.546875,pythia-evals,1323,1322,0.5254237288135594
+1335," int32 `protobuf:""varint,1,opt,name=value,proto3"" json:""value,omitempty""`
+}
+
+func (m *Value) Reset()                    { *m = Value{} }
+func (m *Value) String() string            { return proto.CompactTextString"," int32 `protobuf:""varint,1,opt,name=value,proto3"" json:""value,omitempty""`
+}
+
+func (m *Int32Value) Reset()                    { *m = Int32Value{} }
+func (*Int32Value) ProtoMessage()               {}
+func",0.515625,pythia-evals,1336,1335,0.51875
+1353,"= 309
+	SYS_GETSID                         = 310
+	SYS_SETTID_WITH_PID                = 311
+	SYS_PSYNCH_MUTEX                   = 312
+	SYS_PSYNCH_CVBROAD                 = 313
+	SYS_PSYNCH_CVSIG","= 309
+	SYS_GETSID                         = 310
+	SYS_SETTID_WITH_PID                = 311
+	SYS_PSYNCH_CVCLRPREPOST            = 312
+	SYS_AIO_FSYNC                      = 313
+	SYS_AIO_RETURN                     =",0.609375,pythia-evals,1354,1353,0.55
+1410,"
+}
+Sys.Mvc.MvcHelpers._asyncRequest = function Sys_Mvc_MvcHelpers$_asyncRequest(url, type, data, callback, context) {
+    var xml = Sys.Mvc.MvcHelpers._serializeRequest(url, data,","
+}
+Sys.Mvc.MvcHelpers._asyncRequest = function Sys_Mvc_MvcHelpers$_asyncRequest(url, verb, body, triggerElement, ajaxOptions) {
+    /// <param name=""url"" type=""String"">
+    /// </param>
+",0.546875,pythia-evals,1412,1410,0.5279503105590062
+1465,"_theme = ""sphinx_rtd_theme""
+
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
+#html_theme = ""sphinx_rtd_theme""
+
+#html_theme_","_theme = ""sphinx_rtd_theme""
+
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
+# Theme options are theme-specific and customize the look and feel of a theme
+# further.  For",0.703125,pythia-evals,1467,1465,0.5286624203821656
+1520,��晱晹晪晲朁椌棓椄棜椪棬棪棱植椥棰棴棳椽楂楅楆楉楎楗楛楣楤,��晱晹晪晲朁椌棓椄棜椪棬棪棱椏棖棷棫棤棶椓椐棳棡椇棌椈楰,0.53125,pythia-evals,1522,1520,0.5
+1604,"�リオテンプレ|シナリオアウトライン|시나리오 개요|สร้างสรรค์]</string>
+    <string name=""quest_gather_resources_title"">[%1$",�リオテンプレ|シナリオアウトライン|시나리오 개요|สรุปเหตุการณ์|โครงสร้างของเ�,0.5,pythia-evals,1606,1604,0.3010752688172043
+1612," without any express or implied
+# warranty.  In no event will the authors be held liable for any damages
+# arising from the use of this software.
+# Permission is granted to anyone to use this software for any purpose,
+# including commercial applications, and to alter it and redistribute it
+# freely,"," without any express or implied
+# warranty.  In no event will the authors be held liable for any damages
+# arising from the use of this software.
+#
+# Permission is granted to anyone to use this software for any purpose,
+# including commercial applications, and to alter it and redistribute it
+#",0.546875,pythia-evals,1614,1612,0.4959349593495935
+1630,"16 character"",
+							parser.offset, -1)
+					}
+					break inner
+				}
+
+				// Get the character.
+				value, err := s.next()
+				if err!= nil {
+					return true, err
+				}
+
+				// Consume the character.
+			","16 character"",
+							parser.offset, -1)
+					}
+					break inner
+				}
+
+				// Get the character.
+				value = rune(parser.raw_buffer[parser.raw_buffer_pos+low]) +
+					(rune(parser.raw_buffer",0.5,pythia-evals,1632,1630,0.4857142857142857
+1640,"	google_ad_height = 1;
+	} else {
+		google_ad_client = ""pub-5656623102424572"";
+		google_ad_width = 160;
+		google_ad_height = 60;
+	}
+	//-->
+</script>
+","	google_ad_height = 1;
+	} else {
+		google_ad_client = ""pub-5656623102424572"";
+		/* 728x90, created 4/4/08 */
+		google_ad_slot = ""6613964975"";
+		google",0.53125,pythia-evals,1642,1640,0.5365853658536586
+1642," donation, no matter how large or small, is to the continued existence of LifeSite.
+
+For 17 years, we have relied almost exclusively on the donations of people like you. We would like to continue this mission for another 17 years. Please consider supporting LifeSite today.
+
+I am a Canadian citizen,"," donation, no matter how large or small, is to the continued existence of LifeSite.
+
+For 17 years, we have relied almost exclusively on the donations of our growing army of everyday readers like you: readers who are tired of the anti-life and anti-family bias of the mainstream media, and who are",0.53125,pythia-evals,1644,1642,0.5344129554655871
+1768,", timeout *Timespec) (n int, err error) {
+	r0, _, e1 := syscall_syscall6(funcPC(libc_select_trampoline), uintptr(nfd), uintptr(unsafe.Pointer(r)), uintptr(unsafe.Pointer(w)), uintptr(unsafe.Pointer",", timeout *Timespec) (n int, err error) {
+	r0, _, e1 := syscall_syscall6(funcPC(libc_kevent_trampoline), uintptr(kq), uintptr(change), uintptr(nchange), uintptr(event), uintptr(nevent), uintptr(",0.515625,pythia-evals,1770,1768,0.55
+1804,"HCCMDSTAT,	0x02,	REG_WIDTH_32,	REG_ACCESS_RW);
+ISP1362_REG(HC_DATA,	0x03,	REG_WIDTH_32,	REG_ACCESS_RW);
+ISP1362_REG(HC_DAT","HCCMDSTAT,	0x02,	REG_WIDTH_32,	REG_ACCESS_RW);
+ISP1362_REG(HCINTSTAT,	0x03,	REG_WIDTH_32,	REG_ACCESS_RW);
+ISP1362_REG(HCINTEN",0.9375,pythia-evals,1806,1804,0.4957264957264957
+1806,"Official Content
+
+Public Inspection
+
+This PDF is
+the current document as it appeared on Public Inspection on
+10/19/2016 at 08:45 am.
+If you need an official version of this document, please contact the
+Office of the Federal Register at 1-800-447-14","Official Content
+
+Public Inspection
+
+This PDF is
+the current document as it appeared on Public Inspection on
+10/19/2016 at 08:45 am.
+
+If you are using public inspection listings for legal research, you
+should verify the contents of the documents against a final, official
+",0.609375,pythia-evals,1808,1806,0.5398230088495575
+1822,"1);
+        args = args.slice(0, args.indexOf('--'));
+    }
+
+    function argDefined(key, arg) {
+        return key in args? key : undefined;
+    }
+
+    function merge(defaults) {
+        return extend(Object.create(","1);
+        args = args.slice(0, args.indexOf('--'));
+    }
+
+    function argDefined(key, arg) {
+        return (flags.allBools && /^--[^=]+$/.test(arg)) ||
+            flags.strings[key] ||",0.59375,pythia-evals,1824,1822,0.5328947368421053
+1826," < int32(f.Length) {
+			return streamError(id, ErrCodeFlowControl)
+		}
+		// Deduct the flow control from the next stream in the chain.
+		sc.inflow.take(int32(f.Length) - int32(n))
+	"," < int32(f.Length) {
+			return streamError(id, ErrCodeFlowControl)
+		}
+		// Deduct the flow control from inflow, since we're
+		// going to immediately add it back in
+		// sendWindowUpdate, which also schedules sending the
+		//",0.53125,pythia-evals,1828,1826,0.4972375690607735
+1838," 1
+    range: {x: 0, y: 1}
+  CollisionModule:
+    enabled: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  CollisionShape1:
+    serializedVersion: 2
+    m_Bits: 4294967"," 1
+    range: {x: 0, y: 1}
+  CollisionModule:
+    enabled: 0
+    type: 0
+    plane0: {fileID: 0}
+    plane1: {fileID: 0}
+    plane2: {fileID: 0}
+    plane3",0.515625,pythia-evals,1840,1838,0.4545454545454545
+1864," future POZ Forums members -- will need to subscribe, with
+secure payments made via PayPal.
+
+There will be no charge to continue reading threads in the most popular POZ forums,
+but threads which are deemed inappropriate will be deleted without notice.
+
+Threads found inappropriate or offensive will be deleted without"," future POZ Forums members -- will need to subscribe, with
+secure payments made via PayPal.
+
+There will be no charge to continue reading threads in the
+""Am I Infected?"" forum, nor will there be a charge for participating
+in any of the Main Forums; Meds, Mind,",0.515625,pythia-evals,1866,1864,0.4943396226415094
+1879,"MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: ""AMS""
+      }
+    }
+  });
+</script>
+
+<script type=""text/javascript"" src=""http://cdn.mathjax.org/mathjax/","MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: ""AMS""
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],",0.53125,pythia-evals,1881,1879,0.4452554744525547
+1904,"ared in</th>
+	<td>PHLightState.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    </div>
+					
+
+                    
+
+                    
+					
+					</div>
+					
+					
+
+                    
+                    
+                    
+                    
+
+				</main>
+
+			","ared in</th>
+	<td>PHLightState.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class=""section section-overview"">
+						<a title=""Overview"" name=""overview""></a>
+						<h",0.53125,pythia-evals,1906,1904,0.4598540145985401
+1919," in issue, a witness qualified as an expert by knowledge, skill, experience, training, or education, may testify thereto in the form of an opinion or otherwise.
+Fed.R.Evid. 702.
+The Court finds that the testimony of Dr. Kessler is admissible under Rule 702. Dr."," in issue, a witness qualified as an expert by knowledge, skill, experience, training, or education, may testify thereto in the form of an opinion or otherwise, if (1) the testimony is based upon sufficient facts or data, (2) the testimony is the product of reliable principles and methods, and (3",0.5,pythia-evals,1921,1919,0.5425101214574899
+1939,"Set, e *FdSet, timeout *Timeval) (err error) {
+	_, _, e1 := Syscall6(SYS_SELECT, uintptr(nfd), uintptr(unsafe.Pointer(r)), uintptr(unsafe.Pointer(w)), uintptr(unsafe.Pointer(e)), uintptr(unsafe","Set, e *FdSet, timeout *Timeval) (err error) {
+	_, _, e1 := Syscall6(SYS_SELECT, uintptr(n), uintptr(unsafe.Pointer(r)), uintptr(unsafe.Pointer(w)), uintptr(unsafe.Pointer(e)), uintptr(unsafe.",0.546875,pythia-evals,1941,1939,0.4628571428571428
+1953,"
+    { 
+        this->assign(src); 
+        return *this; 
+    }
+
+#   ifndef BOOST_ICL_NO_CXX11_RVALUE_REFERENCES
+    // Move semantics
+    BOOST_CXX14_CONSTEXPR
+    map& operator=(map","
+    { 
+        this->assign(src); 
+        return *this; 
+    }
+
+#   ifndef BOOST_ICL_NO_CXX11_RVALUE_REFERENCES
+    //==========================================================================
+    //= Move semantics
+    //==========================================================================
+
+    /// Move constructor
+",0.734375,pythia-evals,1955,1953,0.2988505747126437
+2009,"Hidden=""true"" UnhideWhenUsed=""true""
+   Name=""List Bullet 3""/>
+  <w:LsdException Locked=""false"" Priority=""66"" SemiHidden=""false""
+   UnhideWhenUsed=""false"" Name=""List Bullet 4""/>
+  <w:LsdException","Hidden=""true"" UnhideWhenUsed=""true""
+   Name=""List Bullet 3""/>
+  <w:LsdException Locked=""false"" SemiHidden=""true"" UnhideWhenUsed=""true""
+   Name=""List Bullet 4""/>
+  <w:LsdException Locked=""false",0.515625,pythia-evals,2011,2009,0.52046783625731
+2012," Unbreakable Vow, it's..."" ""It comes down to whether or not you trust Dumbledore's judgment."" "" Dumbledore trusts Snape."" "" Dumbledore trusts Snape?"" ""Then why was it Snape who convinced Voldemort to do it?"" ""Why did"," Unbreakable Vow, it's..."" ""It comes down to whether or not you trust Dumbledore's judgment."" "" Dumbledore trusts Snape, therefore I do."" "" Dumbledore can make mistakes."" ""You're blinded by hatred."" "" I'm not."" "" Yes, you are.""",0.515625,pythia-evals,2014,2012,0.531578947368421
+2013," ((uint16_t)GPIOx->ODR);
+}
+
+/**
+  * @brief  Sets the selected data port bits.
+  * @rmtoll ODR          ODy           LL_GPIO_SetDataDirection
+  * @param  GPIOx GPIO Port
+  * @"," ((uint16_t)GPIOx->ODR);
+}
+
+/**
+  * @brief  Sets the selected data port bits.
+  * @param  GPIOx: where x can be (A..G) to select the GPIO peripheral.
+  * @param  GPIO_Pin:",0.546875,pythia-evals,2015,2013,0.4850746268656716
+2021," commercial product
+offering should do so in a manner which does not create potential
+liability for other Contributors. Therefore, if a Contributor includes
+an additional file or a software program distributed under the terms
+of the License, the Contributor must include a copy of this
+License.
+
+3."," commercial product
+offering should do so in a manner which does not create potential
+liability for other Contributors. Therefore, if a Contributor includes
+the Program in a commercial product offering, such Contributor
+(""Commercial Contributor"") hereby agrees to defend and indemnify every
+other Contributor (""Ind",0.515625,pythia-evals,2023,2021,0.5074074074074074
+2028," list10_c< T,C0,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10 >
+{
+    typedef typename list11_c< T,C0,C1,C2,C3"," list10_c< T,C0,C1,C2,C3,C4,C5,C6,C7,C8,C9 >
+{
+    typedef typename list10_c< T,C0,C1,C2,C3,C4",0.6875,pythia-evals,2030,2028,0.5060240963855421
+2056," out 9to5Mac on YouTube for more Apple news:“You think your pain and your heartbreak are unprecedented in the history of the world, but then you read.”
+
+–Atticus Finch, To Kill a Mockingbird
+
+The world is a dark and dangerous place. The forces of"," out 9to5Mac on YouTube for more Apple news:<|endoftext|>“You think your pain and your heartbreak are unprecedented in the history of the world, but then you read. It was books that taught me that the things that tormented me most were the very things that connected me with all the people who were alive",0.546875,pythia-evals,2058,2056,0.5294117647058824
+2059,"This way."" ""Lt."" ""Go, Lake."" ""You're gonna want to come tak e a look at this."" ""Get Dr. Kendricks out of here."" ""And take him through that door over there."" ""We'll have to go around."" ""All right."" ""This way."" ""Watch","This way."" ""Lt."" ""Go, Lake."" ""You're gonna want to come tak e a look at this."" ""Get Dr. Kendricks up here."" ""Come here."" ""We'll rest here for a minute."" ""Stay down in these trees."" ""Listen to my men."" ""Go!""",0.5,pythia-evals,2061,2059,0.4602272727272727
+2066," in the US and UK. I have worked as a political aide to Members of Knesset and a Minister during 1981-1994, lectured at the Academy for National Studies in Israel, was a Visiting Professor at the University of Haifa, and an Associate Fellow at the Middle East Forum. I am a Sh"," in the US and UK. I have worked as a political aide to Members of Knesset and a Minister during 1981-1994, lectured at the Academy for National Studies 1977-1994, was director of Israel's Media Watch 1995-2000 and currently, I work at the Menachem Begin Heritage Center in Jerusalem",0.578125,pythia-evals,2068,2066,0.5361702127659574
+2095,"</a></li>
+</ul>
+<ul class=""navList"" id=""allclasses_navbar_top"">
+<li><a href=""../../../../../../allclasses-noframe.html"">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type=""","</a></li>
+</ul>
+<ul class=""navList"" id=""allclasses_navbar_top"">
+<li><a href=""../../../../../allclasses-noframe.html"">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type=""",0.984375,pythia-evals,2097,2095,0.5493827160493827
+2103,",
+	SPARC_INS_FSTOX,
+	SPARC_INS_FSUBD,
+	SPARC_INS_FSUB,
+	SPARC_INS_FSUBS,
+	SPARC_INS_FXNOR,
+	SPARC_INS_FXNORS",",
+	SPARC_INS_FSTOX,
+	SPARC_INS_FSUBD,
+	SPARC_INS_FSUBQ,
+	SPARC_INS_FSUBS,
+	SPARC_INS_FXNOR,
+	SPARC_INS_FXN",0.5,pythia-evals,2106,2103,0.4895833333333333
+2108,"createSpy(baseName + '.' + methodNames[i]);
+  }
+  return obj;
+};
+
+/**
+ * All parameters that are not `spy` calls or `spyCall.and.callThrough` are
+ * serialized by this method.
+ *
+ * @","createSpy(baseName + '.' + methodNames[i]);
+  }
+  return obj;
+};
+
+/**
+ * All parameters are pretty-printed and concatenated together, then written to the current spec's output.
+ *
+ * Be careful not to leave calls to <code>",0.53125,pythia-evals,2111,2108,0.3888888888888889
+2131," the updated request
+     */
+    IManagedEBookCollectionRequest select(final String value);
+
+    /**
+     * Sets the top value for this request based on the provided paging information. This method
+     * can be called only once per request.
+     *
+     * @param value"," the updated request
+     */
+    IManagedEBookCollectionRequest select(final String value);
+
+    /**
+     * Sets the top value for the request
+     *
+     * @param value the max number of items to return
+     * @return the updated request
+     */
+    IM",0.546875,pythia-evals,2134,2131,0.5126903553299492
+2142,"upload-process.js"",
+                jsplugin + ""jquery.fileupload-image.js"",
+                jsplugin + ""jquery.fileupload-process.js"",
+                jsplugin + ""jquery.fileupload-validate.js"",
+                jsplugin + ""jquery.fileupload-ui.","upload-process.js"",
+                jsplugin + ""jquery.fileupload-image.js"",
+                jsplugin + ""jquery.fileupload-audio.js"",
+                jsplugin + ""jquery.fileupload-video.js"",
+                jsplugin + ""jquery.fileupload-validate.",0.953125,pythia-evals,2145,2142,0.5
+2168,", and it is DENIED, because we are not
+  persuaded that the questions presented should be reviewed by this Court.
+
+
+
+
+                          I, Corbin R. Davis, Clerk of the Michigan Supreme Court, certify that the
+                    foregoing is a true and complete copy of the order entered at",", and it is DENIED, because we are not
+  persuaded that the questions presented should be reviewed by this Court.
+
+
+
+
+                          I, Larry S. Royster, Clerk of the Michigan Supreme Court, certify that the
+                    foregoing is a true and complete copy of the order entered at",0.921875,pythia-evals,2171,2168,0.4705882352941176
+2228," ""Master wouldn't hurt us."" ""Master broke his promise."" ""Don't ask Smeagol."" ""Poor, poor Smeagol."" ""Smeagol's life is over."" ""He doesn't have any more chances."" ""It's too late for him."" ""It's too late."""," ""Master wouldn't hurt us."" ""Master broke his promise."" ""Don't ask Smeagol."" ""Poor, poor Smeagol."" ""Master betrayed us."" ""Wicked."" ""Tricksy."" ""False."" ""We ought to wring his filthy little neck."" ""Kill him!"" """,0.5,pythia-evals,2231,2228,0.5141242937853108
+2261,"AGES/mate-polkit.mo
+share/locale/nn/LC_MESSAGES/mate-polkit.mo
+share/locale/nq/LC_MESSAGES/mate-polkit.mo
+share/locale/nr/LC_MESSAGES/mate-polkit.mo
+","AGES/mate-polkit.mo
+share/locale/nn/LC_MESSAGES/mate-polkit.mo
+share/locale/nso/LC_MESSAGES/mate-polkit.mo
+share/locale/oc/LC_MESSAGES/mate-polkit.mo
+",0.96875,pythia-evals,2264,2261,0.5273972602739726
+2317,"</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDef>
+            <spirit:type>STD_LOGIC_VECTOR</spirit:type>
+            <spirit:viewNameRef>dummy_","</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:",0.5,pythia-evals,2320,2317,0.5375
+2488,"ge/Plugins/Redcarpet.html"">Rouge::Plugins::Redcarpet</a>
+  
+    <li><a href=""../../Rouge/Plugins/RedcarpetParser.html"">Rouge::Plugins::RedcarpetParser</a>
+  ","ge/Plugins/Redcarpet.html"">Rouge::Plugins::Redcarpet</a>
+  
+    <li><a href=""../../../Rouge/RegexLexer.html"">Rouge::RegexLexer</a>
+  
+    <li><a href=""../../../",0.578125,pythia-evals,2492,2488,0.5172413793103449
+2490," designed differently as well. For example, telephony information occupies a relatively narrow band when compared to the bandwidth for video signals. In addition, telephony signals are typically transmitted by way of a dedicated network, whereas video signals are transmitted over the same network that is used to transmit other information.
+The present invention is directed"," designed differently as well. For example, telephony information occupies a relatively narrow band when compared to the bandwidth for video signals. In addition, telephony signals are low frequency whereas NTSC standard video signals are transmitted at carrier frequencies greater than 50 MHz. Accordingly, telephone transmission networks are relatively narrow band systems which operate at audio",0.5,pythia-evals,2494,2490,0.4912280701754385
+2503,""">:</span> <span class=""kt"">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the value of the instance</p>
+                      </div",""">:</span> <span class=""kt"">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class=""slightly-smaller"">
+                        <a href=""https://github.com/BendingSpoons/katana-swift/",0.53125,pythia-evals,2507,2503,0.4797297297297297
+2508,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ,1.0,pythia-evals,2512,2508,0.0
+2525,"
+	request.SanitizeHostForHeader(ctx.Request)
+}
+
+func (ctx *signingCtx) handlePresignRemoval() {
+	// The credentials have already been removed from the map by a call to ctx.handlePresign.
+	// To be certain that","
+	request.SanitizeHostForHeader(ctx.Request)
+}
+
+func (ctx *signingCtx) handlePresignRemoval() {
+	if!ctx.isPresign {
+		return
+	}
+
+	// The credentials have expired for this request. The current",0.578125,pythia-evals,2529,2525,0.4943820224719101
+2572,"BASE_TX	  = BIT(I40E_PHY_TYPE_100BASE_TX),
+	I40E_CAP_PHY_TYPE_SGMII	  = BIT(I40E_PHY_TYPE_1000BASE_SX),
+	I40E_CAP_PHY","BASE_TX	  = BIT(I40E_PHY_TYPE_100BASE_TX),
+	I40E_CAP_PHY_TYPE_1000BASE_T	  = BIT(I40E_PHY_TYPE_1000BASE_T),
+	I40E_CAP_PHY",0.671875,pythia-evals,2576,2572,0.5321100917431193
+2574," gate setup time value */
+static const char * const da7213_dac_ng_setup_time_txt[] = {
+	""256us"", ""512us"", ""1024us"", ""2048us"", ""4096us"", ""8192us"",
+	""16384us"","," gate setup time value */
+static const char * const da7213_dac_ng_setup_time_txt[] = {
+	""256 samples"", ""512 samples"", ""1024 samples"", ""2048 samples""
+};
+
+static SOC_ENUM_SINGLE_DECL(da72",0.65625,pythia-evals,2578,2574,0.5031446540880503
+2624,"](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/javascript, application/xml, text/html, application/xhtml+xml, image/png, image/jpeg, *; q","](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints",0.53125,pythia-evals,2628,2624,0.546875
+2628,"
+
+Shrey Kapoor is a Tech-Enthusiast and Founder of Techphlie.com, which is one of the India's Top Tech News Website. He is passionate about Mobile phones and its advanced technologies. Shrey is an Android enthusiast, who loves to write about latest phones, apps","
+
+Shrey Kapoor is a Tech-Enthusiast and Founder of Techphlie.com, which is one of the India's Top Tech News Website.Even Forbes and many other renowned publishers took his articles reference.Shrey is a social media analyst, strategic thinker and creative writer who is",0.5625,pythia-evals,2632,2628,0.4469026548672566
+2630," with singularities, *MSRI Publications* [**65**]{} (2014), Cambridge University Press.
+
+N.M. Ercolani and K.T-R. McLaughlin, Asymptotics of the partition function for random matrices via Riemann-Hilbert techniques, *Int. Math. Res. Not.*"," with singularities, *MSRI Publications* [**65**]{} (2014), Cambridge University Press.
+
+N.M. Ercolani and K.T-R McLaughlin, Asymptotics of the partition function for random matrices via Riemann-Hilbert techniques and applications to graphical enumeration, *Int. Math.",0.53125,pythia-evals,2634,2630,0.4382978723404255
+2666," 17em;
+	padding:.2em.2em 0;
+	display: none;
+}
+.ui-datepicker.ui-datepicker-prev-hover {
+	left: 1px;
+}
+.ui-datepicker.ui-datepicker-next {
+	right: 1px"," 17em;
+	padding:.2em.2em 0;
+	display: none;
+}
+.ui-datepicker.ui-datepicker-header {
+	position: relative;
+	padding:.2em 0;
+}
+.ui-datepicker.ui-datepicker-prev,",0.53125,pythia-evals,2670,2666,0.5071428571428571
+2694," Two
+
+About Take Two
+
+Take Two, exclusively on 89.3 KPCC, 89.1 KUOR and 90.3 KVLA, captures the spirit of the West in a conversational, informal, witty style and examines the cultural issues people are buzzing about. Hosted by A"," Two
+
+About Take Two
+
+Take Two, exclusively on 89.3 KPCC, 89.1 KUOR and 90.3 KVLA in southern California, and on 88.9 KNPR in Las Vegas, captures the spirit of the West in a conversational, informal, witty style",0.5,pythia-evals,2698,2694,0.3796791443850267
+2696,"func (e *encoder) mapv(tag string, in reflect.Value) {
+	e.mappingv(tag, func() {
+		for i := iter(in);!i.done(); i.next() {
+			v := i.value()
+			if v.Kind()","func (e *encoder) mapv(tag string, in reflect.Value) {
+	e.mappingv(tag, func() {
+		keys := keyList(in.MapKeys())
+		sort.Sort(keys)
+		for _, k := range keys {
+			e.marshal",0.546875,pythia-evals,2700,2696,0.5362318840579711
+2698,"-to-give-away-100-million-in-crypto/
+<emerson> ""All told, Handshake aims to give $250 worth of its tokens to
+every person who donates to the Handshake ICO campaign.""
+<emerson> Handshake cryptocurrency scam is operated by Andrew Lee (","-to-give-away-100-million-in-crypto/
+<emerson> ""All told, Handshake aims to give $250 worth of its tokens to *each* user of the websites the company has partnerships with â GitHub, the P2P Foundation and *FREENODE",0.578125,pythia-evals,2702,2698,0.4925373134328358
+2701,"[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11","[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\",0.515625,pythia-evals,2705,2701,0.5348837209302325
+2742,"
+
+UPDATE: This was the cause of a phantom app.config entry.  I am unsure how it was added but this line was present:
+<add key=""ClientValidationEnabled"" value=""true"" />
+
+A:
+
+I had the same problem. I was using the default MVC template.","
+
+UPDATE: This was the cause of a phantom app.config entry.  I am unsure how it was added but this line was present:
+<runtime>
+    <assemblyBinding xmlns=""urn:schemas-microsoft-com:asm.v1"">
+        <dependentAssembly>
+            <assembly",0.515625,pythia-evals,2746,2742,0.4973821989528796
+2792," exclusively for New Canadian Media and can be re-published with appropriate attribution. For syndication rights, please write to publisher@newcanadianmedia.ca
+
+The views, opinions and positions expressed by all iPolitics columnists and contributors are the author’s alone. They do not inherently or expressly reflect"," exclusively for New Canadian Media and can be re-published with appropriate attribution. For syndication rights, please write to publisher@newcanadianmedia.ca
+
+Poll Question
+
+Do you agree with the new immigration levels for 2017?
+
+Featured Quote
+
+The honest truth is there is",0.53125,pythia-evals,2796,2792,0.5401459854014599
+2831,"px3214c video decoder driver version 0.0.1
+ *
+ * Copyright (C) 2001 Laurent Pinchart <lpinchart@freegates.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU","px3214c video decoder driver version 0.0.1
+ *
+ * Copyright (C) 2001 Laurent Pinchart <lpinchart@freegates.be>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU",0.984375,pythia-evals,2835,2831,0.5195530726256983
+2862,"
+
+  if (state.decoder) {
+    var chunk = state.decoder.end();
+
+    if (chunk && chunk.length) {
+      if (state.encoding)
+        chunk = state.encoding.write(chunk, state.encodingData, onwrite);
+      buf.copy","
+
+  if (state.decoder) {
+    var chunk = state.decoder.end();
+
+    if (chunk && chunk.length) {
+      state.buffer.push(chunk);
+      state.length += state.objectMode? 1 : chunk.length;
+    }
+  }",0.546875,pythia-evals,2867,2862,0.4936708860759494
+2914," int, flags int) (n int, err error)
+//sys	Dup(oldfd int) (fd int, err error)
+//sys	Exit(code int)
+//sys	Faccessat(dirfd int, path string, mode uint32, flags int) (err error"," int, flags int) (n int, err error)
+//sys	Dup(oldfd int) (fd int, err error)
+//sys	Dup3(oldfd int, newfd int, flags int) (err error)
+//sysnb	EpollCreate(size int",0.53125,pythia-evals,2919,2914,0.4861111111111111
+2930,"
+
+#40 Mance v. Holder - Memo Opinion and Order
+
+Save Save #40 Mance v. Holder - Memo Opinion and Order For Later
+
+40 Mance v. Holder, No. 10-1238 (U.S. June 25, 2012)
+
+#41 M","
+
+#40 Mance v. Holder - Memo Opinion and Order
+
+Save Save #40 Mance v. Holder - Memo Opinion and Order For Later
+
+0% 0% found this document useful, Mark this document as useful
+
+0% 0% found this document not useful, Mark this",0.5625,pythia-evals,2935,2930,0.4916201117318435
+2947,"s implements SelfSubjectRulesReviewInterface
+type FakeSelfSubjectRulesReviews struct {
+	Fake *FakeAuthorizationV1beta1
+}
+
+func (c *FakeSelfSubjectRulesReviews) Create(srr *authorizationv1beta1.SelfSubjectRulesReview) (result *","s implements SelfSubjectRulesReviewInterface
+type FakeSelfSubjectRulesReviews struct {
+	Fake *FakeAuthorizationV1beta1
+}
+
+var selfsubjectrulesreviewsResource = schema.GroupVersionResource{Group: ""authorization.k8s.io"", Version: ""v1",0.515625,pythia-evals,2952,2947,0.5258215962441315
+3015," 7 F.3d 808, 810 (8th Cir.1993). When a moving party has carried its burden under Rule 56(c), the nonmoving party must do more than simply show there is some metaphysical doubt as to the material facts. Matsushita Elec. Indus. Co. v"," 7 F.3d 808, 810 (8th Cir.1993). When a moving party has carried its burden under Rule 56(c), the party opposing summary judgment is required under Rule 56(e) to go beyond the pleadings, and by affidavits, or by the ""depositions, answers to",0.5,pythia-evals,3020,3015,0.4221105527638191
+3032,"Scale(ctx context.Context, deploymentName string, options metav1.GetOptions) (*autoscalingv1.Scale, error)
+	Update(ctx context.Context, deploymentName string, scale *autoscalingv1.Scale, opts metav1.UpdateOptions) (*autoscal","Scale(ctx context.Context, deploymentName string, options metav1.GetOptions) (*autoscalingv1.Scale, error)
+	UpdateScale(ctx context.Context, deploymentName string, scale *autoscalingv1.Scale, opts metav1.UpdateOptions) (*aut",0.515625,pythia-evals,3037,3032,0.5265700483091788
+3037,"            ""location"" : {
+               ""lat"" : 33.6609389,
+               ""lng"" : -95.55551299999999
+            },
+            ""name"" : ""Brownsville"",
+            ""phone"" : ""1-800-555-1212"",
+            ","            ""location"" : {
+               ""lat"" : 33.6609389,
+               ""lng"" : -95.55551299999999
+            },
+            ""location_type"" : ""APPROXIMATE"",
+            ""viewport"" : {
+               ""northeast""",0.578125,pythia-evals,3042,3037,0.5185185185185185
+3042,"ing Son
+
+AP (Mar. 3, 2015) — A woman who blogged for years about her son&apos;s constant health woes finally reached her goal: getting him to commit suicide. She is now regretting it in the most fundamental way.
+
+AP (Mar. 3, 2015","ing Son
+
+AP (Mar. 3, 2015) — A woman who blogged for years about her son&apos;s constant health woes was convicted Monday of poisoning him to death by force-feeding heavy concentrations of sodium through his stomach tube. (March 3)
+Video provided by AP
+
+",0.5,pythia-evals,3047,3042,0.4449760765550239
+3049," is getting VERY good at catching spun content so you'd better be talented at manual spins. If they DO catch you, of course they'll spank you...and if you get caught a 2nd time, you're DEAD.
+
+I've been a member of the site for a while now and I've"," is getting VERY good at catching spun content so you'd better be talented at manual spins. If they DO catch you, of course they'll spank you... and hard. So anything you use spun content on is inherently AT RISK. Worse yet... Google gets better at finding spun/poor content every year",0.5,pythia-evals,3054,3049,0.5319148936170213
+3102,"picture/b_print.png""))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText(""Tambah"");
+        BtnPrint.setToolTipText(""Alt+T"");
+        BtnPrint.setName(""BtnPrint""); // NO","picture/b_print.png""))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText(""Cetak"");
+        BtnPrint.setToolTipText(""Alt+T"");
+        BtnPrint.setName(""BtnPrint""); // NO",0.953125,pythia-evals,3108,3102,0.5231788079470199
+3155,"				</li>
+												<li>
+													<a href=""#"">Step charts</a>
+													<ul>
+														<li><a href=""step_charts.html"">Step charts</a></li>
+														<li><a href=""step_charts_","				</li>
+												<li>
+													<a href=""#"">Step charts</a>
+													<ul>
+														<li><a href=""dimple_step_horizontal.html"">Horizontal orientation</a></li>
+														<li><a href=""dim",0.59375,pythia-evals,3161,3155,0.4435483870967742
+3241,"_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_====0x7f
+
+#
+#  define BOOST_PP_ITERATION_START_5 <= BOOST_PP_ITERATION_FINISH",_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=,0.515625,pythia-evals,3247,3241,0.34
+3296,", Joseph 
+Wagner/NA/Enron@Enron, Christopher Watts/NA/Enron@Enron, Lloyd 
+Will/HOU/ECT@ECT, Thresa A Allen/HOU/ECT@ECT, Kevin M Presto/HOU/ECT@ECT, 
+Jere C Overdyke/",", Joseph 
+Wagner/NA/Enron@Enron, Christopher Watts/NA/Enron@Enron, Lloyd 
+Will/HOU/ECT@ECT, Jay Wills/Corp/Enron@ENRON, George Wood/Corp/Enron@Enron, 
+Alex Wong/Corp/Enron@Enron, Tracy",0.515625,pythia-evals,3302,3296,0.5059523809523809
+3375,"a name=""l00133""></a><span class=""lineno"">  133</span>&#160;<span class=""comment"">|   macros.h:  Macro definitions for the Cortex-M4.</span></div>
+<div class=""line""><a name=""l00134","a name=""l00133""></a><span class=""lineno"">  133</span>&#160;<span class=""comment"">|   macros</span></div>
+<div class=""line""><a name=""l00134""></a><span class=""lineno"">  134</span>",0.53125,pythia-evals,3381,3375,0.5214723926380368
+3378,"tabs-left >.nav-tabs > li > a:focus {
+  margin: 0 -1px 0 0;
+}
+.rtl.nav-tabs-left >.nav-tabs > li > a:hover,
+.rtl.nav-tabs-left >.nav-tabs >","tabs-left >.nav-tabs > li > a:focus {
+  margin: 0 -1px 0 0;
+}
+.rtl.tabs-left >.nav-tabs > li.active > a,
+.rtl.tabs-left >.nav-tabs > li.active >",0.5625,pythia-evals,3384,3378,0.4873949579831932
+3395," (x86)\microsoft visual studio 11.0\vc\include\cmath(48): error C2061: syntax error : identifier 'acos'
+1>c:\users\michael\documents\visual studio 2012\projects\project1\project1\main.cpp(12): error"," (x86)\microsoft visual studio 11.0\vc\include\cmath(48): error C2061: syntax error : identifier 'acos'
+1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\cmath(48): error C2059",0.625,pythia-evals,3401,3395,0.546448087431694
+3405,"arg5);
+
+	case KEYCTL_NEGATE:
+		return keyctl_negate_key(arg2, arg3, arg4, arg5);
+
+	case KEYCTL_SET_REQKEY_KEYRING:
+	case KEYCTL_SET_TIMEOUT:
+	","arg5);
+
+	case KEYCTL_NEGATE:
+		return keyctl_negate_key(arg2, arg3, arg4);
+
+	case KEYCTL_SET_REQKEY_KEYRING:
+		return keyctl_set_reqkey_keyring(arg2",0.53125,pythia-evals,3411,3405,0.4923076923076923
+3486," Begin by listing three assets that define you, such as your profession, a special hobby or a personality trait. Next, list three things that inspire you, such as a person, a place or an event. Finally, list three things that you are passionate about, such as a cause, a sport or a hobby."," Begin by listing three assets that define you, such as your profession, a special hobby or a personality trait. Next, list three things that inspire you, such as religion, education or charity. Finally, list three of your dreams, such as getting married, traveling or spending more time with your children. These three lists",0.515625,pythia-evals,3492,3486,0.5110294117647058
+3493,".removeAllSpies = function() {
+  for (var i = 0; i < this.spies_.length; i++) {
+    this.spies_[i].teardown();
+  }
+  this.spies_ = [];
+};
+
+jasmine.Spy",".removeAllSpies = function() {
+  for (var i = 0; i < this.spies_.length; i++) {
+    var spy = this.spies_[i];
+    spy.baseObj[spy.methodName] = spy.originalValue;
+  ",0.515625,pythia-evals,3499,3493,0.5
+3503,"L4 fusial thrust engines and shunted it into recharging his weapons and shields.
+
+The resource redirection brought his speed down. Corran's vision went red and he took a deep breath, then another. The first thing he needed to do was get the fighter's nose up. He pushed shield","L4 fusial thrust engines and shunted it into recharging his weapons and shields.
+
+The resource redirection brought his speed down. Corran pulled back on the stick, easing the X-wing into a turn that brought him head-on into the bombers. Tapping the stick to the left",0.5,pythia-evals,3509,3503,0.5263157894736842
+3536,"*/
+  /*                                                                       */
+  /*          // after this call, `bitmap' no longer points into           */
+  /*          // the `base' area; it is always empty.                     */
+  /*                                                                       */
+  /*          //                                                        ","*/
+  /*                                                                       */
+  /*          // after this call, `bitmap' no longer points into           */
+  /*          // the `glyphs' array (and the old value isn't destroyed)    */
+  /*          FT_Glyph_To_Bitmap(",0.5625,pythia-evals,3543,3536,0.48
+3569,"int nice_length,
+                                    int max_chain));
+/*
+     Fine tune deflate's internal compression parameters.  This should only be
+   called after deflateInit() and before the first call of deflate().  The
+   application can supply more input and/or consume more output by","int nice_length,
+                                    int max_chain));
+/*
+     Fine tune deflate's internal compression parameters.  This should only be
+   used by someone who understands the algorithm used by zlib's deflate for
+   searching for the best matching string, and even then only by the",0.546875,pythia-evals,3576,3569,0.4761904761904761
+3572,"
+  public Collection<TaskRunnerWorkItem> getRunningTasks()
+  {
+    return getTasks(RunnerTaskState.RUNNING);
+  }
+
+  public Collection<TaskRunnerWorkItem> getCompletedTasks()
+  {
+    return getTasks(RunnerTaskState.COMPLET","
+  public Collection<TaskRunnerWorkItem> getRunningTasks()
+  {
+    return getTasks(RunnerTaskState.RUNNING);
+  }
+
+  @Override
+  public Collection<TaskRunnerWorkItem> getPendingTasks()
+  {
+    return getTasks(RunnerTask",0.5625,pythia-evals,3579,3572,0.5291005291005291
+3573,"_IT_SOURCE(hdcmi, DCMI_IT_VSYNC)!= RESET)
+    {
+      /* Disable the DCMI VSYNC interrupt */
+      hdcmi->Instance->CR &= ~DCMI_CR_VSYNC;
+    }","_IT_SOURCE(hdcmi, DCMI_IT_VSYNC)!= RESET)
+    {
+      /* Disable the VSYNC interrupt */
+      __HAL_DCMI_DISABLE_IT(hdcmi, DCMI_IT_VSYNC",0.5,pythia-evals,3580,3573,0.4862385321100917
+3639," $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_"," $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$",0.578125,pythia-evals,3646,3639,0.5462962962962963
+3653," {}; }
+if (!Sys.WebForms) { Sys.WebForms = {}; }
+Sys.WebForms.Menu = function(options) {
+    var items = [];
+    var add = function(item) {
+        items.push(item);
+    };
+    var remove = function"," {}; }
+if (!Sys.WebForms) { Sys.WebForms = {}; }
+Sys.WebForms.Menu = function(options) {
+    this.items = [];
+    this.depth = options.depth || 1;
+    this.parentMenuItem = options.parentMenuItem;
+    ",0.515625,pythia-evals,3660,3653,0.4875
+3662,"().Network(), Source: c.PacketConn.LocalAddr(), Err: err}
+		}
+	default:
+		return 0, nil, nil, err
+	}
+	return p, nil, nil, nil
+}
+
+// Close closes the endpoint.
+func (c *PacketConn","().Network(), Source: c.PacketConn.LocalAddr(), Err: err}
+		}
+	default:
+		return 0, nil, nil, &net.OpError{Op: ""read"", Net: c.PacketConn.LocalAddr().Network(), Source: c.PacketConn.Local",0.515625,pythia-evals,3670,3662,0.4909090909090909
+3665," to the preservation of printed works worldwide. We appreciate your understanding of the imperfections in the preservation process, and hope you enjoy this valuable book. ++++ The following ISBNs are associated with this title: 0-486-27000-0 (hardcover) 0-486-27001-9 ("," to the preservation of printed works worldwide. We appreciate your understanding of the imperfections in the preservation process, and hope you enjoy this valuable book. ++++ The below data was compiled from various identification fields in the bibliographic record of this title. This data is provided as an additional tool in helping to ensure edition identification",0.515625,pythia-evals,3673,3665,0.4984025559105431
+3670,��崚崙崘嵌嵒嵎嵋嵬嵳嵶嶂嶢嶝嶬嶮嶽嶐嶷嶼巉巍�,��崚崙崘嵌嵒嵎嵋嵬嵳嵶嶇嶄嶂嶢嶝嶬嶮嶽嶐嶷�,0.78125,pythia-evals,3678,3670,0.5
+3679,"DialError bool
+	// PerRPCCredentials stores the PerRPCCredentials required to issue RPCs.
+	PerRPCCredentials []Credentials
+	// TransportCredentials stores the transport credentials required to
+	// authenticate the connection. Only one of TransportCredentials and
+	","DialError bool
+	// PerRPCCredentials stores the PerRPCCredentials required to issue RPCs.
+	PerRPCCredentials []credentials.PerRPCCredentials
+	// TransportCredentials stores the Authenticator required to setup a client
+	// connection. Only one",0.546875,pythia-evals,3687,3679,0.5065502183406113
+3735,"
+        maybeInsertedRow: -1,
+        maybeInsertedLineStart: """",
+        maybeInsertedLineEnd: """"
+    };
+};
+
+var CstyleBehaviour = function() {
+    this.add(""braces"", ""insertion"", function(state, action, editor","
+        maybeInsertedRow: -1,
+        maybeInsertedLineStart: """",
+        maybeInsertedLineEnd: """"
+    };
+};
+
+var getWrapped = function(selection, selected, opening, closing) {
+    var rowDiff = selection.end.row - selection",0.5625,pythia-evals,3743,3735,0.4764705882352941
+3780,"\end{pmatrix}^{n_{3} - 2}\begin{pmatrix}
+1 \\
+s_{1} \\
+{1 + t_{2}s_{1}} \\
+\end{pmatrix}\begin{pmatrix}
+1 \\
+s_{2} \\
+{1 + t_{3","\end{pmatrix}^{n_{3} - 2}\begin{pmatrix}
+1 \\
+s_{1} \\
+{1 + t_{2}} \\
+\end{pmatrix}\begin{pmatrix}
+1 \\
+s_{2} \\
+{1 + t_{1}} \\
+\",0.546875,pythia-evals,3788,3780,0.5412844036697247
+3817," prev.search(/\S/);
+        var nextIndent = next.search(/\S/);
+
+        if (indent == -1) {
+            doc.setValue(prev.getValue() + indent + next.getValue());
+            return;
+        } else if (indent < next"," prev.search(/\S/);
+        var nextIndent = next.search(/\S/);
+
+        if (indent == -1) {
+            session.foldWidgets[row - 1] = prevIndent!= -1 && prevIndent < nextIndent? ""start""",0.5625,pythia-evals,3825,3817,0.4583333333333333
+3828,"]->Reshape(top_shape);
+  }
+}
+
+template <typename Dtype>
+void HDF5DataLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
+      const vector<Blob<Dtype>*>& top) {","]->Reshape(top_shape);
+  }
+}
+
+template <typename Dtype>
+void HDF5DataLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
+      const vector<Blob<Dtype>*>& top) {",0.953125,pythia-evals,3836,3828,0.5234899328859061
+3905,"
+	afx_msg void OnRadioAddPoints();
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+};
+
+//{{AFX_INSERT_LOCATION}}
+// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
+
+#endif //!defined(","
+	afx_msg void OnRadioAddPoints();
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+};
+
+//{{AFX_INSERT_LOCATION}}
+// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
+
+#endif //!defined",0.703125,pythia-evals,3913,3905,0.5431472081218274
+3936," delegate bool NativeUpdatePublishedFileSetChangeDescriptionUS( IntPtr thisptr, UInt64 hUpdateRequest, string cszDescription );
+		public bool NativeUpdatePublishedFileSetChangeDescription( UInt64 hUpdateRequest, string cszDescription );
+		public bool NativeUpdatePublishedFileSetChangeDescription("," delegate bool NativeUpdatePublishedFileSetChangeDescriptionUS( IntPtr thisptr, UInt64 hUpdateRequest, string cszDescription );
+		public bool UpdatePublishedFileSetChangeDescription( UInt64 hUpdateRequest, string cszDescription ) 
+		{
+			return this.GetFunction<NativeUpdate",0.5,pythia-evals,3944,3936,0.4926470588235294
+3949," Mylar balloon; measures 18""D; design may vary due to local availability
+
+Select a Qty
+
+Order by 2:00 PM CST for same day shipping.
+
+*Free shipping is available for the lower 48 states.
+
+Due to the nature of this product, please call ahead"," Mylar balloon; measures 18""D; design may vary due to local availability
+
+Select a Qty
+
+Order by 2:00 PM CST for same day pickup or delivery!
+
+Delivery or Pickup?
+
+Delivery DatePickup Date
+
+Delivery Time Range
+
+",0.5625,pythia-evals,3957,3949,0.5129533678756477
+3971,"Comments above from Brisbane, Australia by John J. Ray (M.A.; Ph.D.) -- former teacher at both High School and university level
+
+I have been a teacher for over 30 years and have taught in both the public and private school systems. I have also been a university lecturer and have taught","Comments above from Brisbane, Australia by John J. Ray (M.A.; Ph.D.) -- former teacher at both High School and university level
+
+There are also two blogspot blogs which record what I think are my main recent articles here and here. Similar content can be more conveniently accessed via my subject-",0.515625,pythia-evals,3979,3971,0.4493927125506073
+4014," happen until ""later"" should generally also
+  // not happen before the first write call.
+  this.sync = true;
+
+  // a flag to be able to tell if the onwrite cb is called immediately,
+  // or on a later tick.  We set this to true at first,"," happen until ""later"" should generally also
+  // not happen before the first write call.
+  this.sync = true;
+
+  // a flag to know if we're processing previously buffered items, which
+  // may call the _write() callback in the same tick, so that we don't
+",0.515625,pythia-evals,4022,4014,0.5074626865671642
+4024,"
+
+CONTACT: Port Authority of New York and New Jersey 212-435-7777
+
+Founded in 1921, the Port Authority of New York and New Jersey is a self-supporting public agency created by an interstate compact between the states of New York, New Jersey, and Pennsylvania. The agency","
+
+CONTACT: Port Authority of New York and New Jersey 212-435-7777
+
+Founded in 1921, the Port Authority of New York and New Jersey builds, operates, and maintains many of the most important transportation and trade infrastructure assets in the country. The agency’s network of aviation,",0.5625,pythia-evals,4032,4024,0.4811715481171548
+4028,"-library""],
+            ""web/modules/contrib/{$name}"": [""type:drupal-module""],
+            ""web/profiles/{$name}"": [""type:drupal-profile""],
+            ""web/themes/{$name}"": [""type:drupal-theme""],
+","-library""],
+            ""web/modules/contrib/{$name}"": [""type:drupal-module""],
+            ""web/profiles/contrib/{$name}"": [""type:drupal-profile""],
+            ""web/themes/contrib/{$name}"": [""type:drupal",0.515625,pythia-evals,4036,4028,0.5093167701863354
+4035,"tag    uint64 // tag in wire format
+	tagsize    int    // size of tag in wire format
+	sizer      sizer
+	marshaler  marshaler
+	isptr      bool // elem is pointer typed, thus interface implemented by this type
+	deref      bool // dereference","tag    uint64 // tag in wire format
+	tagsize    int    // size of tag in wire format
+	sizer      sizer
+	marshaler  marshaler
+	isPointer  bool
+	required   bool                              // field is required
+	name       string                            // name of",0.640625,pythia-evals,4043,4035,0.5433526011560693
+4101,idi nightmare on Mount Sinjar Show all 15 1 /15 Iraq crisis: Yazidi nightmare on Mount Sinjar Iraq crisis: Yazidi nightmare on Mount Sinjar Iraqis fleeing from the violence in Sinjar town to Mount Sinjar and the surrounding mountains after the Peshmerga forces were forced to retreat from,"idi nightmare on Mount Sinjar Show all 15 1 /15 Iraq crisis: Yazidi nightmare on Mount Sinjar Iraq crisis: Yazidi nightmare on Mount Sinjar Iraq crisis Displaced people from the minority Yazidi sect, fleeing violence from forces loyal to the Isis in Sinjar town, walk towards the",0.5625,pythia-evals,4110,4101,0.5228215767634855
+4108," NASD. One of the rules in the NASD Code stated that the following matters shall be arbitrated:
+
+
+5
+[A]ny dispute, claim or controversy arising out of or in connection with the business of any member of the Association, with the exception of disputes involving the insurance business of any member which"," NASD. One of the rules in the NASD Code stated that the following matters shall be arbitrated:
+
+
+5
+[A]ny dispute, claim, or controversy arising out of or in connection with the business of any member of the Association, or arising out of the employment or termination of employment of associated",0.53125,pythia-evals,4117,4108,0.412
+4119," one of my favorite holidays. Hot dogs, potato salad and, of course, fireworks. But Independence […]
+
+Very few dogs have the experience of being parents. It’s an exciting and emotional time in a dog’s life. Parents worry about their babies, spend time with them, help them learn about life"," one of my favorite holidays. Hot dogs, potato salad and, of course, fireworks. But Independence […]
+
+Very few dogs have the experience of being parents these days and especially seeing their litters through the process of weaning and then actually being able to remain part of a pack with at least part of their family",0.5,pythia-evals,4128,4119,0.5019011406844106
+4181,", grasper, scissor, stapler, cautery tool, linear cutter, or needle holder.
+To perform surgical procedures, the surgeon passes working tools through a cannula or port into the surgical site and manipulates them from outside the body. The surgeon views the procedure by means of a monitor that displays",", grasper, scissor, stapler, cautery tool, linear cutter, or needle holder.
+To perform surgical procedures, the surgeon passes working tools through cannula sleeves to an internal surgical site and manipulates them from outside the abdomen. The surgeon views the procedure from a monitor that displays an image of",0.53125,pythia-evals,4190,4181,0.5075187969924813
+4196,"_z_ char *path, \
+	SYS_FSTATFS_FREEBSD12       = 556 // { int fstatfs(int fd, struct statfs *buf); }
+	SYS_FSTATFS_FREEBSD12_FSTATFS = 557 // { int fstatfs(int","_z_ char *path, \
+	SYS_FSTATFS_FREEBSD12       = 556 // { int fstatfs(int fd, \
+	SYS_GETFSSTAT_FREEBSD12     = 557 // { int getfsstat( \
+	SYS_MKNODAT_",0.5,pythia-evals,4206,4196,0.484375
+4229,"NEW DEALS HATCH EVERY DAY!
+
+**EBOOKS BY JOHN CLELLON HOLMES**
+
+FROM OPEN ROAD MEDIA
+
+Available wherever ebooks are sold
+
+FIND OUT MORE AT WWW.OPENROADMEDIA.COM
+
+FOLLOW US: @","NEW DEALS HATCH EVERY DAY!
+
+**EBOOKS BY JOHN CLELLON HOLMES**
+
+FROM OPEN ROAD MEDIA
+
+Available wherever ebooks are sold
+
+**Open Road Integrated Media** is a digital publisher and multimedia content company. Open Road creates connections between authors and",0.65625,pythia-evals,4239,4229,0.4697674418604651
+4239,"es a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      protected override PhishingProtectionServiceV1Beta1Client CreateClient(ClientBaseConfiguration configuration)
+      {
+         return new PhishingProtectionServiceV1Beta1Client(
+            ","es a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      protected override PhishingProtectionServiceV1Beta1Client NewInstance(ClientBaseConfiguration configuration)
+      {
+        return new PhishingProtectionServiceV1Beta1Client(configuration);",0.921875,pythia-evals,4249,4239,0.5333333333333333
+4263,"_CBC_40_MD5,
+		cipher_TLS_KRB5_EXPORT_WITH_RC4_40_MD5,
+		cipher_TLS_KRB5_EXPORT_WITH_DES_40_CBC_SHA,
+		cipher_TLS_KRB5_EXPORT_","_CBC_40_MD5,
+		cipher_TLS_KRB5_EXPORT_WITH_RC4_40_MD5,
+		cipher_TLS_PSK_WITH_NULL_SHA,
+		cipher_TLS_DHE_PSK_WITH_NULL_SHA,
+	",0.5625,pythia-evals,4273,4263,0.5470085470085471
+4322," to crumble, many advocates held on to one thought to keep us going: “At least we have California…” Read More »/* crypto/conf/conf_err.c */
+/* ====================================================================
+ * Copyright (c) 1999-2006 The OpenSSL Project.  All rights reserved.
+ *
+"," to crumble, many advocates held on to one thought to keep us going: “At least we have California…” Read More »<|endoftext|>/* crypto/conf/conf.h */
+/* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+ * All rights reserved.
+ *",0.515625,pythia-evals,4332,4322,0.4408163265306122
+4348,"  else {
+    allClassesLink.style.display = ""none"";
+  }
+  //-->
+</script>
+</div>
+<a name=""skip.navbar.bottom"">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ","  else {
+    allClassesLink.style.display = ""none"";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class=""subNavList"">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&",0.515625,pythia-evals,4358,4348,0.4852941176470588
+4349,"></span></code></td>
+
+</tr>
+<tr>
+<td align=""left"" valign=""top"" >
+<code><span class=""keyword"">fun </span><span class=""identifier"">get</span><span class=""symbol"">(</span><span class=""identifier""","></span></code></td>
+
+</tr>
+<tr>
+<td align=""left"" valign=""top"" >
+<code><span class=""keyword"">|</span></code></td>
+<td align=""left"" valign=""top"" >
+<code><span id=""",0.59375,pythia-evals,4359,4349,0.4804469273743016
+4358,"thermal, piezoelectric, etc.). Selective activation of the actuator causes the formation and ejection of a flying ink droplet that crosses the space between the printhead and the print medium and strikes the print medium. The formation of printed images is achieved by controlling the individual formation of ink droplets, as is required to create the desired image","thermal, piezoelectric, etc.). Selective activation of the actuator causes the formation and ejection of a flying ink droplet that crosses the space between the printhead and the print media and strikes the print media. The formation of printed images is achieved by controlling the individual formation of ink droplets, as is required to create the desired image",0.96875,pythia-evals,4368,4358,0.5469255663430421
+4439,"INUE
+   20 CONTINUE
+*
+*     Get machine parameters
+*
+      SMLNUM = SLAMCH( 'S' )
+      BIGNUM = ONE / SMLNUM
+      CALL SLABAD( SMLNUM, BIGNUM )
+*
+*     Scale","INUE
+   20 CONTINUE
+*
+*     Get machine parameters
+*
+      SMLNUM = SLAMCH( 'S' ) / SLAMCH( 'P' )
+      BIGNUM = ONE / SMLNUM
+      CALL SLABAD( SMLNUM, B",0.5,pythia-evals,4449,4439,0.5288461538461539
+4495," relationship does not result in any preferential editorial treatment.
+
+Note: It’s important to remember that interest rates, fees and terms for creditcards, loans, mortgages, and other financial products frequently change. As a result, rates, fees, and terms for credit cards, loans, mortgages, and other financial products"," relationship does not result in any preferential editorial treatment.
+
+Note: It’s important to remember that interest rates, fees and terms for creditcards, loans and other financial products frequently change. As a result, rates, fees and terms for credit cards, loans and other financial products cited in these articles may have changed",0.5,pythia-evals,4506,4495,0.5173611111111112
+4569,"
+	_p1, err = BytePtrFromString(params)
+	if err!= nil {
+		return
+	}
+	_, _, e1 := Syscall(SYS_FINIT_MODULE, uintptr(fd), uintptr(unsafe.Pointer(_p0)), uintptr(flags))
+	if e1!=","
+	_p1, err = BytePtrFromString(params)
+	if err!= nil {
+		return
+	}
+	_, _, e1 := Syscall(SYS_INIT_MODULE, uintptr(_p0), uintptr(len(moduleImage)), uintptr(unsafe.Pointer(_p1)))
+	if",0.609375,pythia-evals,4580,4569,0.5359477124183006
+4625,"al
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /move_base_simple/publish_point
+  - Class: rviz/MoveBase
+    - Class: rviz/MoveBase","al
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance",0.578125,pythia-evals,4636,4625,0.54421768707483
+4665,"else # XPART
+check_part:
+	@echo ""XPART is directly set to $(XPART)""
+endif # XPART
+
+# MK_INC_END vitis.mk
+
+# MK_INC_BEGIN vitis_set_platform.mk
+
+# -----------------------------------------------------------------------------
+#","else # XPART
+check_part:
+	@echo ""XPART is directly set to $(XPART)""
+endif # XPART
+
+# MK_INC_END vitis_set_part.mk
+
+# MK_INC_BEGIN hls_test_rules.mk
+
+
+.",0.640625,pythia-evals,4676,4665,0.4221105527638191
+4677," field, which must be a struct or a map,
+//                  causing all of its fields or keys to be processed as if
+//                  they were part of the struct.
+//
+//                  Fields may be processed in any order, but the struct may
+//                  only contain fields that match a given"," field, which must be a struct or a map,
+//                  causing all of its fields or keys to be processed as if
+//                  they were part of the outer struct. For maps, keys must
+//                  not conflict with the yaml keys of other struct fields.
+//
+// In addition,",0.546875,pythia-evals,4688,4677,0.5401069518716578
+4688," or business transaction.
+
+a gaming table.
+
+a flat or plane surface; a level area.
+
+a tableland or plateau.
+
+the surface of the sea or of a sea or ocean.
+
+a flat and relatively thin piece of wood, stone, metal, or other hard substance,"," or business transaction.
+
+a gaming table.
+
+a flat or plane surface; a level area.
+
+a tableland or plateau.
+
+a concise list or guide: a table of contents.
+
+an arrangement of words, numbers, or signs, or combinations of them, as in parallel columns",0.53125,pythia-evals,4699,4688,0.47
+4789,"'t like guns, he doesn't buy one. If a liberal doesn't like guns, he wants all guns outlawed. If a conservative is a vegetarian, he wants all meat products banned. The truth is that most people have no idea what they want until you tell them.
+
+The truth is that most people","'t like guns, he doesn't buy one. If a liberal doesn't like guns, he wants all guns outlawed. If a conservative is a vegetarian, he doesn't eat meat. If a liberal is a vegetarian, he wants all meat products banned for everyone. If a conservative is down-and-out,",0.53125,pythia-evals,4800,4789,0.5203619909502263
+4803,"new""><i class=""icon-shield icon-fixed-width""></i>&nbsp; New Icons in 3.2.1</a></li>
+                            <li><a href=""#""><i class=""icon-book icon-fixed-width""></i>&nbsp; New Icons in 3.","new""><i class=""icon-shield icon-fixed-width""></i>&nbsp; New Icons in 3.2.1</a></li>
+              <li><a href=""../../icons/#web-application""><i class=""icon-camera-retro icon-fixed-width""></i>&nbsp",0.515625,pythia-evals,4814,4803,0.5348837209302325
+4814,".cpython-35.pyc
+byte-compiling build\bdist.win-amd64\egg\pyaf\ForecastEngine.py to
+build\bdist.win-amd64\egg\pyaf\ForecastEngine.pyc
+byte-compiling build\b",".cpython-35.pyc
+byte-compiling build\bdist.win-amd64\egg\pyaf\ForecastEngine.py to ForecastEngine.cpython-35.pyc
+byte-compiling build\bdist.win-amd64\egg\pyaf",0.53125,pythia-evals,4825,4814,0.5460526315789473
+4832,"a href=""../../RTOS/html/index.html""><span>RTOS API</span></a></li>
+      <li><a href=""../../Pack/html/index.html""><span>Pack</span></a></li>
+      <li><a href=""../../SVD/html/index","a href=""../../RTOS/html/index.html""><span>RTOS API</span></a></li>
+      <li><a href=""../../SVD/html/index.html""><span>SVD</span></a></li>
+    </ul>
+</div>
+<!-- Generated",0.515625,pythia-evals,4843,4832,0.5123456790123457
+4848,"
+func getfsstat(buf unsafe.Pointer, size uintptr, flags int) (n int, err error) {
+	r0, _, e1 := syscall_syscall(funcPC(libc_getfsstat64_trampoline), uintptr(buf), uintptr(size), uintptr(flags))
+","
+func getfsstat(buf unsafe.Pointer, size uintptr, flags int) (n int, err error) {
+	r0, _, e1 := Syscall(SYS_GETFSSTAT64, uintptr(buf), uintptr(size), uintptr(flags))
+	n = int(r0)",0.59375,pythia-evals,4859,4848,0.5232558139534884
+4876," in CIF format for **1-DMF**, **1-THF**, and **2-DMA**. CCDC [1840858--1840860](1840858–1840860) contain the supplementary crystallographic data for this paper. These data can be obtained free of charge from The Cambridge C"," in CIF format for **1-DMF**, **1-THF**, and **2-DMA**. CCDC [1840858--1840860](1840858–1840860). For ESI and crystallographic data in CIF or other electronic format see DOI: [10.1039",0.640625,pythia-evals,4887,4876,0.466321243523316
+4883," felony, violated the Double
+Jeopardy Clauses of the Nebraska and U.S. Constitutions and
+constituted plain error.
+   [9] We first address the defendant’s claim that the Double
+Jeopardy Clauses of the Nebraska and U.S. Constitutions
+bar his conviction"," felony, violated the Double
+Jeopardy Clauses of the Nebraska and U.S. Constitutions and
+constituted plain error.
+   [9] Plain error exists where there is an error, plainly evident
+from the record but not complained of at trial, which prejudi-
+cially affects a",0.53125,pythia-evals,4894,4883,0.5092592592592593
+4966,".
+ *
+ * The download is asynchronous and cached.
+ *
+ * @param url         The url for the image.
+ * @param state       A state that can be used to cancel the download, no-op if nil.
+ * @param progress    The block invoked when the image is downloaded,",".
+ *
+ * The download is asynchronous and cached.
+ *
+ * @param url         The url for the image.
+ * @param state       The state that uses the specified title. The values are described in UIControlState.
+ * @param placeholder The image to be set initially, until the",0.53125,pythia-evals,4978,4966,0.4108910891089108
