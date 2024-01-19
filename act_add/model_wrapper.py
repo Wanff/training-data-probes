@@ -3,6 +3,7 @@
 import torch
 import numpy as np
 from typing import List, Union, Optional
+from einops import rearrange
 
 class WrappedBlock(torch.nn.Module):
     def __init__(self, block):
@@ -23,7 +24,6 @@ class WrappedBlock(torch.nn.Module):
         else:
             self.output = output
             modified = output
-
             
         if self.controller is not None:
         
@@ -48,15 +48,18 @@ class WrappedBlock(torch.nn.Module):
 
             if len(self.controller.shape) == 1:
                 self.controller = self.controller.reshape(1, 1, -1)
-            assert len(self.controller.shape) == len(modified.shape), f"Shape of controller {self.controller.shape} does not match shape of modified {modified.shape}."
-
+            
             self.controller = self.controller.to(modified.device)
             if type(mask) == torch.Tensor:
                 mask = mask.to(modified.device)
             if isinstance(self.token_pos, int):
                 modified[:, self.token_pos] = self.operator(modified[:, self.token_pos], self.controller * mask)
             elif isinstance(self.token_pos, list) or isinstance(self.token_pos, tuple) or isinstance(self.token_pos, np.ndarray):
-                modified[:, self.token_pos] = self.operator(modified[:, self.token_pos], self.controller * mask)
+                if self.controller.shape[0] > 1 and modified.shape[1] == 1:
+                    #if controller is multiple tokens and modified is one, meaning we are in autoregressive generation mode, we skip out of this loop
+                    pass
+                else:
+                    modified[:, self.token_pos] = self.operator(modified[:, self.token_pos], self.controller * mask)
             elif isinstance(self.token_pos, str):
                 if self.token_pos == "end":
                     len_token = self.controller.shape[1]
@@ -67,6 +70,8 @@ class WrappedBlock(torch.nn.Module):
                 else:
                     assert False, f"Unknown token position {self.token_pos}."
             else:
+
+                assert len(self.controller.shape) == len(modified.shape), f"Shape of controller {self.controller.shape} does not match shape of modified {modified.shape}."
                 modified = self.operator(modified, self.controller * mask)
 
             if self.normalize:
@@ -94,7 +99,11 @@ class WrappedBlock(torch.nn.Module):
                 return current + controller * sign
         elif operator == 'projection':
             def op(current, controller):
-                raise NotImplementedError
+                # print(current.shape, controller.shape)
+                projection = torch.sum(current.float() * controller.float(), dim = 2).unsqueeze(2) * controller.float()
+                if current.dtype == torch.float16:
+                    projection = projection.half()
+                return current - projection
         else:
             raise NotImplementedError(f"Operator {operator} not implemented.")
         self.operator = op
@@ -110,6 +119,7 @@ class WrappedBlock(torch.nn.Module):
         self.mask = masks
 
 
+#! attention always comes first, mlp comes second bc that's just how it is
 LLAMA_BLOCK_NAMES = [
     "self_attn",
     "mlp",
@@ -123,7 +133,48 @@ PYTHIA_BLOCK_NAMES = [
     "input_layernorm",
     "post_attention_layernorm" 
 ]
+
+GPT_BLOCK_NAMES = [
+    'attn',
+    'mlp',
+    'ln_1',
+    'ln_2'
+]
+
+def slice_acts(out, N_TOKS: int, return_prompt_acts: bool, layers: List, tok_idxs: List = None):
+    """slices acts out of huggingface modeloutput object
+
+    Args:
+        out (_type_): _description_
+        N_TOKS (int): how many tokens generated
+        return_prompt_toks (bool): _description_
+        layers (List): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    #! expects hf layer idxs (ie 1-index)
+    #out.hidden_states is shape  max_new_tokens x n_layers + 1 x batch x activations
     
+    #first loop goes through the tokens, second loop goes through the layers or something
+    acts = torch.stack([torch.cat(out.hidden_states[i], dim = 1) for i in range(1, N_TOKS)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
+    #shape: batch_size x N_TOKS - 1 x n_layers + 1 x d_M
+    #n_layers + 1 bc of embedding, N_TOKS - 1 bc of how max_new_tokens works
+    acts = rearrange(acts, 'b t l d -> b l t d')
+    
+    if return_prompt_acts:
+        prompt_acts = torch.stack(out.hidden_states[0], dim = 0) #shape: n_layers + 1 x batch_size x seq_len x d_M
+        prompt_acts = rearrange(prompt_acts, 'l b t d -> b l t d')
+        acts = torch.cat([prompt_acts, acts], dim = 2)
+    
+    acts = acts.cpu()
+    # print(acts.shape)
+    
+    if tok_idxs is not None:
+        acts = acts[:, :, tok_idxs, :]
+    acts = acts[:, layers, :, :]
+    return acts
+
 def rename_attribute(object_, old_attribute_name, new_attribute_name):
     setattr(object_, new_attribute_name, getattr(object_, old_attribute_name))
     delattr(object_, old_attribute_name)
@@ -141,6 +192,10 @@ class ModelWrapper(torch.nn.Module):
         elif hasattr(self.model, 'gpt_neox'):
             self.block_names = PYTHIA_BLOCK_NAMES
             self.model_base = self.model.gpt_neox
+        elif hasattr(self.model, 'transformer'):
+            self.block_names = GPT_BLOCK_NAMES
+            self.model_base = self.model.transformer
+            self.model_base.layers = self.model.transformer.h
 
         
     #Generation Functions
@@ -150,25 +205,63 @@ class ModelWrapper(torch.nn.Module):
     def generate(self, **kwargs):
         return self.model.generate(**kwargs)
         
-    def batch_generate_from_string(self, strings, **kwargs):
-        generations = []
-        for s in strings:
-            assert isinstance(s, str), "Input must be a list of strings."
+    def batch_generate_autoreg(self, prompts, 
+                                   max_new_tokens: int = 32,
+                                   output_hidden_states = False, 
+                                   output_tokens = False, 
+                                   layers = None,
+                                   tok_idxs = None,
+                                    return_prompt_acts = False,
+                                   **kwargs):
+        #slow iterative version bleh:
+        # generations = []
+        # for s in strings:
+        #     assert isinstance(s, str), "Input must be a list of strings."
             
-            toks = self.tokenizer(s, return_tensors="pt", padding=True, max_length=512, truncation=True)
-            input_ids = toks.input_ids.to(self.model.device)
-            attention_mask = toks.attention_mask.to(self.model.device)
+        #     toks = self.tokenizer(s, return_tensors="pt", padding=True, max_length=512, truncation=True)
+        #     input_ids = toks.input_ids.to(self.model.device)
+        #     attention_mask = toks.attention_mask.to(self.model.device)
             
-            out = self.model.generate(
-                        input_ids=input_ids,
-                        attention_mask=attention_mask,
-                        pad_token_id=self.tokenizer.eos_token_id,
-                        **kwargs
-                        )
-            generation = self.tokenizer.decode(out[0], skip_special_tokens=True)
-            generations.append(generation)
+        #     out = self.model.generate(
+        #                 input_ids=input_ids,
+        #                 attention_mask=attention_mask,
+        #                 pad_token_id=self.tokenizer.eos_token_id,
+        #                 **kwargs
+        #                 )
+        #     generation = self.tokenizer.decode(out[0], skip_special_tokens=True)
+        #     generations.append(generation)
         
-        return generations            
+        if isinstance(prompts[0], str):
+            inputs = self.tokenizer(prompts, return_tensors="pt", padding=True, max_length=512, truncation=True)
+        else:
+            inputs = self.tokenizer.pad({'input_ids': prompts}, padding = True, return_attention_mask=True)
+            
+        input_ids = inputs.input_ids.to(self.model.device)
+        attention_mask = inputs.attention_mask.to(self.model.device)
+
+        out = self.model.generate(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    pad_token_id=self.tokenizer.eos_token_id,
+                    max_new_tokens = max_new_tokens,
+                    output_hidden_states = output_hidden_states,
+                    return_dict_in_generate = output_hidden_states,
+                    **kwargs
+                    )
+        
+        #! this is not good code:
+        if output_hidden_states and output_tokens:
+            assert layers is not None and tok_idxs is not None, "Must specify layers and token indices to slice."
+            return {"generations": self.tokenizer.batch_decode(out['sequences'], skip_special_tokens=True),
+                    "tokens": out['sequences'],
+                    "hidden_states": slice_acts(out, 
+                                                N_TOKS = max_new_tokens, 
+                                                layers = layers,
+                                                tok_idxs = tok_idxs,
+                                                return_prompt_acts = return_prompt_acts),
+                    }      
+        else:
+            return self.tokenizer.batch_decode(out, skip_special_tokens=True)            
         
     def get_logits(self, tokens):
         with torch.no_grad():
@@ -186,7 +279,7 @@ class ModelWrapper(torch.nn.Module):
     def _get_hidden_states(
             self, 
             outputs,
-            rep_token: Union[str, int]=-1,
+            tok_idxs: Union[List[int], int]=-1,
             hidden_layers: Union[List[int], int]=-1,
             which_hidden_states: Optional[str]=None):
         
@@ -195,28 +288,55 @@ class ModelWrapper(torch.nn.Module):
     
         hidden_states_layers = {}
         for layer in hidden_layers:
+            layer = layer + 1 #we do this because usually we 0-index layers, but hf does not
             hidden_states = outputs['hidden_states'][layer]
-            hidden_states =  hidden_states[:, rep_token, :]
+            hidden_states =  hidden_states[:, tok_idxs, :]
             # hidden_states_layers[layer] = hidden_states.cpu().to(dtype=torch.float32).detach().numpy()
-            hidden_states_layers[layer] = hidden_states.detach().cpu().to(dtype = torch.float32)
+            hidden_states_layers[layer - 1] = hidden_states.detach().cpu().to(dtype = torch.float32)
 
         return hidden_states_layers
     
-    def batched_string_to_hiddens(self, strings: List[str], layers: List[int], token_idx: int = -1, **kwargs):
+    def batch_hiddens(self, 
+                      prompts: Union[List[str], List[int]], 
+                      layers: List[int], 
+                      tok_idxs: Union[List[int], int] = -1, 
+                    return_types = ['resid'], **kwargs):
         """
-        Takes a list of strings and returns the hidden states of the specified layers and token indices.
-        in cpu torch
+        Takes a list of strings or tokens and returns the hidden states of the specified layers and token indices.
+        
+        does not support autoregressive generation
         """
+        self.reset()
+        self.wrap_all()
+        hidden_states_dict = {}
+        
         with torch.no_grad():
             # self.reset()
             
-            inputs = self.tokenizer(strings, return_tensors="pt", padding=True, max_length=512, truncation=True)
+            if isinstance(prompts[0], str):
+                inputs = self.tokenizer(prompts, return_tensors="pt", padding=True, max_length=512, truncation=True)
+
+            else:
+                inputs = self.tokenizer.pad({'input_ids': prompts}, padding = True, return_attention_mask=True)
+                
             input_ids = inputs.input_ids.to(self.model.device)
             attention_mask = inputs.attention_mask.to(self.model.device)
-            outputs = self.model(input_ids = input_ids, attention_mask=attention_mask, output_hidden_states = True)
+            
+            outputs = self.model(input_ids = input_ids, attention_mask=attention_mask, output_hidden_states = True, **kwargs)
 
-            hidden_states_dict = self._get_hidden_states(outputs, token_idx, layers)        
-
+            for act_type in return_types:
+                if act_type == 'resid':
+                    hidden_states_dict['resid'] = self._get_hidden_states(outputs, tok_idxs, layers, 'residual') #this is layers to acts
+                elif act_type == 'attn':
+                    hidden_states_dict['attn'] = self.get_activations(layers, self.block_names[0])
+                    for layer in layers:
+                        hidden_states_dict['attn'][layer] = hidden_states_dict['attn'][layer][:, tok_idxs, :]
+                elif act_type == 'mlp':
+                    hidden_states_dict['mlp'] = self.get_activations(layers, self.block_names[1])
+                    for layer in layers:
+                        hidden_states_dict['mlp'][layer] = hidden_states_dict['mlp'][layer][:, tok_idxs, :]
+                else:
+                    assert False, f"Unknown activation type {act_type}."
             #* this also works, wrote it for my own understanding
             # temp_activations = self.get_activations(layers)
             # hidden_states_dict = {}
@@ -256,7 +376,7 @@ class ModelWrapper(torch.nn.Module):
             for block_name in self.block_names:
                 self.wrap(layer_id, block_name)
             self.wrap_decoder_block(layer_id)
-            
+    
     def wrap_block(self, layer_ids, block_name):
         def _wrap_block(layer_id, block_name):
             if block_name in self.block_names:
@@ -320,15 +440,15 @@ class ModelWrapper(torch.nn.Module):
             if self.is_wrapped(current_layer):
                 current_block = current_layer.block
                 if block_name == 'decoder_block':
-                    return current_layer.output
+                    return current_layer.output.detach().cpu()
                 elif block_name in self.block_names and self.is_wrapped(getattr(current_block, block_name)):
-                    return getattr(current_block, block_name).output
+                    return getattr(current_block, block_name).output.detach().cpu()
                 else:
                     assert False, f"No wrapped block named {block_name}."
 
             else:
                 if block_name in self.block_names and self.is_wrapped(getattr(current_layer, block_name)):
-                    return getattr(current_layer, block_name).output
+                    return getattr(current_layer, block_name).output.detach().cpu()
                 else:
                     assert False, f"No wrapped block named {block_name}."
                 

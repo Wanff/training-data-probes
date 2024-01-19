@@ -6,6 +6,8 @@ import numpy as np
 from itertools import islice
 import torch
 
+from probes import LRProbe
+
 def project_onto_direction(H, direction):
     """Project matrix H (n, d_1) onto direction vector (d_2,)"""
     # Calculate the magnitude of the direction vector
@@ -178,7 +180,6 @@ class PCARepReader(RepReader):
                 pca_outputs_min = np.mean([o[train_labels[i].index(1)] == min(o) for i, o in enumerate(pca_outputs_comp)])
                 pca_outputs_max = np.mean([o[train_labels[i].index(1)] == max(o) for i, o in enumerate(pca_outputs_comp)])
 
-       
                 layer_signs[component_index] = np.sign(np.mean(pca_outputs_max) - np.mean(pca_outputs_min))
                 if layer_signs[component_index] == 0:
                     layer_signs[component_index] = 1 # default to positive in case of tie
@@ -202,7 +203,10 @@ class ProbeRepReader(RepReader):
 
         for layer in hidden_layers:
             if layer in self.layer_idx_to_probes:
-                self.directions[layer]  = self.layer_idx_to_probes[layer].net[0].weight.detach().cpu().numpy().squeeze(0)
+                if isinstance(self.layer_idx_to_probes[layer], LRProbe):
+                    self.directions[layer]  = self.layer_idx_to_probes[layer].net[0].weight.detach().cpu().squeeze(0)
+                else:
+                    self.directions[layer] = self.layer_idx_to_probes[layer]
             else:
                 print(f"Layer {layer} not in layer_idx_to_probes")
         
