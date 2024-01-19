@@ -193,6 +193,8 @@ class ProbeRepReader(RepReader):
     def __init__(self, layer_idx_to_probes):
         super().__init__()
         self.layer_idx_to_probes  = layer_idx_to_probes
+        self.get_rep_directions(self.layer_idx_to_probes.keys())
+        self.get_signs(self.layer_idx_to_probes.keys())
             
     def get_rep_directions(self, hidden_layers, **kwargs):
         """Gets the rep direction according to CAA 
@@ -291,11 +293,19 @@ class RandomRepReader(RepReader):
 
     def get_rep_directions(self, model, tokenizer, hidden_states, hidden_layers, **kwargs):
 
-        directions = {}
+        self.directions = {}
         for layer in hidden_layers:
-            directions[layer] = np.expand_dims(np.random.randn(model.config.hidden_size), 0)
+            self.directions[layer] = np.expand_dims(np.random.randn(model.config.hidden_size), 0)
 
-        return directions
+        return self.directions
+    
+    def get_signs(self, hidden_states, train_labels, hidden_layers):
+        self.direction_signs = {}
+        
+        for layer in hidden_layers:
+            self.direction_signs[layer] = 1
+        
+        return self.direction_signs
 
 
 DIRECTION_FINDERS = {

@@ -47,7 +47,7 @@ class SteeringPipeline():
             assert isinstance(hidden_layers, int)
             hidden_layers = [hidden_layers]
         
-        assert pos_hidden_states.shape[0] == neg_hidden_states.shape[0], "pos and neg hidden states must have same number of examples"
+        assert pos_hidden_states.shape[1] == neg_hidden_states.shape[1], "pos and neg hidden states must have same number of examples"
         
         #*this is if shape is n_examples x n_layers x n_hidden
         # interweaved = [torch.stack([pos_hidden_states[i], neg_hidden_states[i]], dim = 0) for i in range(pos_hidden_states.shape[0])]
