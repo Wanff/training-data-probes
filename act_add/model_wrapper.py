@@ -4,6 +4,9 @@ import torch
 import numpy as np
 from typing import List, Union, Optional
 from einops import rearrange
+import torch.nn.functional as F
+
+from utils import untuple
 
 class WrappedBlock(torch.nn.Module):
     def __init__(self, block):
@@ -189,13 +192,18 @@ class ModelWrapper(torch.nn.Module):
         if hasattr(self.model, 'model'):
             self.block_names = LLAMA_BLOCK_NAMES
             self.model_base = self.model.model
+            
+            self.num_layers = self.model.config.num_hidden_layers
         elif hasattr(self.model, 'gpt_neox'):
             self.block_names = PYTHIA_BLOCK_NAMES
             self.model_base = self.model.gpt_neox
+            self.num_layers = self.model.config.num_hidden_layers
+
         elif hasattr(self.model, 'transformer'):
             self.block_names = GPT_BLOCK_NAMES
             self.model_base = self.model.transformer
             self.model_base.layers = self.model.transformer.h
+            
 
         
     #Generation Functions
@@ -295,6 +303,35 @@ class ModelWrapper(torch.nn.Module):
             hidden_states_layers[layer - 1] = hidden_states.detach().cpu().to(dtype = torch.float32)
 
         return hidden_states_layers
+    
+    def query_tok_dist(self, prompt, TOP_K = 10):
+        """
+        Gets top 10 predictions after last token in a prompt
+        """
+        tokens = self.tokenizer.encode_plus(prompt, return_tensors = 'pt').to(self.model.device)
+        
+        output = self.model(**tokens)
+
+        logits = output['logits']
+        
+        trg_tok_idx = tokens['input_ids'].shape[1] - 1
+        
+        #gets probs after last tok in seq
+        probs = F.softmax(untuple(logits)[0][trg_tok_idx], dim=-1) #the [0] is to index out of the batch idx
+ 
+        probs = torch.reshape(probs, (-1,)).detach().cpu().numpy()
+
+        #assert probs add to 1
+        assert np.abs(np.sum(probs) - 1) <= 0.01, str(np.abs(np.sum(probs)-1)) 
+
+        probs_ = []
+        for index, prob in enumerate(probs):
+            probs_.append((index, prob))
+
+        top_k = sorted(probs_, key = lambda x: x[1], reverse = True)[:TOP_K]
+        top_k = [(t[1].item(), self.tokenizer.decode(t[0])) for t in top_k]
+        
+        return top_k
     
     def batch_hiddens(self, 
                       prompts: Union[List[str], List[int]], 
