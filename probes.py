@@ -17,6 +17,8 @@ class LRProbe(t.nn.Module):
         return self(x).round()
     
     def pred_proba(self, x, iid=None):
+        if x.device != "cuda":
+            x = x.to("cuda")
         return self(x)
     
     def from_data(acts, labels, lr=0.001, weight_decay=0.1, epochs=1000, use_bias=False, device='cpu'):
@@ -71,6 +73,8 @@ class MMProbe(t.nn.Module):
     def pred(self, x, iid=False):
         return self(x, iid=iid).round()
 
+    def pred_proba(self, x, iid=False):
+        return self(x, iid=iid)
     def from_data(acts, labels, atol=1e-3, device='cpu'):
         acts, labels
         pos_acts, neg_acts = acts[labels==1], acts[labels==0]
@@ -84,6 +88,22 @@ class MMProbe(t.nn.Module):
 
         return probe
 
+    def get_probe_accuracy(self, X_test, y_test, device = "cpu"):
+        if device != "cpu":
+            X_test = X_test.to(device)
+            y_test = y_test.to(device)
+        preds = self.pred(X_test)
+
+        accuracy = (preds == y_test).float().mean().item()
+        return accuracy
+
+    def get_probe_auc(self, X_test, y_test, device = "cpu"):
+        if device != "cpu":
+            X_test = X_test.to(device)
+            y_test = y_test.to(device)
+        preds = self.pred_proba(X_test)
+        auc = roc_auc_score(y_test.detach().cpu().numpy(), preds.detach().cpu().numpy())
+        return auc
 
 def ccs_loss(probe, acts, neg_acts):
     p_pos = probe(acts)

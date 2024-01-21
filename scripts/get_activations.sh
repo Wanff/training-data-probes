@@ -17,13 +17,31 @@
 #     --logging &> data/12b/mlpattn_log.out &
 
 #* llama run
+# nohup python3 get_activations.py \
+#     --model_name "meta-llama/Llama-2-7b-hf" \
+#     --save_path "../data/llama-2-7b" \
+#     --N_PROMPTS 10000 \
+#     --save_every 100 \
+#     --return_prompt_acts \
+#     --logging &> ../data/llama-2-7b/log.out &
+
+#* llama more run
 nohup python3 get_activations.py \
     --model_name "meta-llama/Llama-2-7b-hf" \
     --save_path "../data/llama-2-7b" \
-    --N_PROMPTS 10000 \
+    --N_PROMPTS 50000 \
     --save_every 100 \
     --return_prompt_acts \
-    --logging &> ../data/llama-2-7b/log.out &
+    --logging &> ../data/llama-2-7b/more_mem_log.out &
+
+#* llama more run negative
+nohup python3 get_activations.py \
+    --model_name "meta-llama/Llama-2-7b-hf" \
+    --save_path "../data/llama-2-7b" \
+    --N_PROMPTS 2500 \
+    --save_every 100 \
+    --return_prompt_acts \
+    --logging &> ../data/llama-2-7b/more_unmem_log.out &
 
 # nohup python3 get_activations.py \
 #     --model_name "EleutherAI/pythia-160m" \

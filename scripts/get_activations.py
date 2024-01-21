@@ -161,6 +161,8 @@ def get_memmed_activations(mw: ModelWrapper, prompts: Union[List[str],List[int]]
                     layers: List[int] = None,
                     tok_idxs: List[int] = None,
                     return_prompt_acts: bool = False,
+                    save_mem_only: bool = False,
+                    save_unmem_only: bool = False,
                     logging: bool = False,
                     file_spec: str = "",
                     **generation_kwargs):
@@ -186,6 +188,8 @@ def get_memmed_activations(mw: ModelWrapper, prompts: Union[List[str],List[int]]
     """
     if not os.path.exists(save_path):
         os.makedirs(args.save_path)
+    
+    assert not (save_mem_only and save_unmem_only), "Must save either mem or unmem"
     
     if layers is None:
         layers = range(1, mw.model.config.num_hidden_layers + 1)
@@ -216,20 +220,31 @@ def get_memmed_activations(mw: ModelWrapper, prompts: Union[List[str],List[int]]
                     layers = layers,
                     tok_idxs = tok_idxs,
                     return_prompt_acts=return_prompt_acts,
-                    top_p = 1.0,
+                    do_sample = False,
                     **generation_kwargs,
                     )
         
-        all_hidden_states.extend(out['hidden_states'].cpu())
         all_generations.extend(out['generations'])
         all_tokens.extend(out['tokens'].cpu().numpy().tolist())
         
-        print(out['hidden_states'].shape)
-    
         all_mem_status['tok_by_tok_sim'].extend(tok_by_tok_similarity(all_tokens[-len(batch):], batch))
-        all_mem_status['char_by_char_sim'].extend(char_by_char_similarity(mw.tokenizer.batch_decode(batch), out['generations']))
+        all_mem_status['char_by_char_sim'].extend(char_by_char_similarity(mw.tokenizer.batch_decode(batch ), out['generations']))
         all_mem_status['lev_distance'].extend(levenshtein_distance(mw.tokenizer.batch_decode(batch), out['generations']))
-    
+        
+        if not save_mem_only and not save_unmem_only:
+            all_hidden_states.extend(out['hidden_states'].cpu())
+        else:
+            if save_mem_only:
+                mem_batch_idxs = [i for i, mem in enumerate(all_mem_status['tok_by_tok_sim'][-len(batch):]) if mem == 1]
+            elif save_unmem_only:
+                mem_batch_idxs = [i for i, mem in enumerate(all_mem_status['tok_by_tok_sim'][-len(batch):]) if mem < 0.6]
+            memmed_states = out['hidden_states'].cpu()[mem_batch_idxs]
+            
+            all_hidden_states.extend(memmed_states)
+            
+            if logging:
+                print(f"Num {'un' if save_unmem_only else ''}Memmed found {len(mem_batch_idxs)}")
+                
         if logging:
             end_time = time.time()  # End timer
             elapsed_time = end_time - start_time
@@ -249,7 +264,10 @@ def get_memmed_activations(mw: ModelWrapper, prompts: Union[List[str],List[int]]
         torch.cuda.empty_cache()
 
         #save hidden_states
-        torch.save(all_hidden_states[-len(batch):], save_path + f"/{file_spec}check{batch_idx}_all_hidden_states.pt")
+        if not save_mem_only and not save_unmem_only:
+            torch.save(all_hidden_states[-len(batch):], save_path + f"/{file_spec}check{batch_idx}_all_hidden_states.pt")
+        else:
+            torch.save(all_hidden_states[-len(mem_batch_idxs):], save_path + f"/{file_spec}check{batch_idx}_all_hidden_states.pt")
 
         # Save all_generations
         with open(save_path + f"/{file_spec}all_generations.pkl", "wb") as f:
@@ -265,6 +283,11 @@ def get_memmed_activations(mw: ModelWrapper, prompts: Union[List[str],List[int]]
     all_hidden_states = torch.stack(all_hidden_states, dim = 0)
     torch.save(all_hidden_states, save_path + f"/{file_spec}all_hidden_states.pt")
     
+    #* delete the checkpoints
+    print("deleting checkpoints")
+    for batch_idx in range(ceildiv(len(prompts), save_every) ):
+        os.remove(save_path + f"/{file_spec}check{batch_idx}_all_hidden_states.pt")
+        
     return all_hidden_states, all_generations, all_tokens, all_mem_status
     
 if __name__ == "__main__":
@@ -325,27 +348,84 @@ if __name__ == "__main__":
     
     mw = ModelWrapper(model, tokenizer)
     
-    #* autoreg llama generation run
-    llama_ground_data = pd.read_csv(f'../data/llama-2-7b/llama_ground_data.csv')
-    print(llama_ground_data.head())
+    #* autoreg llama generation run negative
+    mem_data = load_dataset('EleutherAI/pythia-memorized-evals')['duped.12b']
+    mem_data_toks = [seq for seq in mem_data[10000:10000 + args.N_PROMPTS]['tokens']] #10,000 because we already ran all of those
+    
+    pythia_tokenizer = AutoTokenizer.from_pretrained('EleutherAI/pythia-12B', padding_side="left")
+    pythia_tokenizer.pad_token = pythia_tokenizer.eos_token
+    mem_data_str = pythia_tokenizer.batch_decode(mem_data_toks)
+    
+    llama_mem_data_toks = tokenizer(mem_data_str, return_tensors = 'pt', padding = True, max_length = 64, truncation = True)['input_ids']
     
     tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
     tok_idxs[-1]= - 1 #goes from 63 to 62
     tok_idxs[0] = 1
     print(tok_idxs)
-    ground_tokens = [eval(toks) for toks in llama_ground_data['ground_tokens'].values.tolist()][:args.N_PROMPTS]
-    print(ground_tokens)
-    print(np.array(ground_tokens).shape)
+    
+    print(llama_mem_data_toks.shape)
     all_hidden_states, all_generations, all_tokens, all_mem_status = get_memmed_activations(mw, 
-                                                                            torch.tensor(ground_tokens), 
+                                                                            llama_mem_data_toks, 
                                                                             args.save_path,
                                                                             save_every = args.save_every,
                                                                             N_TOKS = args.N_TOKS,
                                                                             layers = args.layers,
                                                                             tok_idxs = tok_idxs,
                                                                             return_prompt_acts = args.return_prompt_acts,
+                                                                            save_mem_only=False,
+                                                                            save_unmem_only = True,
                                                                             logging = args.logging,
-                                                                            file_spec = "")
+                                                                            file_spec = "unmem_pythia_evals_")
+    
+    #* autoreg llama generation run more
+    # mem_data = load_dataset('EleutherAI/pythia-memorized-evals')['duped.12b']
+    # mem_data_toks = [seq for seq in mem_data[10000:10000 + args.N_PROMPTS]['tokens']] #10,000 because we already ran all of those
+    
+    # pythia_tokenizer = AutoTokenizer.from_pretrained('EleutherAI/pythia-12B', padding_side="left")
+    # pythia_tokenizer.pad_token = pythia_tokenizer.eos_token
+    # mem_data_str = pythia_tokenizer.batch_decode(mem_data_toks)
+    
+    # llama_mem_data_toks = tokenizer(mem_data_str, return_tensors = 'pt', padding = True, max_length = 64, truncation = True)['input_ids']
+    
+    # tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
+    # tok_idxs[-1]= - 1 #goes from 63 to 62
+    # tok_idxs[0] = 1
+    # print(tok_idxs)
+    
+    # print(llama_mem_data_toks.shape)
+    # all_hidden_states, all_generations, all_tokens, all_mem_status = get_memmed_activations(mw, 
+    #                                                                         llama_mem_data_toks, 
+    #                                                                         args.save_path,
+    #                                                                         save_every = args.save_every,
+    #                                                                         N_TOKS = args.N_TOKS,
+    #                                                                         layers = args.layers,
+    #                                                                         tok_idxs = tok_idxs,
+    #                                                                         return_prompt_acts = args.return_prompt_acts,
+    #                                                                         save_mem_only=True,
+    #                                                                         logging = args.logging,
+    #                                                                         file_spec = "more_mem_")
+    
+    #* autoreg llama generation run
+    # llama_ground_data = pd.read_csv(f'../data/llama-2-7b/llama_ground_data.csv')
+    # print(llama_ground_data.head())
+    
+    # tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
+    # tok_idxs[-1]= - 1 #goes from 63 to 62
+    # tok_idxs[0] = 1
+    # print(tok_idxs)
+    # ground_tokens = [eval(toks) for toks in llama_ground_data['ground_tokens'].values.tolist()][:args.N_PROMPTS]
+    # print(ground_tokens)
+    # print(np.array(ground_tokens).shape)
+    # all_hidden_states, all_generations, all_tokens, all_mem_status = get_memmed_activations(mw, 
+    #                                                                         torch.tensor(ground_tokens), 
+    #                                                                         args.save_path,
+    #                                                                         save_every = args.save_every,
+    #                                                                         N_TOKS = args.N_TOKS,
+    #                                                                         layers = args.layers,
+    #                                                                         tok_idxs = tok_idxs,
+    #                                                                         return_prompt_acts = args.return_prompt_acts,
+    #                                                                         logging = args.logging,
+    #                                                                         file_spec = "")
     
     
     
