@@ -6,6 +6,8 @@ import torch
 import torch.nn.functional as F
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from sentence_transformers import SentenceTransformer, util
+import Levenshtein
 
 def untuple(x):
     return x[0] if isinstance(x, tuple) else x
@@ -45,3 +47,90 @@ def tpr_at_fpr(probs, labels, target_fpr, left=0.5, right=1.0, max_steps=1000, t
     tp = np.logical_and(preds == 1, labels == 1).sum()
     fn = (labels == 1).sum()
     return tp / fn if fn > 0 else 0
+
+
+sim_model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+def sim_scores(outputs, targets):
+    semantic_scores_gen = []
+    for target, output in zip(targets, outputs):
+        embedding1 = sim_model.encode(target, convert_to_tensor=True)
+        embedding2 = sim_model.encode(output, convert_to_tensor=True)
+        cosine_sim_gen = util.pytorch_cos_sim(embedding1, embedding2)
+        similarity_value_gen = cosine_sim_gen.item()
+        semantic_scores_gen.append(similarity_value_gen)
+    
+    return semantic_scores_gen 
+
+def char_by_char_similarity(outputs, targets):
+    similarities = []
+    for o, t in zip(outputs, targets):
+        o = re.sub(r'\s', '', o)
+        t = re.sub(r'\s', '', t)
+
+        o = o.lower()
+        t = t.lower()
+
+        # remove '<|endoftext|>'
+        o = o.replace('<|endoftext|>', '')
+        t = t.replace('<|endoftext|>', '')
+
+        max_len = max(len(o), len(t))
+        matches = [c1 == c2 for c1, c2 in zip(o, t)]
+        
+        similarities.append(sum(matches)/max_len if max_len > 0 else 0)
+    return similarities
+
+def compare_token_lists(genned_toks, ground_toks):
+    if len(ground_toks) != len(genned_toks):
+        print(len(ground_toks), len(genned_toks))
+        print("Both lists do not have the same length.")
+        return 0
+    
+    num_same_tokens = sum(1 for token1, token2 in zip(ground_toks, genned_toks) if token1 == token2)
+    percent_same_tokens = (num_same_tokens / len(ground_toks)) 
+    
+    return percent_same_tokens
+
+def tok_by_tok_similarity(outputs, targets, tokenizer = None):
+    if isinstance(outputs[0], str):
+        assert tokenizer is not None
+        outputs = tokenizer(outputs, return_tensors = 'pt',padding = False, truncation = True, max_length = 64)['input_ids']
+        targetse = tokenizer(targets, return_tensors = 'pt',padding = False, truncation = True, max_length = 64)['input_ids']
+
+    return [compare_token_lists(t, o) for t, o in zip(outputs, targets)]
+
+def levenshtein_distance(outputs, targets):
+    diss = []
+    for o, t in zip(outputs, targets):
+        max_len = max(len(o), len(t))
+        diss.append((max_len - Levenshtein.distance(o, t)) / max_len)
+    return diss
+
+def extract_quote_completion(s):
+    s = s.replace(";",",").split(".")[0].split("\n")[0]
+    return s.strip().lower()
+
+
+def eval_completions(outputs, targets, return_mean = True):
+    cbc_sims = char_by_char_similarity(outputs, targets)
+    # tbt_sims = tok_by_tok_similarity(outputs, targets)
+    sem_sims = sim_scores(outputs, targets)
+    lev_diss = levenshtein_distance(outputs, targets)
+    
+    # outputs = [extract_quote_completion(o) for o in outputs]
+    # em = np.mean([t in o for t,o in zip(targets,outputs)])
+    
+    if return_mean:
+        return {'char_by_char_similarity': np.mean(cbc_sims),
+                # 'tok_by_tok_similarity': np.mean(tbt_sims),
+                'sem_similarity': np.mean(sem_sims),
+                'lev_distance': np.mean(lev_diss),
+                # 'em': np.mean(em),
+                }
+    else:
+        return {'char_by_char_similarity': cbc_sims,
+                # 'tok_by_tok_similarity': tbt_sims,
+                'sem_similarity': sem_sims,
+                'lev_distance': lev_diss,
+                # 'em': em,
+                }
