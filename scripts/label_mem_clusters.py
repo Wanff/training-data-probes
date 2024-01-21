@@ -4,6 +4,7 @@ import pandas as pd
 from dotenv import load_dotenv
 from openai import OpenAI
 import time
+import numpy as np
 
 load_dotenv()
 
@@ -39,32 +40,64 @@ class OpenAIModel():
 
 
 if __name__ == "__main__":
-    system_prompt = """You are an intelligent and helpful assistant who will classify text. Your output will be a JSON that contains the category of the text and more details. Categories should be high level, like code, documentation, literature, legal, numbers, website text, etc. If you don't know the category, write N/A. Feel free to come up with your own categories. Details should give more specific information. For example, if the category is code, say what language; if it's legal, is it a warranty, contract, license, etc. Here are some examples for you.\nText:  '<link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">\n<link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.css" title="Style">\n<script type="text/javascript" src="../../../../script.js"></'\nYou: {'category': 'code', 'details': 'css'}. Text:  ' against all the gods of Egypt I will execute judgment: I am the LORD. And the blood shall be to you for a token upon the houses where ye are: and when I see the blood, I will pass over you, and the plague shall not be upon you to destroy you, when I smite the land'\nYou: {'category': 'literature', 'details': 'bible'}.\n"""
+
+    #* llama mem clusters
+    system_prompt = """You are an intelligent and helpful assistant who will classify text. Your output will be a JSON that contains the category of the text and more details. Categories should be high level, like code, documentation, literature, legal, numbers, website text, or pattern. The pattern category means that it's text that follows a relatively simple pattern and could be completed without that much prior knowledge. Examples of pattern include 'Volume_2_155 996. Volume_2_156 997. Volume_2_157 998.' or 'qr[3]; h qr[4]; h qr[5];' Details should give more specific information. For example, if the category is code, say what language; if it's legal, is it a warranty, contract, license, etc. Here are some examples for you.\nText:  '<link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">\n<link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.css" title="Style">\n<script type="text/javascript" src="../../../../script.js"></'\nYou: {'category': 'code', 'details': 'css'}. Text:  ' against all the gods of Egypt I will execute judgment: I am the LORD. And the blood shall be to you for a token upon the houses where ye are: and when I see the blood, I will pass over you, and the plague shall not be upon you to destroy you, when I smite the land'\nYou: {'category': 'literature', 'details': 'bible'}.\n"""
     
     gpt4 = OpenAIModel("gpt-4-1106-preview", system_prompt = system_prompt)
-    file_path = 'data/12b'
+    file_path = '../data/llama-2-7b'
 
-    all_mem_12b_data = pd.read_csv(f'{file_path}/mem_evals_gen_data.csv')
-    mem_12b_data = all_mem_12b_data[all_mem_12b_data['char_by_char_similarity'] == 1]
-
+    # more_llama_mem_status = pickle.load(open(f'{file_path}/more_mem_all_mem_status.pkl', 'rb'))
+    # more_llama_gens = pickle.load(open("data/llama-2-7b/more_mem_all_generations.pkl", "rb"))
+    # more_gens = np.array(more_llama_gens)[np.where(np.array(more_llama_mem_status['tok_by_tok_sim']) == 1)].tolist()
+    prepped_data = pd.read_csv(f"{file_path}/prepped_more_llama_data.csv")
     start_time = time.time()
     classifications = []
     
-    print(len(mem_12b_data['gen'].to_list()))
+    print(len(prepped_data['gen_str'].tolist()))
     print()
     
-    for t in mem_12b_data['gen'].to_list():
+    for t in prepped_data['gen_str'].tolist():
         classification = gpt4.classify_text(f"Text: {t}\nYou:").choices[0].message.content
         print(t)
         print(classification)
         print()
         
         classifications.append(classification)
-    
     print("saving")
-    pickle.dump(classifications, open(f'{file_path}/labeled_mem_clusters.pkl', 'wb'))
+    pickle.dump(classifications, open(f'{file_path}/labeled_prep_mem_clusters.pkl', 'wb'))
     
     end_time = time.time()
     print(f"Time elapsed: {end_time - start_time} seconds")
+    
+    #* pythia mem clusters
+    # system_prompt = """You are an intelligent and helpful assistant who will classify text. Your output will be a JSON that contains the category of the text and more details. Categories should be high level, like code, documentation, literature, legal, numbers, website text, etc. If you don't know the category, write N/A. Feel free to come up with your own categories. Details should give more specific information. For example, if the category is code, say what language; if it's legal, is it a warranty, contract, license, etc. Here are some examples for you.\nText:  '<link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">\n<link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.css" title="Style">\n<script type="text/javascript" src="../../../../script.js"></'\nYou: {'category': 'code', 'details': 'css'}. Text:  ' against all the gods of Egypt I will execute judgment: I am the LORD. And the blood shall be to you for a token upon the houses where ye are: and when I see the blood, I will pass over you, and the plague shall not be upon you to destroy you, when I smite the land'\nYou: {'category': 'literature', 'details': 'bible'}.\n"""
+    
+    # gpt4 = OpenAIModel("gpt-4-1106-preview", system_prompt = system_prompt)
+    # file_path = 'data/12b'
+    
+    # all_mem_12b_data = pd.read_csv(f'{file_path}/mem_evals_gen_data.csv')
+    # mem_12b_data = all_mem_12b_data[all_mem_12b_data['char_by_char_similarity'] == 1]
+
+    # start_time = time.time()
+    # classifications = []
+    
+    # print(len(mem_12b_data['gen'].to_list()))
+    # print()
+    
+    # for t in mem_12b_data['gen'].to_list():
+    #     classification = gpt4.classify_text(f"Text: {t}\nYou:").choices[0].message.content
+    #     print(t)
+    #     print(classification)
+    #     print()
+        
+    #     classifications.append(classification)
+    
+    # print("saving")
+    # pickle.dump(classifications, open(f'{file_path}/labeled_mem_clusters.pkl', 'wb'))
+    
+    # end_time = time.time()
+    # print(f"Time elapsed: {end_time - start_time} seconds")
 
 #nohup python3 label_mem_clusters.py &> data/12b/label_mem_clusters.out &
+#nohup python3 label_mem_clusters.py &> ../data/llama-2-7b/label_mem_clusters.out &

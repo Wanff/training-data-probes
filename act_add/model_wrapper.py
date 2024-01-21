@@ -154,7 +154,7 @@ def slice_acts(out, N_TOKS: int, return_prompt_acts: bool, layers: List, tok_idx
         layers (List): _description_
 
     Returns:
-        _type_: _description_
+     shape: b l t d
     """
     #! expects hf layer idxs (ie 1-index)
     #out.hidden_states is shape  max_new_tokens x n_layers + 1 x batch x activations
@@ -301,7 +301,7 @@ class ModelWrapper(torch.nn.Module):
             hidden_states =  hidden_states[:, tok_idxs, :]
             # hidden_states_layers[layer] = hidden_states.cpu().to(dtype=torch.float32).detach().numpy()
             hidden_states_layers[layer - 1] = hidden_states.detach().cpu().to(dtype = torch.float32)
-
+        
         return hidden_states_layers
     
     def query_tok_dist(self, prompt, TOP_K = 10):
@@ -347,6 +347,9 @@ class ModelWrapper(torch.nn.Module):
         self.wrap_all()
         hidden_states_dict = {}
         
+        if isinstance(layers, int):
+            layers = [layers]
+            
         with torch.no_grad():
             # self.reset()
             
