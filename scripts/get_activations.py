@@ -142,7 +142,7 @@ def get_memmed_activations_from_pregenned(mw: ModelWrapper, prompts: Union[List[
         torch.cuda.empty_cache()
         
         # Save all_hidden_states
-        torch.save(acts_dict, save_path + f"/{file_spec}acts_dict.pt")
+        # torch.save(acts_dict, save_path + f"/{file_spec}acts_dict.pt")
     
     for act_type in act_types:
         for layer in layers:
@@ -348,34 +348,51 @@ if __name__ == "__main__":
     
     mw = ModelWrapper(model, tokenizer)
     
-    #* autoreg llama generation run negative
-    mem_data = load_dataset('EleutherAI/pythia-memorized-evals')['duped.12b']
-    mem_data_toks = [seq for seq in mem_data[10000:10000 + args.N_PROMPTS]['tokens']] #10,000 because we already ran all of those
+    #* mlp/attn from pregenned llama
+    mem_data = pd.read_csv("../data/llama-2-7b/llama_memmed_pythia_evals_data.csv")
     
-    pythia_tokenizer = AutoTokenizer.from_pretrained('EleutherAI/pythia-12B', padding_side="left")
-    pythia_tokenizer.pad_token = pythia_tokenizer.eos_token
-    mem_data_str = pythia_tokenizer.batch_decode(mem_data_toks)
-    
-    llama_mem_data_toks = tokenizer(mem_data_str, return_tensors = 'pt', padding = True, max_length = 64, truncation = True)['input_ids']
-    
+    toks = torch.tensor([eval(toks) for toks in mem_data.iloc[4000 - (args.N_PROMPTS // 2):4000 + (args.N_PROMPTS // 2)]['gen_toks'].values])
+
     tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
     tok_idxs[-1]= - 1 #goes from 63 to 62
-    tok_idxs[0] = 1
-    print(tok_idxs)
+    acts_dict = get_memmed_activations_from_pregenned(mw,
+                                                      toks,
+                                                      args.save_path,
+                                                      act_types = args.act_types,
+                                                      save_every = args.save_every,
+                                                      layers = args.layers,
+                                                      tok_idxs = tok_idxs,
+                                                      logging = args.logging,
+                                                      file_spec = "attn_mlp_from_preg_3500to4500")
     
-    print(llama_mem_data_toks.shape)
-    all_hidden_states, all_generations, all_tokens, all_mem_status = get_memmed_activations(mw, 
-                                                                            llama_mem_data_toks, 
-                                                                            args.save_path,
-                                                                            save_every = args.save_every,
-                                                                            N_TOKS = args.N_TOKS,
-                                                                            layers = args.layers,
-                                                                            tok_idxs = tok_idxs,
-                                                                            return_prompt_acts = args.return_prompt_acts,
-                                                                            save_mem_only=False,
-                                                                            save_unmem_only = True,
-                                                                            logging = args.logging,
-                                                                            file_spec = "unmem_pythia_evals_")
+    #* autoreg llama generation run negative
+    # mem_data = load_dataset('EleutherAI/pythia-memorized-evals')['duped.12b']
+    # mem_data_toks = [seq for seq in mem_data[10000:10000 + args.N_PROMPTS]['tokens']] #10,000 because we already ran all of those
+    
+    # pythia_tokenizer = AutoTokenizer.from_pretrained('EleutherAI/pythia-12B', padding_side="left")
+    # pythia_tokenizer.pad_token = pythia_tokenizer.eos_token
+    # mem_data_str = pythia_tokenizer.batch_decode(mem_data_toks)
+    
+    # llama_mem_data_toks = tokenizer(mem_data_str, return_tensors = 'pt', padding = True, max_length = 64, truncation = True)['input_ids']
+    
+    # tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
+    # tok_idxs[-1]= - 1 #goes from 63 to 62
+    # tok_idxs[0] = 1
+    # print(tok_idxs)
+    
+    # print(llama_mem_data_toks.shape)
+    # all_hidden_states, all_generations, all_tokens, all_mem_status = get_memmed_activations(mw, 
+    #                                                                         llama_mem_data_toks, 
+    #                                                                         args.save_path,
+    #                                                                         save_every = args.save_every,
+    #                                                                         N_TOKS = args.N_TOKS,
+    #                                                                         layers = args.layers,
+    #                                                                         tok_idxs = tok_idxs,
+    #                                                                         return_prompt_acts = args.return_prompt_acts,
+    #                                                                         save_mem_only=False,
+    #                                                                         save_unmem_only = True,
+    #                                                                         logging = args.logging,
+    #                                                                         file_spec = "unmem_pythia_evals_")
     
     #* autoreg llama generation run more
     # mem_data = load_dataset('EleutherAI/pythia-memorized-evals')['duped.12b']
