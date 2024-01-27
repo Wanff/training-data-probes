@@ -5,8 +5,21 @@ import numpy as np
 from typing import List, Union, Optional
 from einops import rearrange
 import torch.nn.functional as F
+from sklearn.linear_model import LogisticRegression
+import functools
 
 from utils import untuple
+
+def rsetattr(obj, attr, val):
+    pre, _, post = attr.rpartition('.')
+    return setattr(rgetattr(obj, pre) if pre else obj, post, val)
+
+# using wonder's beautiful simplification: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427
+
+def rgetattr(obj, attr, *args):
+    def _getattr(obj, attr):
+        return getattr(obj, attr, *args)
+    return functools.reduce(_getattr, [obj] + attr.split('.'))
 
 class WrappedBlock(torch.nn.Module):
     def __init__(self, block):
@@ -127,7 +140,11 @@ LLAMA_BLOCK_NAMES = [
     "self_attn",
     "mlp",
     "input_layernorm",
-    "post_attention_layernorm"
+    "post_attention_layernorm",
+    "self_attn.q_proj",
+    "self_attn.k_proj",
+    "self_attn.v_proj",
+    "self_attn.o_proj"
     ]
 
 PYTHIA_BLOCK_NAMES = [
@@ -182,6 +199,19 @@ def rename_attribute(object_, old_attribute_name, new_attribute_name):
     setattr(object_, new_attribute_name, getattr(object_, old_attribute_name))
     delattr(object_, old_attribute_name)
 
+def ceildiv(a, b):
+    #https://stackoverflow.com/questions/14822184/is-there-a-ceiling-equivalent-of-operator-in-python
+    return -(a // -b)
+
+def blockify_block_name(block_name):
+    if "." in block_name:
+        sepped_blocks = block_name.split(".")
+        for i in range(len(sepped_blocks) - 1):
+            sepped_blocks.insert(2*i + 1, 'block')
+        block_name = ".".join(sepped_blocks)
+    
+    return block_name
+            
 class ModelWrapper(torch.nn.Module):
     def __init__(self, model, tokenizer):
         super().__init__()
@@ -190,12 +220,23 @@ class ModelWrapper(torch.nn.Module):
         
         self.model_base = self.model
         if hasattr(self.model, 'model'):
-            self.block_names = LLAMA_BLOCK_NAMES
-            self.model_base = self.model.model
+            self.block_names = [blockify_block_name(name) for name in LLAMA_BLOCK_NAMES]
             
+            self.model_base = self.model.model
             self.num_layers = self.model.config.num_hidden_layers
+            
+            self.universal_b_name_map = {
+                "attn": self.block_names[0],
+                "mlp": self.block_names[1],
+                "ln_1": self.block_names[2],
+                "ln_2": self.block_names[3],
+                "attn_q": self.block_names[4],
+                "attn_k": self.block_names[5],
+                "attn_v": self.block_names[6],
+            }
         elif hasattr(self.model, 'gpt_neox'):
-            self.block_names = PYTHIA_BLOCK_NAMES
+            self.block_names = [blockify_block_name(name) for name in PYTHIA_BLOCK_NAMES]
+            
             self.model_base = self.model.gpt_neox
             self.num_layers = self.model.config.num_hidden_layers
 
@@ -212,7 +253,64 @@ class ModelWrapper(torch.nn.Module):
         
     def generate(self, **kwargs):
         return self.model.generate(**kwargs)
+    
+    def rej_sampl_generate(self, prompts, 
+                                probe: Union[torch.nn.Module, LogisticRegression],
+                                probe_layer: int,
+                                max_new_tokens: int = 32, 
+                                rej_sample_length: int = 5,
+                                **generation_kwargs
+    ):
+        """
+        Generates a sequence and then rejects or accepts it based on the probe.
         
+        probe_layer: the layer to probe, if None, probes the last layer
+        probe: a probe to use, if None, uses the default probe
+        """
+            
+        if isinstance(prompts[0], str):
+            inputs = self.tokenizer(prompts, return_tensors="pt", padding=True, max_length=512, truncation=True)
+        else:
+            inputs = self.tokenizer.pad({'input_ids': prompts}, padding = True, return_attention_mask=True)
+            
+        input_ids = inputs.input_ids.to(self.model.device)
+        attention_mask = inputs.attention_mask.to(self.model.device)
+        
+        generations = []
+        for i in range(ceildiv(max_new_tokens, rej_sample_length)):
+            
+            out = self.model.generate(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    pad_token_id=self.tokenizer.eos_token_id,
+                    max_new_tokens = rej_sample_length,
+                    return_dict_in_generate = True,
+                    output_hidden_states = True,
+                    **generation_kwargs,
+                    )
+            
+            #shape batch_size x d_m
+            hidden_states =  slice_acts(out, 
+                                        N_TOKS = rej_sample_length, 
+                                        layers = probe_layer+1, #bc slice_acts expects 1-indexed layers
+                                        tok_idxs = -1,
+                                        return_prompt_acts = False)
+            
+            preds = probe.pred(hidden_states)
+            
+            
+            #! this is not good code:
+            generations = []
+            for i in range(len(out['sequences'])):
+                generation = self.tokenizer.decode(out['sequences'][i], skip_special_tokens=True)
+                generations.append(generation)
+            
+            #! this is not good code:
+            logits = torch.stack(out['logits'], dim = 0)
+            
+
+                       
+                                
     def batch_generate_autoreg(self, prompts, 
                                    max_new_tokens: int = 32,
                                    output_hidden_states = False, 
@@ -343,8 +441,8 @@ class ModelWrapper(torch.nn.Module):
         
         does not support autoregressive generation
         """
-        self.reset()
         self.wrap_all()
+        self.reset()
         hidden_states_dict = {}
         
         if isinstance(layers, int):
@@ -367,16 +465,12 @@ class ModelWrapper(torch.nn.Module):
             for act_type in return_types:
                 if act_type == 'resid':
                     hidden_states_dict['resid'] = self._get_hidden_states(outputs, tok_idxs, layers, 'residual') #this is layers to acts
-                elif act_type == 'attn':
-                    hidden_states_dict['attn'] = self.get_activations(layers, self.block_names[0])
-                    for layer in layers:
-                        hidden_states_dict['attn'][layer] = hidden_states_dict['attn'][layer][:, tok_idxs, :]
-                elif act_type == 'mlp':
-                    hidden_states_dict['mlp'] = self.get_activations(layers, self.block_names[1])
-                    for layer in layers:
-                        hidden_states_dict['mlp'][layer] = hidden_states_dict['mlp'][layer][:, tok_idxs, :]
                 else:
-                    assert False, f"Unknown activation type {act_type}."
+                    assert act_type in self.universal_b_name_map.keys(), f"Unknown activation type {act_type}." 
+                    hidden_states_dict[act_type] = self.get_activations(layers, self.universal_b_name_map[act_type])
+                    for layer in layers:
+                        hidden_states_dict[act_type][layer] = hidden_states_dict[act_type][layer][:, tok_idxs, :]
+
             #* this also works, wrote it for my own understanding
             # temp_activations = self.get_activations(layers)
             # hidden_states_dict = {}
@@ -397,14 +491,15 @@ class ModelWrapper(torch.nn.Module):
     #Wrapping Logic
     def wrap(self, layer_id, block_name):
         assert block_name in self.block_names
+        
         if self.is_wrapped(self.model_base.layers[layer_id]):
-            block = getattr(self.model_base.layers[layer_id].block, block_name)
+            block = rgetattr(self.model_base.layers[layer_id].block, block_name)
             if not self.is_wrapped(block):
-                setattr(self.model_base.layers[layer_id].block, block_name, WrappedBlock(block))
+                rsetattr(self.model_base.layers[layer_id].block, block_name, WrappedBlock(block))
         else:
-            block = getattr(self.model_base.layers[layer_id], block_name)
+            block = rgetattr(self.model_base.layers[layer_id], block_name)
             if not self.is_wrapped(block):
-                setattr(self.model_base.layers[layer_id], block_name, WrappedBlock(block))
+                rsetattr(self.model_base.layers[layer_id], block_name, WrappedBlock(block))
 
     def wrap_decoder_block(self, layer_id):
         block = self.model_base.layers[layer_id]
@@ -437,24 +532,24 @@ class ModelWrapper(torch.nn.Module):
             if self.is_wrapped(layer):
                 layer.reset()
                 for block_name in self.block_names:
-                    if self.is_wrapped(getattr(layer.block, block_name)):
-                        getattr(layer.block, block_name).reset()
+                    if self.is_wrapped(rgetattr(layer.block, block_name)):
+                        rgetattr(layer.block, block_name).reset()
             else:
                 for block_name in self.block_names:
-                    if self.is_wrapped(getattr(layer, block_name)):
-                        getattr(layer, block_name).reset()
+                    if self.is_wrapped(rgetattr(layer, block_name)):
+                        rgetattr(layer, block_name).reset()
 
     def set_masks(self, masks):
         for layer in self.model_base.layers:
             if self.is_wrapped(layer):
                 layer.set_masks(masks)
                 for block_name in self.block_names:
-                    if self.is_wrapped(getattr(layer.block, block_name)):
-                        getattr(layer.block, block_name).set_masks(masks)
+                    if self.is_wrapped(rgetattr(layer.block, block_name)):
+                        rgetattr(layer.block, block_name).set_masks(masks)
             else:
                 for block_name in self.block_names:
-                    if self.is_wrapped(getattr(layer, block_name)):
-                        getattr(layer, block_name).set_masks(masks)
+                    if self.is_wrapped(rgetattr(layer, block_name)):
+                        rgetattr(layer, block_name).set_masks(masks)
 
     def is_wrapped(self, block):
         if hasattr(block, 'block'):
@@ -466,10 +561,10 @@ class ModelWrapper(torch.nn.Module):
             if self.is_wrapped(layer):
                 self.model_base.layers[l] = layer.block
             for block_name in self.block_names:
-                if self.is_wrapped(getattr(self.model_base.layers[l], block_name)):
-                    setattr(self.model_base.layers[l],
+                if self.is_wrapped(rgetattr(self.model_base.layers[l], block_name)):
+                    rsetattr(self.model_base.layers[l],
                             block_name,
-                            getattr(self.model_base.layers[l], block_name).block)
+                            rgetattr(self.model_base.layers[l], block_name).block)
 
     #Activation Storing and Interventions
     def get_activations(self, layer_ids, block_name='decoder_block'):
@@ -481,14 +576,14 @@ class ModelWrapper(torch.nn.Module):
                 current_block = current_layer.block
                 if block_name == 'decoder_block':
                     return current_layer.output.detach().cpu()
-                elif block_name in self.block_names and self.is_wrapped(getattr(current_block, block_name)):
-                    return getattr(current_block, block_name).output.detach().cpu()
+                elif block_name in self.block_names and self.is_wrapped(rgetattr(current_block, block_name)):
+                    return rgetattr(current_block, block_name).output.detach().cpu()
                 else:
                     assert False, f"No wrapped block named {block_name}."
 
             else:
-                if block_name in self.block_names and self.is_wrapped(getattr(current_layer, block_name)):
-                    return getattr(current_layer, block_name).output.detach().cpu()
+                if block_name in self.block_names and self.is_wrapped(rgetattr(current_layer, block_name)):
+                    return rgetattr(current_layer, block_name).output.detach().cpu()
                 else:
                     assert False, f"No wrapped block named {block_name}."
                 
@@ -510,14 +605,14 @@ class ModelWrapper(torch.nn.Module):
                 current_layer.set_controller(activations, token_pos, masks, normalize, operator)
             elif self.is_wrapped(current_layer):
                 current_block = current_layer.block
-                if block_name in self.block_names and self.is_wrapped(getattr(current_block, block_name)):
-                    getattr(current_block, block_name).set_controller(activations, token_pos, masks, normalize, operator)
+                if block_name in self.block_names and self.is_wrapped(rgetattr(current_block, block_name)):
+                    rgetattr(current_block, block_name).set_controller(activations, token_pos, masks, normalize, operator)
                 else:
                     return f"No wrapped block named {block_name}."
 
             else:
-                if block_name in self.block_names and self.is_wrapped(getattr(current_layer, block_name)):
-                    getattr(current_layer, block_name).set_controller(activations, token_pos, masks, normalize, operator)
+                if block_name in self.block_names and self.is_wrapped(rgetattr(current_layer, block_name)):
+                    rgetattr(current_layer, block_name).set_controller(activations, token_pos, masks, normalize, operator)
                 else:
                     return f"No wrapped block named {block_name}."
                 
