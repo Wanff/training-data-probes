@@ -203,7 +203,7 @@ def get_memmed_activations(mw: ModelWrapper, prompts: Union[List[str],List[int]]
         "tok_by_tok_sim": [],
     }
     
-    for batch_idx in range(ceildiv(len(prompts), save_every) ):
+    for batch_idx in tqdm(range(ceildiv(len(prompts), save_every) )):
         if logging:
             start_time = time.time()
             print(f"Batch {batch_idx + 1} of {ceildiv(len(prompts), save_every)}")
@@ -349,21 +349,21 @@ if __name__ == "__main__":
     mw = ModelWrapper(model, tokenizer)
     
     #* mlp/attn from pregenned llama
-    mem_data = pd.read_csv("../data/llama-2-7b/llama_memmed_pythia_evals_data.csv")
+    # mem_data = pd.read_csv("../data/llama-2-7b/llama_memmed_pythia_evals_data.csv")
     
-    toks = torch.tensor([eval(toks) for toks in mem_data.iloc[4000 - (args.N_PROMPTS // 2):4000 + (args.N_PROMPTS // 2)]['gen_toks'].values])
+    # toks = torch.tensor([eval(toks) for toks in mem_data.iloc[4000 - (args.N_PROMPTS // 2):4000 + (args.N_PROMPTS // 2)]['gen_toks'].values])
 
-    tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
-    tok_idxs[-1]= - 1 #goes from 63 to 62
-    acts_dict = get_memmed_activations_from_pregenned(mw,
-                                                      toks,
-                                                      args.save_path,
-                                                      act_types = args.act_types,
-                                                      save_every = args.save_every,
-                                                      layers = args.layers,
-                                                      tok_idxs = tok_idxs,
-                                                      logging = args.logging,
-                                                      file_spec = "attn_mlp_from_preg_3500to4500")
+    # tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
+    # tok_idxs[-1]= - 1 #goes from 63 to 62
+    # acts_dict = get_memmed_activations_from_pregenned(mw,
+    #                                                   toks,
+    #                                                   args.save_path,
+    #                                                   act_types = args.act_types,
+    #                                                   save_every = args.save_every,
+    #                                                   layers = args.layers,
+    #                                                   tok_idxs = tok_idxs,
+    #                                                   logging = args.logging,
+    #                                                   file_spec = "attn_mlp_from_preg_3500to4500")
     
     #* autoreg llama generation run negative
     # mem_data = load_dataset('EleutherAI/pythia-memorized-evals')['duped.12b']
@@ -464,51 +464,55 @@ if __name__ == "__main__":
     #                                                   file_spec = "attn_mlp_from_pregenned")
     
     #* autoreg pythia generation run
-    # if "deduped" in args.model_name:
-    #     #model_name looks like: EleutherAI/pythia-12B-deduped
-    #     dataset_name = "deduped." + args.model_name.split("-")[-2]
-    # else:
-    #     #model_name looks like: EleutherAI/pythia-12B
-    #     dataset_name = "duped." + args.model_name.split("-")[-1]
+    if "deduped" in args.model_name:
+        #model_name looks like: EleutherAI/pythia-12B-deduped
+        dataset_name = "deduped." + args.model_name.split("-")[-2]
+    else:
+        #model_name looks like: EleutherAI/pythia-12B
+        dataset_name = "duped." + args.model_name.split("-")[-1]
     
-    # mem_data = load_dataset('EleutherAI/pythia-memorized-evals')[dataset_name]
+    mem_data = load_dataset('EleutherAI/pythia-memorized-evals')[dataset_name]
 
-    # mem_data_toks = [seq for seq in mem_data[:args.N_PROMPTS]['tokens']]
+    mem_data_toks = [seq for seq in mem_data[:args.N_PROMPTS]['tokens']]
+    for i in range(len(mem_data_toks)): 
+        left = 64 - len(mem_data_toks[i])
+        mem_data_toks[i] = [tokenizer.pad_token_id] * left + mem_data_toks[i] # pad left as suggested above
+    mem_data_toks = torch.tensor(mem_data_toks)
+    # mem_data_prompts = [toks_to_string(tokenizer, seq) for seq in mem_data_toks]
     
-    # # mem_data_prompts = [toks_to_string(tokenizer, seq) for seq in mem_data_toks]
+    pile_prompts = gen_pile_data(args.N_PROMPTS, tokenizer, min_n_toks = 64)
+
+    # tokenize 
+    pile_toks = tokenizer(pile_prompts, return_tensors = 'pt', padding = True, max_length = 64, truncation = True)['input_ids']
+    print(pile_toks.shape)
+    print(mem_data_toks.shape)
     
-    # pile_prompts = gen_pile_data(args.N_PROMPTS, tokenizer, min_n_toks = 64)
-    # print(len(pile_prompts))
-    # print(len(mem_data_toks))
-    
-    # tok_idxs =  (7 * np.arange(10)).tolist() #every 5th token
-    # tok_idxs[-1]= tok_idxs[-1] - 1 #goes from 63 to 62
-    # print(tok_idxs)
-    # mem_hidden_states, mem_generations, mem_mem_status = get_memmed_activations(model, 
-    #                                                                             tokenizer, 
+    tok_idxs =  (7 * np.arange(10)).tolist() #every 5th token
+    tok_idxs[-1]= tok_idxs[-1] - 1 #goes from 63 to 62
+    print(tok_idxs)
+    # mem_hidden_states, mem_generations, tokens, mem_mem_status = get_memmed_activations(mw,
     #                                                                             mem_data_toks, 
     #                                                                             args.save_path,
     #                                                                             save_every = args.save_every,
-    #                                                                             check_if_memmed = args.check_if_memmed,
+    #                                                                             # check_if_memmed = args.check_if_memmed,
     #                                                                             N_TOKS = args.N_TOKS,
     #                                                                             layers = args.layers,
     #                                                                             tok_idxs = tok_idxs,
     #                                                                             return_prompt_acts = args.return_prompt_acts,
     #                                                                             logging = args.logging,
-    #                                                                             file_spec = "mem_")
+    #                                                                             file_spec = "mem_", )
     
-    # pile_hidden_states, pile_generations, pile_mem_status = get_memmed_activations(model,
-    #                                                                                 tokenizer, 
-    #                                                                                 pile_prompts, 
-    #                                                                                 args.save_path,
-    #                                                                                 save_every = args.save_every,
-    #                                                                                 check_if_memmed = args.check_if_memmed,
-    #                                                                                 N_TOKS = args.N_TOKS,
-    #                                                                                 layers = args.layers,
-    #                                                                                 tok_idxs = tok_idxs,
-    #                                                                                 return_prompt_acts = args.return_prompt_acts,
-    #                                                                                 logging = args.logging,
-    #                                                                                 file_spec = "pile_")
+    pile_hidden_states, pile_generations, tokens, pile_mem_status = get_memmed_activations(mw,
+                                                                                    pile_toks, 
+                                                                                    args.save_path,
+                                                                                    save_every = args.save_every,
+                                                                                    # check_if_memmed = args.check_if_memmed,
+                                                                                    N_TOKS = args.N_TOKS,
+                                                                                    layers = args.layers,
+                                                                                    tok_idxs = tok_idxs,
+                                                                                    return_prompt_acts = args.return_prompt_acts,
+                                                                                    logging = args.logging,
+                                                                                    file_spec = "pile_")
     
     
     

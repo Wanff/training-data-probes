@@ -34,8 +34,8 @@ peft_config = LoraConfig(
     task_type=TaskType.SEQ_CLS,
 )
 
-path = '../../../gld/train-data-probes/data/12b'
-dataset = load_from_disk(os.path.join(path, 'split_hf_token_dataset_vary_len_v2'))
+path = '../../../gld/train-data-probes/data/6.9b'
+dataset = load_from_disk(os.path.join(path, 'split_hf_token_dataset_vary_len'))
 id2label = {0: 'neg', 1: 'pos'}
 label2id = {'neg': 0, 'pos': 1}
 model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2, id2label=id2label, label2id=label2id, low_cpu_mem_usage=True, device_map='auto')
@@ -48,7 +48,7 @@ lora_model.print_trainable_parameters()
 # pad datasets
 
 def preprocess(example): 
-    return {'input_ids': tokenizer(orig_tokenizer.decode(example['input_ids']), return_tensors='pt')['input_ids'][0]}
+    return {'input_ids': tokenizer(example['text'], return_tensors='pt')['input_ids'][0]}
 
 dataset['train'] = dataset['train'].map(preprocess)
 dataset['val'] = dataset['val'].map(preprocess)
@@ -234,4 +234,4 @@ trainer.train()
 with open('temp_data', 'wb') as f: 
     pickle.dump(data, f)
 
-model.save_pretrained(os.path.join(path, 'finetuning/llama-2-7b-on-pythia-12b-dataset_2'))
+model.save_pretrained(os.path.join(path, 'finetuning/llama-2-7b-on-pythia-6.9b-dataset'))
