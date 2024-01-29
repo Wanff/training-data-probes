@@ -151,7 +151,8 @@ PYTHIA_BLOCK_NAMES = [
     "attention",
     "mlp",
     "input_layernorm",
-    "post_attention_layernorm" 
+    "post_attention_layernorm",
+    "attention.query_key_value",
 ]
 
 GPT_BLOCK_NAMES = [
@@ -224,7 +225,6 @@ class ModelWrapper(torch.nn.Module):
             
             self.model_base = self.model.model
             self.num_layers = self.model.config.num_hidden_layers
-            
             self.universal_b_name_map = {
                 "attn": self.block_names[0],
                 "mlp": self.block_names[1],
@@ -233,18 +233,30 @@ class ModelWrapper(torch.nn.Module):
                 "attn_q": self.block_names[4],
                 "attn_k": self.block_names[5],
                 "attn_v": self.block_names[6],
-            }
+            }   
+
         elif hasattr(self.model, 'gpt_neox'):
             self.block_names = [blockify_block_name(name) for name in PYTHIA_BLOCK_NAMES]
             
             self.model_base = self.model.gpt_neox
             self.num_layers = self.model.config.num_hidden_layers
+            
+            self.universal_b_name_map = {
+                "attn": self.block_names[0],
+                "mlp": self.block_names[1],
+                "ln_1": self.block_names[2],
+                "ln_2": self.block_names[3],
+                "attn_q": self.block_names[4],
+                "attn_k": self.block_names[4],
+                "attn_v": self.block_names[4],
+            }   
 
+        
         elif hasattr(self.model, 'transformer'):
             self.block_names = GPT_BLOCK_NAMES
             self.model_base = self.model.transformer
             self.model_base.layers = self.model.transformer.h
-            
+        
 
         
     #Generation Functions
@@ -456,9 +468,13 @@ class ModelWrapper(torch.nn.Module):
 
             else:
                 inputs = self.tokenizer.pad({'input_ids': prompts}, padding = True, return_attention_mask=True)
-                
-            input_ids = inputs.input_ids.to(self.model.device)
-            attention_mask = inputs.attention_mask.to(self.model.device)
+            
+            if isinstance(inputs.input_ids, list): 
+                input_ids = torch.tensor(inputs.input_ids).to(self.model.device)
+                attention_mask = torch.tensor(inputs.attention_mask).to(self.model.device)
+            else:
+                input_ids = inputs.input_ids.to(self.model.device)
+                attention_mask = inputs.attention_mask.to(self.model.device)
             
             outputs = self.model(input_ids = input_ids, attention_mask=attention_mask, output_hidden_states = True, **kwargs)
 
