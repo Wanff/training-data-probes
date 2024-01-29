@@ -142,7 +142,9 @@ def get_memmed_activations_from_pregenned(mw: ModelWrapper, prompts: Union[List[
         torch.cuda.empty_cache()
         
         # Save all_hidden_states
-        # torch.save(acts_dict, save_path + f"/{file_spec}acts_dict.pt")
+        if batch_idx == int(.25 * ceildiv(len(prompts), save_every)) or batch_idx == int(.5 * ceildiv(len(prompts), save_every)) or batch_idx == int(.75 * ceildiv(len(prompts), save_every)):
+            print("Saving batch")
+            torch.save(acts_dict, save_path + f"/{file_spec}acts_dict.pt")
     
     for act_type in act_types:
         for layer in layers:
@@ -447,22 +449,23 @@ if __name__ == "__main__":
     
     
     #* mlp/attn from pregenned
-    # all_mem_12b_data = pd.read_csv(f'data/12b/mem_evals_gen_data.csv')
+    all_mem_12b_data = pd.read_csv(f'../data/12b/mem_evals_gen_data.csv')
     
     # prompts = all_mem_12b_data[all_mem_12b_data['source'] == 'pythia-evals'][:args.N_PROMPTS].gen.values.tolist() + all_mem_12b_data[all_mem_12b_data['source'] == 'pile'][:args.N_PROMPTS].gen.values.tolist()
-    
-    # tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
-    # tok_idxs[-1]= - 1 #goes from 63 to 62
-    # acts_dict = get_memmed_activations_from_pregenned(mw,
-    #                                                   prompts,
-    #                                                   args.save_path,
-    #                                                   act_types = args.act_types,
-    #                                                   save_every = args.save_every,
-    #                                                   layers = args.layers,
-    #                                                   tok_idxs = tok_idxs,
-    #                                                   logging = args.logging,
-    #                                                   file_spec = "attn_mlp_from_pregenned")
-    
+    tokens = tokenizer(all_mem_12b_data['gen'].values.tolist(), padding = True, truncation=True, return_tensors="pt", max_length = 64).input_ids[8400:]
+
+    tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
+    tok_idxs[-1]= - 1 #goes from 63 to 62
+    acts_dict = get_memmed_activations_from_pregenned(mw,
+                                                      tokens,
+                                                      args.save_path,
+                                                      act_types = args.act_types,
+                                                      save_every = args.save_every,
+                                                      layers = args.layers,
+                                                      tok_idxs = tok_idxs,
+                                                      logging = args.logging,
+                                                      file_spec = "final_attn_run_")
+    #attn_mlp_from_pregenned prev file_spec
     #* autoreg pythia generation run
     if "deduped" in args.model_name:
         #model_name looks like: EleutherAI/pythia-12B-deduped

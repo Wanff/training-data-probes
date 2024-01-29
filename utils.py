@@ -81,15 +81,19 @@ def char_by_char_similarity(outputs, targets):
     return similarities
 
 def compare_token_lists(genned_toks, ground_toks):
-    if len(ground_toks) != len(genned_toks):
+    if len(ground_toks) < len(genned_toks):
+        num_same_tokens = sum(1 for token1, token2 in zip(ground_toks, genned_toks[:len(ground_toks)]) if token1 == token2)
+        percent_same_tokens = (num_same_tokens / len(ground_toks)) 
+        return percent_same_tokens
+    elif len(ground_toks) > len(genned_toks):
+        print("Ground truth is longer than generated text. This should not happen.")
         print(len(ground_toks), len(genned_toks))
-        print("Both lists do not have the same length.")
         return 0
-    
-    num_same_tokens = sum(1 for token1, token2 in zip(ground_toks, genned_toks) if token1 == token2)
-    percent_same_tokens = (num_same_tokens / len(ground_toks)) 
-    
-    return percent_same_tokens
+    else:
+        num_same_tokens = sum(1 for token1, token2 in zip(ground_toks, genned_toks) if token1 == token2)
+        percent_same_tokens = (num_same_tokens / len(ground_toks)) 
+        
+        return percent_same_tokens
 
 def tok_by_tok_similarity(outputs, targets, tokenizer = None):
     if isinstance(outputs[0], str):
@@ -111,26 +115,25 @@ def extract_quote_completion(s):
     return s.strip().lower()
 
 
-def eval_completions(outputs, targets, return_mean = True):
-    cbc_sims = char_by_char_similarity(outputs, targets)
-    # tbt_sims = tok_by_tok_similarity(outputs, targets)
-    sem_sims = sim_scores(outputs, targets)
-    lev_diss = levenshtein_distance(outputs, targets)
+def eval_completions(outputs, targets, sim_types = ['char', 'tok', 'lev', 'sem'], tokenizer = None, return_mean = True):
+    return_dict = {}
+    if 'char' in sim_types:
+        cbc_sims = char_by_char_similarity(outputs, targets)
+        return_dict['char_by_char_similarity'] = cbc_sims
     
-    # outputs = [extract_quote_completion(o) for o in outputs]
-    # em = np.mean([t in o for t,o in zip(targets,outputs)])
+    if 'tok' in sim_types:
+        tbt_sims = tok_by_tok_similarity(outputs, targets, tokenizer = tokenizer)
+        return_dict['tok_by_tok_similarity'] = tbt_sims
+    
+    if 'lev' in sim_types:
+        lev_diss = levenshtein_distance(outputs, targets)
+        return_dict['lev_distance'] = lev_diss
+    
+    if 'sem' in sim_types:
+        sem_sims = sim_scores(outputs, targets)
+        return_dict['sem_similarity'] = sem_sims
     
     if return_mean:
-        return {'char_by_char_similarity': np.mean(cbc_sims),
-                # 'tok_by_tok_similarity': np.mean(tbt_sims),
-                'sem_similarity': np.mean(sem_sims),
-                'lev_distance': np.mean(lev_diss),
-                # 'em': np.mean(em),
-                }
-    else:
-        return {'char_by_char_similarity': cbc_sims,
-                # 'tok_by_tok_similarity': tbt_sims,
-                'sem_similarity': sem_sims,
-                'lev_distance': lev_diss,
-                # 'em': em,
-                }
+        return {k: np.mean(v) for k, v in return_dict.items()}
+   
+    return return_dict
