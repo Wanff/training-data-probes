@@ -8,10 +8,31 @@ import torch.nn.functional as F
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from sentence_transformers import SentenceTransformer, util
 import Levenshtein
+import datasets
 
 def untuple(x):
     return x[0] if isinstance(x, tuple) else x
     
+def gen_pile_data(N, tokenizer, min_n_toks : int = None):
+    pile = datasets.load_dataset('EleutherAI/the_pile_deduplicated', split='train', streaming=True)
+    sentences = []
+
+    counter = 0
+    for i, example in enumerate(pile):
+        if min_n_toks is not None:
+            toks = tokenizer(example['text'])['input_ids']
+            if len(toks) > min_n_toks:
+                sentences.append(example['text'])
+                counter +=1
+        else:
+            sentences.append(example['text'])
+            counter +=1
+        
+        if counter == N:
+            break
+
+    return sentences
+
 def tpr_at_fpr(probs, labels, target_fpr, left=0.5, right=1.0, max_steps=1000, thresh_tol=1e-6): 
     """
     Calculates the true positive rate at a given false positive rate. 

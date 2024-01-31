@@ -178,7 +178,7 @@ class MMProbe(t.nn.Module, Probe):
         else:
             return t.nn.Sigmoid()(x @ self.direction)
 
-    def predid5(self, x, iid=False):
+    def predict(self, x, iid=False):
         return self(x, iid=iid).round()
 
     def predict_proba(self, x, iid=False):
