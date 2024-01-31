@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import os
 import datasets
-from datasets import load_dataset
+from datasets import load_dataset, concatenate_datasets
 from abc import ABC, abstractmethod
 from typing import List, Optional, Tuple, Dict, Union
 
@@ -16,7 +16,7 @@ import gc
 import pickle
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from datasets import Dataset
+from datasets import Dataset, load_from_disk
 
 import sys
 sys.path.append('../')  # Add the parent directory to the path
@@ -448,51 +448,51 @@ if __name__ == "__main__":
     
     
     
-    #* mlp/attn from pregenned
-    all_mem_12b_data = pd.read_csv(f'../data/12b/mem_evals_gen_data.csv')
+    # #* mlp/attn from pregenned
+    # all_mem_12b_data = pd.read_csv(f'../data/12b/mem_evals_gen_data.csv')
     
-    # prompts = all_mem_12b_data[all_mem_12b_data['source'] == 'pythia-evals'][:args.N_PROMPTS].gen.values.tolist() + all_mem_12b_data[all_mem_12b_data['source'] == 'pile'][:args.N_PROMPTS].gen.values.tolist()
-    tokens = tokenizer(all_mem_12b_data['gen'].values.tolist(), padding = True, truncation=True, return_tensors="pt", max_length = 64).input_ids[8400:]
+    # # prompts = all_mem_12b_data[all_mem_12b_data['source'] == 'pythia-evals'][:args.N_PROMPTS].gen.values.tolist() + all_mem_12b_data[all_mem_12b_data['source'] == 'pile'][:args.N_PROMPTS].gen.values.tolist()
+    # tokens = tokenizer(all_mem_12b_data['gen'].values.tolist(), padding = True, truncation=True, return_tensors="pt", max_length = 64).input_ids[8400:]
 
-    tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
-    tok_idxs[-1]= - 1 #goes from 63 to 62
-    acts_dict = get_memmed_activations_from_pregenned(mw,
-                                                      tokens,
-                                                      args.save_path,
-                                                      act_types = args.act_types,
-                                                      save_every = args.save_every,
-                                                      layers = args.layers,
-                                                      tok_idxs = tok_idxs,
-                                                      logging = args.logging,
-                                                      file_spec = "final_attn_run_")
+    # tok_idxs = (7 * np.arange(10)).tolist() #every 5th token
+    # tok_idxs[-1]= - 1 #goes from 63 to 62
+    # acts_dict = get_memmed_activations_from_pregenned(mw,
+    #                                                   tokens,
+    #                                                   args.save_path,
+    #                                                   act_types = args.act_types,
+    #                                                   save_every = args.save_every,
+    #                                                   layers = args.layers,
+    #                                                   tok_idxs = tok_idxs,
+    #                                                   logging = args.logging,
+    #                                                   file_spec = "final_attn_run_")
     #attn_mlp_from_pregenned prev file_spec
-    #* autoreg pythia generation run
-    if "deduped" in args.model_name:
-        #model_name looks like: EleutherAI/pythia-12B-deduped
-        dataset_name = "deduped." + args.model_name.split("-")[-2]
-    else:
-        #model_name looks like: EleutherAI/pythia-12B
-        dataset_name = "duped." + args.model_name.split("-")[-1]
+    # #* autoreg pythia generation run
+    # if "deduped" in args.model_name:
+    #     #model_name looks like: EleutherAI/pythia-12B-deduped
+    #     dataset_name = "deduped." + args.model_name.split("-")[-2]
+    # else:
+    #     #model_name looks like: EleutherAI/pythia-12B
+    #     dataset_name = "duped." + args.model_name.split("-")[-1]
     
-    mem_data = load_dataset('EleutherAI/pythia-memorized-evals')[dataset_name]
+    # mem_data = load_dataset('EleutherAI/pythia-memorized-evals')[dataset_name]
 
-    mem_data_toks = [seq for seq in mem_data[:args.N_PROMPTS]['tokens']]
-    for i in range(len(mem_data_toks)): 
-        left = 64 - len(mem_data_toks[i])
-        mem_data_toks[i] = [tokenizer.pad_token_id] * left + mem_data_toks[i] # pad left as suggested above
-    mem_data_toks = torch.tensor(mem_data_toks)
-    # mem_data_prompts = [toks_to_string(tokenizer, seq) for seq in mem_data_toks]
+    # mem_data_toks = [seq for seq in mem_data[:args.N_PROMPTS]['tokens']]
+    # for i in range(len(mem_data_toks)): 
+    #     left = 64 - len(mem_data_toks[i])
+    #     mem_data_toks[i] = [tokenizer.pad_token_id] * left + mem_data_toks[i] # pad left as suggested above
+    # mem_data_toks = torch.tensor(mem_data_toks)
+    # # mem_data_prompts = [toks_to_string(tokenizer, seq) for seq in mem_data_toks]
     
-    pile_prompts = gen_pile_data(args.N_PROMPTS, tokenizer, min_n_toks = 64)
+    # pile_prompts = gen_pile_data(args.N_PROMPTS, tokenizer, min_n_toks = 64)
 
-    # tokenize 
-    pile_toks = tokenizer(pile_prompts, return_tensors = 'pt', padding = True, max_length = 64, truncation = True)['input_ids']
-    print(pile_toks.shape)
-    print(mem_data_toks.shape)
+    # # tokenize 
+    # pile_toks = tokenizer(pile_prompts, return_tensors = 'pt', padding = True, max_length = 64, truncation = True)['input_ids']
+    # print(pile_toks.shape)
+    # print(mem_data_toks.shape)
     
-    tok_idxs =  (7 * np.arange(10)).tolist() #every 5th token
-    tok_idxs[-1]= tok_idxs[-1] - 1 #goes from 63 to 62
-    print(tok_idxs)
+    # tok_idxs =  (7 * np.arange(10)).tolist() #every 5th token
+    # tok_idxs[-1]= tok_idxs[-1] - 1 #goes from 63 to 62
+    # print(tok_idxs)
     # mem_hidden_states, mem_generations, tokens, mem_mem_status = get_memmed_activations(mw,
     #                                                                             mem_data_toks, 
     #                                                                             args.save_path,
@@ -505,8 +505,32 @@ if __name__ == "__main__":
     #                                                                             logging = args.logging,
     #                                                                             file_spec = "mem_", )
     
-    pile_hidden_states, pile_generations, tokens, pile_mem_status = get_memmed_activations(mw,
-                                                                                    pile_toks, 
+    # pile_hidden_states, pile_generations, tokens, pile_mem_status = get_memmed_activations(mw,
+    #                                                                                 pile_toks, 
+    #                                                                                 args.save_path,
+    #                                                                                 save_every = args.save_every,
+    #                                                                                 # check_if_memmed = args.check_if_memmed,
+    #                                                                                 N_TOKS = args.N_TOKS,
+    #                                                                                 layers = args.layers,
+    #                                                                                 tok_idxs = tok_idxs,
+    #                                                                                 return_prompt_acts = args.return_prompt_acts,
+    #                                                                                 logging = args.logging,
+    #                                                                                 file_spec = "pile_")
+    
+    
+    # autoreg pythia 6.9b on the llama dataset
+    data = load_from_disk('/home/ubuntu/gld/train-data-probes/data/llama-2-7b/pythia_llama_mem_dataset_split_deduped')
+    data = concatenate_datasets([data['train'], data['val'], data['test']])
+    mem_data_toks = [tokenizer(seq, return_tensors = 'pt', padding = 'max_length', max_length = 64, truncation = True)['input_ids'] for seq in data['ground_str']]
+    mem_data_toks = torch.cat(mem_data_toks, dim = 0)
+    print(mem_data_toks.shape)
+
+    tok_idxs =  (7 * np.arange(10)).tolist() #every 5th token
+    tok_idxs[-1]= tok_idxs[-1] - 1 #goes from 63 to 62
+    print(tok_idxs)
+
+    mem_hidden_states, mem_generations, tokens, mem_mem_status = get_memmed_activations(mw,
+                                                                                    mem_data_toks, 
                                                                                     args.save_path,
                                                                                     save_every = args.save_every,
                                                                                     # check_if_memmed = args.check_if_memmed,
@@ -515,7 +539,16 @@ if __name__ == "__main__":
                                                                                     tok_idxs = tok_idxs,
                                                                                     return_prompt_acts = args.return_prompt_acts,
                                                                                     logging = args.logging,
-                                                                                    file_spec = "pile_")
+                                                                                    file_spec = "mem_")
+
+    acts_dict = get_memmed_activations_from_pregenned(mw,
+                                                    mem_data_toks,
+                                                    args.save_path,
+                                                    act_types = args.act_types,
+                                                    save_every = args.save_every,
+                                                    layers = args.layers,
+                                                    tok_idxs = tok_idxs,
+                                                    logging = args.logging,
+                                                    file_spec = "attn_mlp_from_preg_")
     
-    
-    
+                                                                                
