@@ -474,20 +474,21 @@ if __name__ == "__main__":
     #     #model_name looks like: EleutherAI/pythia-12B
     #     dataset_name = "duped." + args.model_name.split("-")[-1]
     
-    # mem_data = load_dataset('EleutherAI/pythia-memorized-evals')[dataset_name]
+    # mem_data = load_dataset('EleutherAI/pythia-memorized-evals')[f'duped.12b']
 
     # mem_data_toks = [seq for seq in mem_data[:args.N_PROMPTS]['tokens']]
     # for i in range(len(mem_data_toks)): 
     #     left = 64 - len(mem_data_toks[i])
+    #     assert left == 0, "Need to pad left"
     #     mem_data_toks[i] = [tokenizer.pad_token_id] * left + mem_data_toks[i] # pad left as suggested above
     # mem_data_toks = torch.tensor(mem_data_toks)
     # # mem_data_prompts = [toks_to_string(tokenizer, seq) for seq in mem_data_toks]
     
-    # pile_prompts = gen_pile_data(args.N_PROMPTS, tokenizer, min_n_toks = 64)
+    # # pile_prompts = gen_pile_data(args.N_PROMPTS, tokenizer, min_n_toks = 64)
 
-    # # tokenize 
-    # pile_toks = tokenizer(pile_prompts, return_tensors = 'pt', padding = True, max_length = 64, truncation = True)['input_ids']
-    # print(pile_toks.shape)
+    # # # tokenize 
+    # # pile_toks = tokenizer(pile_prompts, return_tensors = 'pt', padding = True, max_length = 64, truncation = True)['input_ids']
+    # # print(pile_toks.shape)
     # print(mem_data_toks.shape)
     
     # tok_idxs =  (7 * np.arange(10)).tolist() #every 5th token
@@ -519,9 +520,9 @@ if __name__ == "__main__":
     
     
     # autoreg pythia 6.9b on the llama dataset
-    data = load_from_disk('/home/ubuntu/gld/train-data-probes/data/llama-2-7b/pythia_llama_mem_dataset_split_deduped')
-    data = concatenate_datasets([data['train'], data['val'], data['test']])
-    mem_data_toks = [tokenizer(seq, return_tensors = 'pt', padding = 'max_length', max_length = 64, truncation = True)['input_ids'] for seq in data['ground_str']]
+    data = load_from_disk('/home/ubuntu/gld/train-data-probes/data/6.9b2/hf_token_dataset')
+    # data = concatenate_datasets([data['train'], data['val'], data['test']])
+    mem_data_toks = [tokenizer(seq, return_tensors = 'pt', padding = 'max_length', max_length = 64, truncation = True)['input_ids'] for seq in data['text']]
     mem_data_toks = torch.cat(mem_data_toks, dim = 0)
     print(mem_data_toks.shape)
 
@@ -539,16 +540,16 @@ if __name__ == "__main__":
                                                                                     tok_idxs = tok_idxs,
                                                                                     return_prompt_acts = args.return_prompt_acts,
                                                                                     logging = args.logging,
-                                                                                    file_spec = "mem_")
+                                                                                    file_spec = "mem2_")
 
-    acts_dict = get_memmed_activations_from_pregenned(mw,
-                                                    mem_data_toks,
-                                                    args.save_path,
-                                                    act_types = args.act_types,
-                                                    save_every = args.save_every,
-                                                    layers = args.layers,
-                                                    tok_idxs = tok_idxs,
-                                                    logging = args.logging,
-                                                    file_spec = "attn_mlp_from_preg_")
+    # acts_dict = get_memmed_activations_from_pregenned(mw,
+    #                                                 mem_data_toks,
+    #                                                 args.save_path,
+    #                                                 act_types = args.act_types,
+    #                                                 save_every = args.save_every,
+    #                                                 layers = args.layers,
+    #                                                 tok_idxs = tok_idxs,
+    #                                                 logging = args.logging,
+    #                                                 file_spec = "attn_mlp_from_preg_")
     
                                                                                 
