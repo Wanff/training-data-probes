@@ -162,6 +162,9 @@ GPT_BLOCK_NAMES = [
     'ln_2'
 ]
 
+def detokenize_to_list(tokenizer, input_ids):
+    return [[tokenizer.decode(input_ids[i][j]) for j in range(len(input_ids[0]))] for i in range(len(input_ids))]
+
 def slice_acts(out, N_TOKS: int, return_prompt_acts: bool, layers: List, tok_idxs: List = None, device: str = 'cpu'):
     """slices acts out of huggingface modeloutput object
 
@@ -177,10 +180,18 @@ def slice_acts(out, N_TOKS: int, return_prompt_acts: bool, layers: List, tok_idx
     #! expects hf layer idxs (ie 1-index)
     #out.hidden_states is shape  max_new_tokens x n_layers + 1 x batch x activations
     
+<<<<<<< HEAD
     #first loop goes through the tokens, second loop goes through the layers or something
     print(len(out.sequences))
     print(torch.cat(out.hidden_states[0]).shape)
     acts = torch.stack([torch.cat(out.hidden_states[i], dim = 1) for i in range(1, N_TOKS)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
+=======
+    if N_TOKS == 1:
+        acts = torch.stack([torch.cat(out.hidden_states[0], dim = 1)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
+    else:
+        #first loop goes through the tokens, second loop goes through the layers or something
+        acts = torch.stack([torch.cat(out.hidden_states[i], dim = 1) for i in range(1, N_TOKS)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
+>>>>>>> main
     #shape: batch_size x N_TOKS - 1 x n_layers + 1 x d_M
     #n_layers + 1 bc of embedding, N_TOKS - 1 bc of how max_new_tokens works
     acts = rearrange(acts, 'b t l d -> b l t d')
@@ -192,7 +203,7 @@ def slice_acts(out, N_TOKS: int, return_prompt_acts: bool, layers: List, tok_idx
     
     if device == 'cpu':
         acts = acts.cpu()
-    
+        
     if tok_idxs is not None:
         acts = acts[:, :, tok_idxs]
     acts = acts[:, layers]
@@ -267,13 +278,14 @@ class ModelWrapper(torch.nn.Module):
         
     def generate(self, **kwargs):
         return self.model.generate(**kwargs)
-    
+
     def rej_sampl_generate(self, prompts, 
                                 probe: Union[torch.nn.Module, LogisticRegression],
                                 probe_layer: int,
                                 max_new_tokens: int = 32, 
                                 rej_sample_length: int = 5,
                                 log_rej_samples = False,
+                                max_tries = 10,
                                 **generation_kwargs
     ):
         """
@@ -317,18 +329,27 @@ class ModelWrapper(torch.nn.Module):
                     
             flagged_gen_idxs = untuple(np.where(preds == 1))
             good_gen_idxs = untuple(np.where(preds == 0))
+<<<<<<< HEAD
             banned_words = out.sequences[:, input_ids.shape[1]:]
             
             if log_rej_samples:
                 print(f"Input {self.tokenizer.batch_decode(input_ids, skip_special_tokens=True)}")
                 print(f"Generation {self.tokenizer.batch_decode(out.sequences, skip_special_tokens=True)}")
                 print(f"Banned words {banned_words}")
+=======
+            pot_banned_words = out.sequences[:, input_ids.shape[1]:input_ids.shape[1] + rej_sample_length]
+            
+            if log_rej_samples:
+                print(f"Genned (Banned) words {pot_banned_words}")
+                print(f"Genned (Banned) words {detokenize_to_list(self.tokenizer, pot_banned_words)}")
+>>>>>>> main
                 print(f"Preds {preds}")
             
-            counter = 0
-            while 1 in preds:
+            num_tries = 0
+            while 1 in preds and num_tries < max_tries:
                 preds = []
                 for i in flagged_gen_idxs:
+<<<<<<< HEAD
                     new_gen = []
                     for j in range(rej_sample_length):
                         out = self.model.generate(
@@ -353,34 +374,164 @@ class ModelWrapper(torch.nn.Module):
                         print(f"New gen {new_gen}")
                         
                     gens[i] = torch.cat([gens[i], torch.tensor(new_gen)], dim = 0)
+=======
+                    temp_input_ids = input_ids[i]
+                    temp_attention_mask = attention_mask[i]
+
+                    for banned_tok_idx in range(rej_sample_length):
+                        # print(self.tokenizer.decode(temp_input_ids))
+                        # print(pot_banned_words[i, banned_tok_idx])
+                        out = self.model.generate(
+                                input_ids=temp_input_ids.unsqueeze(dim = 0),
+                                attention_mask=temp_attention_mask.unsqueeze(dim = 0),
+                                pad_token_id=self.tokenizer.eos_token_id,
+                                max_new_tokens = 1,
+                                return_dict_in_generate = True,
+                                output_hidden_states = True,
+                        
+                                bad_words_ids = [[pot_banned_words[i, banned_tok_idx].item()]],
+                                **generation_kwargs,
+                                )
+                        temp_input_ids = out.sequences[0]
+                        temp_attention_mask = torch.cat([temp_attention_mask, torch.tensor([1], device = attention_mask.device)], dim = 0)
+                                        
+                    hidden_states = slice_acts(out, 
+                                            N_TOKS = 1, 
+                                            layers = probe_layer+1, #bc slice_acts expects 1-indexed layers
+                                            tok_idxs = -1,
+                                            return_prompt_acts = False, 
+                                            device = "cuda").float()
+                    gens[i] = out.sequences[0]
+                    preds.append(probe.predict(hidden_states).detach().cpu().numpy().item())
+>>>>>>> main
                 
-                counter += 1
+                num_tries += 1
                 if log_rej_samples:
                     print(f"New preds {preds}")
                     for i in flagged_gen_idxs:
                         print(self.tokenizer.decode(gens[i], skip_special_tokens=True))
+                        print("--------------")
                     # print(self.tokenizer.batch_decode(gens, skip_special_tokens=True))
                     print()
 
                 raise Exception
             
             gen_len = input_ids.shape[1]
-            # new_input_ids = torch.ones((len(input_ids), gen_len + rej_sample_length), device = input_ids.device, dtype = input_ids.dtype)
-            # for i in range(len(input_ids)):
-            #     if i in flagged_gen_idxs:
-            #         new_input_ids[i] = torch.cat([input_ids[i], gens[i][gen_len:]], dim = 0)
-            #     elif i in good_gen_idxs:
-            #         new_input_ids[i] = torch.cat([input_ids[i], gens[i][gen_len:]], dim = 0)
             input_ids = gens
             attention_mask = torch.cat([attention_mask, torch.ones(input_ids[:, gen_len:].shape, device = attention_mask.device)], dim = 1)
 
             if log_rej_samples:
-                print(f"took {counter} times to get final generations:")
+                print(f"took {num_tries} times to get final generations:")
                 # print(self.tokenizer.batch_decode(input_ids, skip_special_tokens=True))
                 print()
 
         
         return self.tokenizer.batch_decode(input_ids, skip_special_tokens=True)
+    
+    # def rej_sampl_generate(self, prompts, 
+    #                             probe: Union[torch.nn.Module, LogisticRegression],
+    #                             probe_layer: int,
+    #                             max_new_tokens: int = 32, 
+    #                             rej_sample_length: int = 5,
+    #                             log_rej_samples = False,
+    #                             **generation_kwargs
+    # ):
+    #     """
+    #     Generates a sequence and then rejects or accepts it based on the probe.
+        
+    #     probe_layer: the layer to probe, if None, probes the last layer
+    #     probe: a probe to use, if None, uses the default probe
+    #     """
+    #     if isinstance(prompts[0], str):
+    #         inputs = self.tokenizer(prompts, return_tensors="pt", padding=True, max_length=512, truncation=True)
+    #     else:
+    #         inputs = self.tokenizer.pad({'input_ids': prompts}, padding = True, return_attention_mask=True)
+        
+    #     input_ids = inputs.input_ids.to(self.model.device)
+    #     attention_mask = inputs.attention_mask.to(self.model.device)
+        
+    #     for i in range(ceildiv(max_new_tokens, rej_sample_length)):
+    #         if log_rej_samples:
+    #             print(f"part {i} of generation")
+                
+    #         out = self.model.generate(
+    #                 input_ids=input_ids,
+    #                 attention_mask=attention_mask,
+    #                 pad_token_id=self.tokenizer.eos_token_id,
+    #                 max_new_tokens = rej_sample_length,
+    #                 return_dict_in_generate = True,
+    #                 output_hidden_states = True,
+    #                 **generation_kwargs,
+    #                 )
+            
+    #         # print(out.hidden_states[1][0].shape)
+    #         #shape batch_size x d_m
+    #         hidden_states =  slice_acts(out, 
+    #                                     N_TOKS = rej_sample_length, 
+    #                                     layers = probe_layer+1, #bc slice_acts expects 1-indexed layers
+    #                                     tok_idxs = -1,
+    #                                     return_prompt_acts = False,
+    #                                     device = "cuda").float()
+    #         gens = out.sequences
+    #         preds = probe.predict(hidden_states).detach().cpu().numpy()
+            
+    #         flagged_gen_idxs = untuple(np.where(preds == 1))
+    #         good_gen_idxs = untuple(np.where(preds == 0))
+    #         banned_words = out.sequences[:, input_ids.shape[1]]
+            
+    #         if log_rej_samples:
+    #             print(f"Banned words {banned_words}")
+    #             print(f"Preds {preds}")
+            
+    #         counter = 0
+    #         while 1 in preds:
+    #             preds = []
+    #             for i in flagged_gen_idxs:
+    #                 out = self.model.generate(
+    #                     input_ids=input_ids[i].unsqueeze(dim = 0),
+    #                     attention_mask=attention_mask[i].unsqueeze(dim = 0),
+    #                     pad_token_id=self.tokenizer.eos_token_id,
+    #                     max_new_tokens = rej_sample_length,
+    #                     return_dict_in_generate = True,
+    #                     output_hidden_states = True,
+                
+    #                     bad_words_ids = [[banned_words[i].item()]],
+    #                     **generation_kwargs,
+    #                     )
+    #                 hidden_states = slice_acts(out, 
+    #                                         N_TOKS = rej_sample_length, 
+    #                                         layers = probe_layer+1, #bc slice_acts expects 1-indexed layers
+    #                                         tok_idxs = -1,
+    #                                         return_prompt_acts = False, 
+    #                                         device = "cuda").float()
+    #                 preds.append(probe.predict(hidden_states).detach().cpu().numpy().item())
+    #                 gens[i] = out.sequences[0]
+                
+    #             counter += 1
+    #             if log_rej_samples:
+    #                 print(f"New preds {preds}")
+    #                 for i in flagged_gen_idxs:
+    #                     print(self.tokenizer.decode(gens[i], skip_special_tokens=True))
+    #                 # print(self.tokenizer.batch_decode(gens, skip_special_tokens=True))
+    #                 print()
+            
+    #         gen_len = input_ids.shape[1]
+    #         # new_input_ids = torch.ones((len(input_ids), gen_len + rej_sample_length), device = input_ids.device, dtype = input_ids.dtype)
+    #         # for i in range(len(input_ids)):
+    #         #     if i in flagged_gen_idxs:
+    #         #         new_input_ids[i] = torch.cat([input_ids[i], gens[i][gen_len:]], dim = 0)
+    #         #     elif i in good_gen_idxs:
+    #         #         new_input_ids[i] = torch.cat([input_ids[i], gens[i][gen_len:]], dim = 0)
+    #         input_ids = gens
+    #         attention_mask = torch.cat([attention_mask, torch.ones(input_ids[:, gen_len:].shape, device = attention_mask.device)], dim = 1)
+
+    #         if log_rej_samples:
+    #             print(f"took {counter} times to get final generations:")
+    #             # print(self.tokenizer.batch_decode(input_ids, skip_special_tokens=True))
+    #             print()
+
+        
+    #     return self.tokenizer.batch_decode(input_ids, skip_special_tokens=True)
 
                        
                                 
@@ -424,21 +575,26 @@ class ModelWrapper(torch.nn.Module):
                     pad_token_id=self.tokenizer.eos_token_id,
                     max_new_tokens = max_new_tokens,
                     output_hidden_states = output_hidden_states,
-                    return_dict_in_generate = output_hidden_states,
+                    return_dict_in_generate = output_hidden_states or output_tokens,
                     **kwargs
                     )
         
         #! this is not good code:
-        if output_hidden_states and output_tokens:
+        return_dict = {}
+        if output_hidden_states:
             assert layers is not None and tok_idxs is not None, "Must specify layers and token indices to slice."
-            return {"generations": self.tokenizer.batch_decode(out['sequences'], skip_special_tokens=True),
-                    "tokens": out['sequences'],
-                    "hidden_states": slice_acts(out, 
+            return_dict['hidden_states']  = slice_acts(out, 
                                                 N_TOKS = max_new_tokens, 
                                                 layers = layers,
                                                 tok_idxs = tok_idxs,
-                                                return_prompt_acts = return_prompt_acts),
-                    }      
+                                                return_prompt_acts = return_prompt_acts)
+        if output_tokens:
+            return_dict['tokens'] = out['sequences']
+        
+        if output_hidden_states or output_tokens: 
+            return_dict['generations'] = self.tokenizer.batch_decode(out['sequences'], skip_special_tokens=True)
+
+            return return_dict
         else:
             return self.tokenizer.batch_decode(out, skip_special_tokens=True)            
         

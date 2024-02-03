@@ -119,9 +119,18 @@ def compare_token_lists(genned_toks, ground_toks):
 def tok_by_tok_similarity(outputs, targets, tokenizer = None):
     if isinstance(outputs[0], str):
         assert tokenizer is not None
-        outputs = tokenizer(outputs, return_tensors = 'pt',padding = False, truncation = True, max_length = 64)['input_ids']
-        targetse = tokenizer(targets, return_tensors = 'pt',padding = False, truncation = True, max_length = 64)['input_ids']
+        if tokenizer.padding_side == "left":
+            print("Are you sure you want padding_side == left?")
+            
+        outputs = tokenizer(outputs, return_tensors = 'pt',padding = True, truncation = True)['input_ids']
+        targets = tokenizer(targets, return_tensors = 'pt',padding = True)['input_ids']
+        max_length = max(outputs.shape[1], targets.shape[1])
 
+        if outputs.shape[1] < max_length:
+            outputs = torch.cat([outputs, torch.zeros(outputs.shape[0], max_length - outputs.shape[1], dtype = torch.long)], dim = 1)
+        if targets.shape[1] < max_length:
+            targets = torch.cat([targets, torch.zeros(targets.shape[0], max_length - targets.shape[1], dtype = torch.long)], dim = 1)
+            
     return [compare_token_lists(t, o) for t, o in zip(outputs, targets)]
 
 def levenshtein_distance(outputs, targets):
