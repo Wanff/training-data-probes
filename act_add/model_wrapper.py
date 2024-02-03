@@ -180,18 +180,11 @@ def slice_acts(out, N_TOKS: int, return_prompt_acts: bool, layers: List, tok_idx
     #! expects hf layer idxs (ie 1-index)
     #out.hidden_states is shape  max_new_tokens x n_layers + 1 x batch x activations
     
-<<<<<<< HEAD
-    #first loop goes through the tokens, second loop goes through the layers or something
-    print(len(out.sequences))
-    print(torch.cat(out.hidden_states[0]).shape)
-    acts = torch.stack([torch.cat(out.hidden_states[i], dim = 1) for i in range(1, N_TOKS)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
-=======
     if N_TOKS == 1:
         acts = torch.stack([torch.cat(out.hidden_states[0], dim = 1)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
     else:
         #first loop goes through the tokens, second loop goes through the layers or something
         acts = torch.stack([torch.cat(out.hidden_states[i], dim = 1) for i in range(1, N_TOKS)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
->>>>>>> main
     #shape: batch_size x N_TOKS - 1 x n_layers + 1 x d_M
     #n_layers + 1 bc of embedding, N_TOKS - 1 bc of how max_new_tokens works
     acts = rearrange(acts, 'b t l d -> b l t d')
@@ -329,52 +322,17 @@ class ModelWrapper(torch.nn.Module):
                     
             flagged_gen_idxs = untuple(np.where(preds == 1))
             good_gen_idxs = untuple(np.where(preds == 0))
-<<<<<<< HEAD
-            banned_words = out.sequences[:, input_ids.shape[1]:]
-            
-            if log_rej_samples:
-                print(f"Input {self.tokenizer.batch_decode(input_ids, skip_special_tokens=True)}")
-                print(f"Generation {self.tokenizer.batch_decode(out.sequences, skip_special_tokens=True)}")
-                print(f"Banned words {banned_words}")
-=======
             pot_banned_words = out.sequences[:, input_ids.shape[1]:input_ids.shape[1] + rej_sample_length]
             
             if log_rej_samples:
                 print(f"Genned (Banned) words {pot_banned_words}")
                 print(f"Genned (Banned) words {detokenize_to_list(self.tokenizer, pot_banned_words)}")
->>>>>>> main
                 print(f"Preds {preds}")
             
             num_tries = 0
             while 1 in preds and num_tries < max_tries:
                 preds = []
                 for i in flagged_gen_idxs:
-<<<<<<< HEAD
-                    new_gen = []
-                    for j in range(rej_sample_length):
-                        out = self.model.generate(
-                            input_ids=torch.cat([input_ids[i], torch.tensor(new_gen).long().to(input_ids.device)], dim=-1).unsqueeze(dim = 0),
-                            attention_mask=attention_mask[i].unsqueeze(dim = 0),
-                            pad_token_id=self.tokenizer.eos_token_id,
-                            max_new_tokens = 1, 
-                            return_dict_in_generate = True,
-                            output_hidden_states = True,
-                    
-                            bad_words_ids = [[banned_words[i,j].item()]],
-                            **generation_kwargs,
-                            )
-                        hidden_states = slice_acts(out, 
-                                                N_TOKS = 2, # NOTE: used to have an off by one error here
-                                                layers = probe_layer+1, #bc slice_acts expects 1-indexed layers
-                                                tok_idxs = -1,
-                                                return_prompt_acts = False, 
-                                                device = "cuda").float()
-                        preds.append(probe.predict(hidden_states).detach().cpu().numpy().item())
-                        new_gen.append(out.sequences[0, -1].item())
-                        print(f"New gen {new_gen}")
-                        
-                    gens[i] = torch.cat([gens[i], torch.tensor(new_gen)], dim = 0)
-=======
                     temp_input_ids = input_ids[i]
                     temp_attention_mask = attention_mask[i]
 
@@ -403,7 +361,6 @@ class ModelWrapper(torch.nn.Module):
                                             device = "cuda").float()
                     gens[i] = out.sequences[0]
                     preds.append(probe.predict(hidden_states).detach().cpu().numpy().item())
->>>>>>> main
                 
                 num_tries += 1
                 if log_rej_samples:
