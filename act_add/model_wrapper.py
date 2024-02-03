@@ -181,7 +181,7 @@ def slice_acts(out, N_TOKS: int, return_prompt_acts: bool, layers: List, tok_idx
     #out.hidden_states is shape  max_new_tokens x n_layers + 1 x batch x activations
     
     if N_TOKS == 1:
-        acts = torch.stack([torch.cat(out.hidden_states[i], dim = 1) for i in [0]], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
+        acts = torch.stack([torch.cat(out.hidden_states[0], dim = 1)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
     else:
         #first loop goes through the tokens, second loop goes through the layers or something
         acts = torch.stack([torch.cat(out.hidden_states[i], dim = 1) for i in range(1, N_TOKS)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
@@ -196,6 +196,7 @@ def slice_acts(out, N_TOKS: int, return_prompt_acts: bool, layers: List, tok_idx
     
     if device == 'cpu':
         acts = acts.cpu()
+        
     if tok_idxs is not None:
         acts = acts[:, :, tok_idxs]
     acts = acts[:, layers]
@@ -529,21 +530,26 @@ class ModelWrapper(torch.nn.Module):
                     pad_token_id=self.tokenizer.eos_token_id,
                     max_new_tokens = max_new_tokens,
                     output_hidden_states = output_hidden_states,
-                    return_dict_in_generate = output_hidden_states,
+                    return_dict_in_generate = output_hidden_states or output_tokens,
                     **kwargs
                     )
         
         #! this is not good code:
-        if output_hidden_states and output_tokens:
+        return_dict = {}
+        if output_hidden_states:
             assert layers is not None and tok_idxs is not None, "Must specify layers and token indices to slice."
-            return {"generations": self.tokenizer.batch_decode(out['sequences'], skip_special_tokens=True),
-                    "tokens": out['sequences'],
-                    "hidden_states": slice_acts(out, 
+            return_dict['hidden_states']  = slice_acts(out, 
                                                 N_TOKS = max_new_tokens, 
                                                 layers = layers,
                                                 tok_idxs = tok_idxs,
-                                                return_prompt_acts = return_prompt_acts),
-                    }      
+                                                return_prompt_acts = return_prompt_acts)
+        if output_tokens:
+            return_dict['tokens'] = out['sequences']
+        
+        if output_hidden_states or output_tokens: 
+            return_dict['generations'] = self.tokenizer.batch_decode(out['sequences'], skip_special_tokens=True)
+
+            return return_dict
         else:
             return self.tokenizer.batch_decode(out, skip_special_tokens=True)            
         
