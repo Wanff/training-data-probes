@@ -406,6 +406,139 @@ class ModelWrapper(torch.nn.Module):
         return self.tokenizer.batch_decode(input_ids, skip_special_tokens=True), total_tries, num_failures
     
     # def rej_sampl_generate(self, prompts, 
+    #                         probe: Union[torch.nn.Module, LogisticRegression],
+    #                         probe_layer: int,
+    #                         max_new_tokens: int = 32, 
+    #                         rej_sample_length: int = 5,
+    #                         log_rej_samples = False,
+    #                         max_tries = 10,
+    #                         **generation_kwargs
+    # ):
+    #     """
+    #     Generates a sequence and then rejects or accepts it based on the probe.
+        
+    #     probe_layer: the layer to probe, if None, probes the last layer
+    #     probe: a probe to use, if None, uses the default probe
+    #     """
+    #     if isinstance(prompts[0], str):
+    #         inputs = self.tokenizer(prompts, return_tensors="pt", padding=True, max_length=512, truncation=True)
+    #     else:
+    #         inputs = self.tokenizer.pad({'input_ids': prompts}, padding = True, return_attention_mask=True)
+        
+    #     input_ids = inputs.input_ids.to(self.model.device)
+    #     attention_mask = inputs.attention_mask.to(self.model.device)
+        
+    #     total_tries = torch.zeros(input_ids.shape[0])
+    #     num_failures = 0
+
+    #     for i in range(ceildiv(max_new_tokens, rej_sample_length)):
+    #         if i == max_new_tokens+1: 
+    #             raise Exception("Next token generation is not possible")
+            
+    #         if log_rej_samples:
+    #             print(f"part {i} of generation")
+                
+    #         out = self.model.generate(
+    #                 input_ids=input_ids,
+    #                 attention_mask=attention_mask,
+    #                 pad_token_id=self.tokenizer.eos_token_id,
+    #                 max_new_tokens = rej_sample_length,
+    #                 return_dict_in_generate = True,
+    #                 output_hidden_states = True,
+    #                 **generation_kwargs,
+    #                 )
+            
+    #         # print(out.hidden_states[1][0].shape)
+    #         #shape batch_size x d_m
+    #         hidden_states =  slice_acts(out, 
+    #                                     N_TOKS = rej_sample_length, 
+    #                                     layers = probe_layer+1, #bc slice_acts expects 1-indexed layers
+    #                                     tok_idxs = -1,
+    #                                     return_prompt_acts = False,
+    #                                     device = "cuda").float()
+    #         gens = out.sequences
+    #         preds = probe.predict(hidden_states).detach().cpu().numpy()
+                    
+    #         flagged_gen_idxs = untuple(np.where(preds == 1))
+    #         good_gen_idxs = untuple(np.where(preds == 0))
+    #         # list of tensors of shape (rej_sample_length, 1, 1)
+    #         pot_banned_words = [x for x in out.sequences[:, input_ids.shape[1]:input_ids.shape[1] + rej_sample_length].unsqueeze(-1).unsqueeze(-1)] # len flagged_gen_idx list of shape (rej_sample_length, 1)
+            
+    #         if log_rej_samples:
+    #             # print(f"Genned (Banned) words {pot_banned_words}")
+    #             print(f"Genned (Banned) words {detokenize_to_list(self.tokenizer, [x.squeeze() for x in pot_banned_words])}")
+    #             print(f"Preds {preds}")
+            
+    #         num_tries = 0
+    #         new_gen = gens.clone()[:, input_ids.shape[1]:input_ids.shape[1] + rej_sample_length]
+    #         while 1 in preds and num_tries < max_tries: 
+    #             preds = []
+    #             for i in flagged_gen_idxs:
+    #                 temp_input_ids = input_ids[i]
+    #                 temp_attention_mask = attention_mask[i]
+
+    #                 for banned_tok_idx in range(rej_sample_length):
+    #                     # print(pot_banned_words[i][banned_tok_idx].tolist())
+    #                     out = self.model.generate(
+    #                             input_ids=temp_input_ids.unsqueeze(dim = 0),
+    #                             attention_mask=temp_attention_mask.unsqueeze(dim = 0),
+    #                             pad_token_id=self.tokenizer.eos_token_id,
+    #                             max_new_tokens = 1,
+    #                             return_dict_in_generate = True,
+    #                             output_hidden_states = True,
+                        
+    #                             bad_words_ids = pot_banned_words[i][banned_tok_idx].tolist(),
+    #                             **generation_kwargs,
+    #                             )
+    #                     temp_input_ids = out.sequences[0]
+    #                     temp_attention_mask = torch.cat([temp_attention_mask, torch.tensor([1], device = attention_mask.device)], dim = 0)
+
+    #                     # update total tries
+    #                     total_tries[i] += 1
+                    
+    #                 new_gen[i] = out.sequences[0][input_ids.shape[1]:input_ids.shape[1] + rej_sample_length]
+    #                 hidden_states = slice_acts(out, 
+    #                                         N_TOKS = 1, 
+    #                                         layers = probe_layer+1, #bc slice_acts expects 1-indexed layers
+    #                                         tok_idxs = -1,
+    #                                         return_prompt_acts = False, 
+    #                                         device = "cuda").float()
+    #                 preds.append(probe.predict(hidden_states).detach().cpu().numpy().item())
+
+    #                 if preds[-1] == 1: 
+    #                     # print(f"Rejected {self.tokenizer.decode(new_gen[i], skip_special_tokens=True)}")
+    #                     # print(f"Rejected {new_gen[i]}")
+
+    #                     # add new gen to banned words
+    #                     pot_banned_words[i] = torch.cat([pot_banned_words[i], new_gen[i][:,None,None]], dim = 1)
+    #                     # print([x.shape for x in pot_banned_words])
+
+    #             num_tries += 1
+    #             if log_rej_samples:
+    #                 print(f"New preds {preds}")
+    #                 # banned words
+    #                 print(f"New banned words {detokenize_to_list(self.tokenizer, [x.squeeze() for x in pot_banned_words])}")
+    #                 # print(f"New banned words {pot_banned_words}")
+    #                 # for i in flagged_gen_idxs:
+    #                 #     print(self.tokenizer.decode(gens[i], skip_special_tokens=True))
+    #                 #     print("--------------")
+    #                 # print(self.tokenizer.batch_decode(gens, skip_special_tokens=True))
+    #                 print()
+            
+    #         gen_len = input_ids.shape[1]
+    #         input_ids = torch.cat([input_ids, new_gen], dim = 1)
+    #         attention_mask = torch.cat([attention_mask, torch.ones(input_ids[:, gen_len:].shape, device = attention_mask.device)], dim = 1)
+
+    #         if log_rej_samples:
+    #             print(f"took {num_tries} times to get final generations:")
+    #             num_failures += len([x for x in preds if x == 1])
+    #             # print(self.tokenizer.batch_decode(input_ids, skip_special_tokens=True))
+    #             print()
+
+        
+    #     return self.tokenizer.batch_decode(input_ids, skip_special_tokens=True), total_tries, num_failures
+    
+    # def rej_sampl_generate(self, prompts, 
     #                             probe: Union[torch.nn.Module, LogisticRegression],
     #                             probe_layer: int,
     #                             max_new_tokens: int = 32, 
@@ -503,8 +636,6 @@ class ModelWrapper(torch.nn.Module):
     #                     print("--------------")
     #                 # print(self.tokenizer.batch_decode(gens, skip_special_tokens=True))
     #                 print()
-
-    #             raise Exception
             
     #         gen_len = input_ids.shape[1]
     #         input_ids = gens
