@@ -66,33 +66,6 @@ def compare_token_lists(ground_toks, genned_toks):
 def toks_to_string(tokenizer, toks):
     return "".join(tokenizer.batch_decode(toks))
 
-# def slice_acts(out, N_TOKS: int, return_prompt_acts: bool, layers: List, tok_idxs: List = None):
-#     """slices acts out of huggingface modeloutput object
-
-#     Args:
-#         out (_type_): _description_
-#         N_TOKS (int): how many tokens generated
-#         return_prompt_toks (bool): _description_
-#         layers (List): _description_
-
-#     Returns:
-#         _type_: _description_
-#     """
-#     acts = torch.cat([torch.cat(out.hidden_states[i], dim = 0) for i in range(1, N_TOKS)], dim = 1)  #1, N_TOKS bc the first index is all previous tokens
-#     #shape: n_layers + 1, N_TOKS - 1, d_M
-#     #n_layers + 1 bc of embedding, N_TOKS - 1 bc of how max_new_tokens works
-    
-#     if return_prompt_acts:
-#         prompt_acts = torch.cat(out.hidden_states[0], dim = 0)
-#         acts = torch.cat([prompt_acts, acts], dim = 1)
-    
-#     acts = acts.cpu()
-    
-#     if tok_idxs is not None:
-#         acts = acts[:, tok_idxs, :]
-#     acts = acts[layers, :, :]
-#     return acts
-
 def ceildiv(a, b):
     #https://stackoverflow.com/questions/14822184/is-there-a-ceiling-equivalent-of-operator-in-python
     return -(a // -b)
@@ -350,11 +323,20 @@ if __name__ == "__main__":
         "--logging",
         action="store_true",
     )
+    parser.add_argument(
+        '--seed', 
+        type=int,
+        default=0,
+    )
 
 
     args = parser.parse_args()
     
     print(args)
+
+    # set seed
+    torch.manual_seed(args.seed)
+    np.random.seed(args.seed)
     
     model = AutoModelForCausalLM.from_pretrained(args.model_name, torch_dtype=torch.float16, device_map="auto").eval()
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, padding_side="left")

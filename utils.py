@@ -410,3 +410,12 @@ def eval_completions(outputs, targets, sim_types = ['char', 'tok', 'lev', 'sem']
         return {k: np.mean(v) for k, v in return_dict.items()}
    
     return return_dict
+
+def dataset_wide_deduplicate(dataset, col): 
+    """
+    Takes in a huggingface dataset, outputs it with all rows deduplicated
+    depending on the column col
+    """
+    dataset = dataset.to_pandas()
+    dataset = dataset.drop_duplicates(subset = col)
+    return datasets.Dataset.from_pandas(dataset)
