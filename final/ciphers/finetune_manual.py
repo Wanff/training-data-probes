@@ -26,7 +26,7 @@ def main(args):
     model = AutoModelForCausalLM.from_pretrained(args.model_name, low_cpu_mem_usage=True, device_map='auto')
 
     def tokenize_function(examples):
-        return tokenizer(examples['text'], padding='max_length', truncation=True, max_length=512)
+        return tokenizer(examples['text'], padding='max_length', truncation=True, max_length=256)
     
     dataset = dataset.map(tokenize_function, batched=True)
     dataset = dataset.map(lambda examples: {'labels': examples['input_ids']}, batched=True)
