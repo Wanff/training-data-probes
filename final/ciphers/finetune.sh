@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES='2,3'
+export CUDA_VISIBLE_DEVICES='0,1'
 
 python finetune_manual.py \
     --path "/home/ubuntu/gld/train-data-probes/data/1b/ciphers" \
